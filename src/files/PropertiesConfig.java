@@ -18,7 +18,7 @@ public class PropertiesConfig {
 
     private final Properties properties;
 
-    private PropertiesConfig() {
+    public PropertiesConfig() {
         properties = new Properties();
     }
 
@@ -33,7 +33,7 @@ public class PropertiesConfig {
 
     public void readConfig() {
         try {
-            properties.load(new FileReader("Config/config.properties"));
+            properties.load(new FileReader("config.properties"));
         } catch (IOException e) {
             System.err.println("Archivo no encontrado\nCreando archivo");
             writeConfig();
@@ -49,7 +49,7 @@ public class PropertiesConfig {
             properties.setProperty("maxPlayers", "5");
             properties.setProperty("minPlayers", "2");
             properties.setProperty("padlocksCount", "4");
-            properties.store(new FileWriter("Config/config.properties"), "Config");
+            properties.store(new FileWriter("config.properties"), "Config");
         } catch (IOException ex) {
             System.err.println("No se pudo sobreescribir el archivo");
         }
@@ -59,7 +59,7 @@ public class PropertiesConfig {
     public void addConfig(String key, String value) {
         try {
             properties.setProperty(key, value);
-            properties.store(new FileWriter("Config/config.properties"), "Config");
+            properties.store(new FileWriter("config.properties"), "Config");
         } catch (IOException ex) {
             System.err.println("No se pudo sobreescribir el archivo");
         }

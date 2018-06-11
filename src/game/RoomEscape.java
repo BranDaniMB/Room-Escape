@@ -5,6 +5,8 @@
  */
 package game;
 
+import files.PropertiesConfig;
+
 /**
  *
  * @author Jermy
