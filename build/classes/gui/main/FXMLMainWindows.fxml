@@ -8,7 +8,7 @@
 
 <AnchorPane id="Panel" prefHeight="423.0" prefWidth="451.0" stylesheets="@Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.main.FXMLMainWindowsController">
     <children>
-        <Pane fx:id="mainWindows" prefHeight="423.0" prefWidth="451.0" visible="false">
+        <Pane fx:id="mainWindows" prefHeight="423.0" prefWidth="451.0">
             <children>
                 <Label layoutX="163.0" layoutY="14.0" minHeight="16" minWidth="69" styleClass="mainTitle" text="Room Escape" />
                 <Button layoutX="174.0" layoutY="59.0" onAction="#displayRegister" styleClass="mainButton" stylesheets="@Styles.css" text="Registrar Equipo" />
@@ -40,7 +40,7 @@
                 <Label fx:id="registerStatus" alignment="CENTER" contentDisplay="TOP" layoutX="36.0" layoutY="290.0" maxWidth="379.0" prefHeight="55.0" prefWidth="379.0" styleClass="status" text="Estado: Sin acciones" textAlignment="CENTER" textOverrun="CLIP" wrapText="true" />
             </children>
         </Pane>
-        <Pane fx:id="modifyWindows" prefHeight="423.0" prefWidth="451.0">
+        <Pane fx:id="modifyWindows" prefHeight="423.0" prefWidth="451.0" visible="false">
             <children>
                 <Label layoutX="144.0" layoutY="14.0" styleClass="mainTitle" text="Modificar equipo" />
                 <Button layoutX="103.0" layoutY="44.0" mnemonicParsing="false" onAction="#getTeamData" text="Obtener datos">
