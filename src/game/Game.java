@@ -6,6 +6,7 @@
 package game;
 
 import java.util.ArrayList;
+import listManager.TeamList;
 import objects.Team;
 
 /**
@@ -16,12 +17,18 @@ public class Game extends Thread {
 
     private Chrono chrono;
     private ArrayList<GameRoom> gameRooms;
+    private ArrayList<Team> teams;
     private boolean finishGame;
 
-    public synchronized void singularMode(Team team) throws InterruptedException {
+    public synchronized void singularMode(String team) throws InterruptedException {
+        Team aux = TeamList.getInstance().searchTeam(team);
+        
         while (true) {
             wait();
         }
+    }
+
+    public synchronized void selectPlayer() {
 
     }
 

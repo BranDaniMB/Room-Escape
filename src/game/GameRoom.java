@@ -4,6 +4,7 @@ import objects.Riddle;
 import files.PropertiesConfig;
 import gui.rooms.ManagerGameWindows;
 import java.util.ArrayList;
+import objects.Team;
 
 /**
  *
@@ -15,7 +16,7 @@ public class GameRoom extends Thread {
     private ArrayList<Riddle> riddles;
     private Game game;
     private String currentRoom = ManagerGameWindows.ROOM_3;
-
+    private Team team;
     public GameRoom(Game game) {
         this.padlocksOpen = new ArrayList<>();
         this.riddles = new ArrayList<>();
