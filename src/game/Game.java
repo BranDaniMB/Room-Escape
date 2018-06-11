@@ -6,6 +6,7 @@
 package game;
 
 import java.util.ArrayList;
+import objects.Team;
 
 /**
  *
@@ -18,10 +19,12 @@ public class Game extends Thread {
     private boolean finishGame;
 
     public synchronized void singularMode() throws InterruptedException {
+        Team 
+                
         while (true) {
             wait();
         }
-
+        
     }
 
     public synchronized void multiplayerMode() throws InterruptedException {
@@ -35,8 +38,11 @@ public class Game extends Thread {
     }
 
     public void createGameRoom() {
+        GameRoom gameRoom = new GameRoom(this);
+        gameRooms.add(gameRoom);
+        gameRoom.start();
     }
-
+    
     public Chrono getChrono() {
         return chrono;
     }
