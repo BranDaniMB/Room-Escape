@@ -6,6 +6,7 @@ import objects.PseudoTeam;
 import game.Menu;
 import java.net.URL;
 import java.util.ResourceBundle;
+import static javafx.application.Application.launch;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -296,4 +297,7 @@ public class FXMLMainWindowsController implements Initializable {
         // TODO
     }
 
+    public static void main(String[] args) {
+        launch(args);
+    }
 }
