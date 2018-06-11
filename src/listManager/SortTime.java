@@ -18,6 +18,6 @@ public class SortTime implements PrintOrder {
 
     @Override
     public int compare(Team o1, Team o2) {
-        return o1.getBestTime().compareTo(o2.getBestTime());
+        return o1.getBestTimeMultiplayer().compareTo(o2.getBestTimeMultiplayer());
     }
 }
