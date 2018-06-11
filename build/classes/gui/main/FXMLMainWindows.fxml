@@ -7,6 +7,7 @@
 <?import javafx.scene.layout.*?>
 
 <AnchorPane id="Panel" prefHeight="423.0" prefWidth="451.0" stylesheets="@Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.main.FXMLMainWindowsController">
+
     <children>
         <Pane fx:id="mainWindows" prefHeight="423.0" prefWidth="451.0">
             <children>

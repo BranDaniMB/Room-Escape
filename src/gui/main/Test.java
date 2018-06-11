@@ -17,7 +17,7 @@ public class Test extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLMainWindows.fxml"));
 
         Scene scene = new Scene(root);
-
+        stage.setTitle("Menú");
         stage.setScene(scene);
         stage.show();
     }
