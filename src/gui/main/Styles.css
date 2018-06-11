@@ -1,3 +1,12 @@
+@font-face {
+    font-family: 'WhitneySemiBold';
+    src: url('../font/WhitneySemiBold.ttf');
+}
+
+.main-pane {
+    -fx-font-family: "WhitneySemiBold";
+}
+
 .mainTitle {
     -fx-font-size: 20px;
     -fx-font-weight: bold;

@@ -6,10 +6,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="Panel" prefHeight="423.0" prefWidth="451.0" stylesheets="@Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.main.FXMLMainWindowsController">
+<AnchorPane id="Panel" prefHeight="423.0" prefWidth="451.0" styleClass="main-pane" stylesheets="@Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.main.FXMLMainWindowsController">
 
     <children>
-        <Pane fx:id="mainWindows" prefHeight="423.0" prefWidth="451.0">
+        <Pane fx:id="mainWindows" prefHeight="423.0" prefWidth="451.0" styleClass="pane">
             <children>
                 <Label layoutX="163.0" layoutY="14.0" minHeight="16" minWidth="69" styleClass="mainTitle" text="Room Escape" />
                 <Button layoutX="174.0" layoutY="59.0" onAction="#displayRegister" styleClass="mainButton" stylesheets="@Styles.css" text="Registrar Equipo" />
