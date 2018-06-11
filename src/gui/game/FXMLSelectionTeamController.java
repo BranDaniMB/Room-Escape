@@ -2,18 +2,23 @@ package gui.game;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.application.Application;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
  *
  * @author BranDaniMB
  */
-public class FXMLSelectionTeamController implements Initializable {
+public class FXMLSelectionTeamController extends Application implements Initializable {
 
     @FXML
     private Pane selectionPane;
@@ -49,4 +54,13 @@ public class FXMLSelectionTeamController implements Initializable {
         // TODO
     }
 
+    @Override
+    public void start(Stage stage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("FXMLSelectionTeam.fxml"));
+
+        Scene scene = new Scene(root);
+        stage.setTitle("Seleccionar equipo");
+        stage.setScene(scene);
+        stage.show();
+    }
 }
