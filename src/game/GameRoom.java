@@ -17,10 +17,12 @@ public class GameRoom extends Thread {
     private Game game;
     private String currentRoom = ManagerGameWindows.ROOM_3;
     private Team team;
-    public GameRoom(Game game) {
+
+    public GameRoom(Game game, Team team) {
         this.padlocksOpen = new ArrayList<>();
         this.riddles = new ArrayList<>();
         this.game = game;
+        this.team = team;
     }
 
     public ArrayList<Boolean> getPadlocksOpen() {

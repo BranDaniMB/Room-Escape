@@ -17,17 +17,17 @@ import objects.Team;
  * @author Jermy
  */
 public class Game extends Thread {
-    
+
     private Chrono chrono;
     private ArrayList<GameRoom> gameRooms;
     private boolean finishGame;
-    
+
     public synchronized void singularMode() throws InterruptedException {
         while (true) {
             wait();
         }
     }
-    
+
     public synchronized void selectToPlay(String TeamName, String players) throws InvalidDataException {
         Team aux = null;
         selectTeam(TeamName, aux);
@@ -39,7 +39,7 @@ public class Game extends Thread {
             selectPlayer(player[i].toString(), aux);
         }
     }
-    
+
     private synchronized void selectPlayer(String name, Team team) throws InvalidDataException {
         Player player = team.searchPlayer(name);
         if (player.isSelected()) {
@@ -54,7 +54,7 @@ public class Game extends Thread {
         player.setSelected(true);
         team.setPlayersOnline(team.getPlayersOnline() + 1);
     }
-    
+
     private synchronized void selectTeam(String name, Team aux) throws InvalidDataException {
         aux = TeamList.getInstance().searchTeam(name);
         if (aux == null) {
@@ -66,45 +66,44 @@ public class Game extends Thread {
         aux.setPlaying(true);
         TeamList.getInstance().setTeamsPlaying(TeamList.getInstance().getTeamsPlaying() + 1);
     }
-    
+
     public synchronized void multiplayerMode() throws InterruptedException {
         while (true) {
             wait();
         }
-        
+
     }
-    
+
     public void starPlay() {
     }
-    
-    public void createGameRoom() {
-        GameRoom gameRoom = new GameRoom(this);
+
+    public void createGameRoom(Team team) {
+        GameRoom gameRoom = new GameRoom(this, team);
         gameRooms.add(gameRoom);
         gameRoom.start();
     }
-    
+
     public Chrono getChrono() {
         return chrono;
     }
-    
+
     public void setChrono(Chrono chrono) {
         this.chrono = chrono;
     }
-    
+
     public ArrayList<GameRoom> getGameRooms() {
         return gameRooms;
     }
-    
+
     public void setGameRooms(ArrayList<GameRoom> gameRooms) {
         this.gameRooms = gameRooms;
     }
-    
+
     public boolean isFinishGame() {
         return finishGame;
     }
-    
+
     public void setFinishGame(boolean finishGame) {
         this.finishGame = finishGame;
     }
-    
 }

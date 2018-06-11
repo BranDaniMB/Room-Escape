@@ -31,9 +31,6 @@ public class ManagerGameWindows extends Application {
         List<String> list = params.getRaw();
         this.id = list.get(0);
 
-        GameRoom gameRoom = new GameRoom(new Game());
-        this.currentRoom = gameRoom.getCurrentRoom();
-
         Parent root = FXMLLoader.load(getClass().getResource(currentRoom));
 
         Scene scene = new Scene(root);
