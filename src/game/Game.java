@@ -18,13 +18,11 @@ public class Game extends Thread {
     private ArrayList<GameRoom> gameRooms;
     private boolean finishGame;
 
-    public synchronized void singularMode() throws InterruptedException {
-        Team 
-                
+    public synchronized void singularMode(Team team) throws InterruptedException {
         while (true) {
             wait();
         }
-        
+
     }
 
     public synchronized void multiplayerMode() throws InterruptedException {
@@ -42,7 +40,7 @@ public class Game extends Thread {
         gameRooms.add(gameRoom);
         gameRoom.start();
     }
-    
+
     public Chrono getChrono() {
         return chrono;
     }

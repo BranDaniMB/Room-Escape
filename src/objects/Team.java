@@ -15,8 +15,7 @@ public class Team implements Comparable<Team> {
     private String teamName;
     private TreeSet<Player> playersList;
     private LocalDate dateInscription;
-    private String bestTimeSingle;
-    private String bestTimeMultiplayer;
+    private String bestTime;
     private int playersOnline;
     private boolean playing;
 
@@ -24,8 +23,7 @@ public class Team implements Comparable<Team> {
         this.teamName = "";
         this.playersList = new TreeSet<>();
         this.dateInscription = null;
-        this.bestTimeSingle = "30:00";
-        this.bestTimeMultiplayer = "30:00";
+        this.bestTime = "";
         this.playersOnline = 0;
         this.playing = false;
     }
@@ -54,20 +52,12 @@ public class Team implements Comparable<Team> {
         this.dateInscription = dateInscription;
     }
 
-    public String getBestTimeSingle() {
-        return bestTimeSingle;
+    public String getBestTime() {
+        return bestTime;
     }
 
-    public void setBestTimeSingle(String bestTimeSingle) {
-        this.bestTimeSingle = bestTimeSingle;
-    }
-
-    public String getBestTimeMultiplayer() {
-        return bestTimeMultiplayer;
-    }
-
-    public void setBestTimeMultiplayer(String bestTimeMultiplayer) {
-        this.bestTimeMultiplayer = bestTimeMultiplayer;
+    public void setBestTime(String bestTimeSingle) {
+        this.bestTime = bestTimeSingle;
     }
 
     public int getPlayersOnline() {
