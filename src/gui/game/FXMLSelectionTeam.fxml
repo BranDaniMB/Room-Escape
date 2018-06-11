@@ -7,8 +7,13 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.game.FXMLSelectionTeamController">
-    <stylesheets>
-        <URL value="@styles.css"/>
-    </stylesheets>
+<AnchorPane id="AnchorPane" prefHeight="317.0" prefWidth="424.0" styleClass="main-pane" stylesheets="@../main/Styles.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="gui.game.FXMLSelectionTeamController">
+   <children>
+      <Label layoutX="150.0" layoutY="22.0" styleClass="mainTitle" text="Elegir tu equipo" />
+      <Label layoutX="131.0" layoutY="82.0" styleClass="secondTitle" text="Elige un equipo de la lista" />
+      <ChoiceBox layoutX="141.0" layoutY="109.0" prefWidth="150.0" />
+      <Label layoutX="144.0" layoutY="179.0" styleClass="secondTitle" text="Selecciona tu jugador" />
+      <ChoiceBox layoutX="141.0" layoutY="211.0" prefWidth="150.0" />
+      <Button layoutX="184.0" layoutY="262.0" mnemonicParsing="false" text="Siguiente" />
+   </children>
 </AnchorPane>
