@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="Panel" prefHeight="423.0" prefWidth="451.0" stylesheets="@Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.main.FXMLMainWindowsController">
+    <children>
+        <Pane fx:id="mainWindows" prefHeight="423.0" prefWidth="451.0" visible="false">
+            <children>
+                <Label layoutX="163.0" layoutY="14.0" minHeight="16" minWidth="69" styleClass="mainTitle" text="Room Escape" />
+                <Button layoutX="174.0" layoutY="59.0" onAction="#displayRegister" styleClass="mainButton" stylesheets="@Styles.css" text="Registrar Equipo" />
+                <Button layoutX="164.0" layoutY="94.0" mnemonicParsing="false" onAction="#displayModify" styleClass="mainButton" text="Modificar un equipo" />
+                <Label layoutX="202.0" layoutY="163.0" styleClass="secondTitle" text="Jugar" />
+                <Button layoutX="176.0" layoutY="199.0" mnemonicParsing="false" styleClass="mainButton" text="Jugar individual" />
+                <Button layoutX="167.0" layoutY="247.0" mnemonicParsing="false" styleClass="mainButton" text="Jugar por equipos" />
+                <Label layoutX="191.0" layoutY="308.0" styleClass="secondTitle" text="Rankings" />
+                <Button layoutX="173.0" layoutY="356.0" mnemonicParsing="false" onAction="#displayRanking" styleClass="mainButton" text="Mostrar rankings" />
+            </children>
+        </Pane>
+        <Pane fx:id="registerWindows" prefHeight="423.0" prefWidth="451.0" visible="false">
+            <children>
+                <Label layoutX="132.0" layoutY="14.0" styleClass="mainTitle" text="Registrar un equipo" />
+                <Label layoutX="161.0" layoutY="52.0" styleClass="inputTitle" text="Nombre del equipo" />
+                <TextField fx:id="registerTeamName" layoutX="151.0" layoutY="72.0" promptText="Nombre del equipo" />
+                <Label layoutX="164.0" layoutY="111.0" styleClass="inputTitle" text="Agregar jugadores" />
+                <Button layoutX="120.0" layoutY="131.0" mnemonicParsing="false" onAction="#addListPlayer" styleClass="mainButton" text="Agregar">
+                    <graphic>
+                        <TextField fx:id="registerTeamPlayers" promptText="ID del jugador" />
+                    </graphic>
+                </Button>
+                <TextArea fx:id="listPlayers" editable="false" layoutX="35.0" layoutY="168.0" prefHeight="44.0" prefWidth="379.0" />
+                <Label layoutX="158.0" layoutY="227.0" styleClass="inputTitle" text="Fecha de inscripción" />
+                <DatePicker fx:id="registerTeamDatePicker" layoutX="139.0" layoutY="247.0" />
+                <Button layoutX="88.0" layoutY="374.0" mnemonicParsing="false" onAction="#registerTeam" styleClass="mainButton" text="Registrar" />
+                <Button layoutX="300.0" layoutY="374.0" mnemonicParsing="false" onAction="#displayMain" styleClass="mainButton" text="Volver" />
+                <Button layoutX="201.0" layoutY="374.0" mnemonicParsing="false" onAction="#makeEmptyRegister" text="Vaciar" />
+                <Label fx:id="registerStatus" alignment="CENTER" contentDisplay="TOP" layoutX="36.0" layoutY="290.0" maxWidth="379.0" prefHeight="55.0" prefWidth="379.0" styleClass="status" text="Estado: Sin acciones" textAlignment="CENTER" textOverrun="CLIP" wrapText="true" />
+            </children>
+        </Pane>
+        <Pane fx:id="modifyWindows" prefHeight="423.0" prefWidth="451.0">
+            <children>
+                <Label layoutX="144.0" layoutY="14.0" styleClass="mainTitle" text="Modificar equipo" />
+                <Button layoutX="103.0" layoutY="44.0" mnemonicParsing="false" onAction="#getTeamData" text="Obtener datos">
+                    <graphic>
+                        <TextField fx:id="TFGetName" promptText="Nombre del equipo" />
+                    </graphic>
+                </Button>
+                <TextArea fx:id="teamData" editable="false" layoutX="30.0" layoutY="90.0" prefHeight="55.0" prefWidth="390.0" promptText="Sin equipo" wrapText="true" />
+                <Button layoutX="97.0" layoutY="160.0" mnemonicParsing="false" onAction="#changeName" text="Cambiar nombre">
+                    <graphic>
+                        <TextField fx:id="TFChangeName" promptText="Nombre del equipo" />
+                    </graphic>
+                </Button>
+                <TextField fx:id="TFChangeCurrentPlayerName" layoutX="14.0" layoutY="219.0" promptText="Nombre actual" />
+                <TextField fx:id="TFChangeNewPlayerName" layoutX="163.0" layoutY="219.0" promptText="Nombre nuevo" />
+                <Button layoutX="312.0" layoutY="219.0" mnemonicParsing="false" onAction="#changePlayer" text="Cambiar integrante" />
+                <Button layoutX="120.0" layoutY="276.0" mnemonicParsing="false" onAction="#changeAddPlayer" styleClass="mainButton" text="Agregar">
+                    <graphic>
+                        <TextField fx:id="TFChangeAddNewPlayer" promptText="ID del jugador" />
+                    </graphic>
+                </Button>
+                <Button layoutX="125.0" layoutY="384.0" mnemonicParsing="false" onAction="#displayMain" styleClass="mainButton" text="Volver" />
+                <Label fx:id="modifyStatus" alignment="CENTER" contentDisplay="TOP" layoutX="36.0" layoutY="323.0" maxWidth="379.0" prefHeight="44.0" prefWidth="379.0" styleClass="status" text="Estado: Sin acciones" textAlignment="CENTER" textOverrun="CLIP" wrapText="true" />
+                <Button layoutX="254.0" layoutY="384.0" mnemonicParsing="false" onAction="#finalizeChange" text="Finalizar cambios" />
+            </children>
+        </Pane>
+        <Pane fx:id="rankingWindows" prefHeight="423.0" prefWidth="451.0" visible="false">
+            <children>
+                <Label layoutX="182.0" layoutY="15.0" styleClass="mainTitle" text="Rankings" />
+                <Button layoutX="201.0" layoutY="378.0" mnemonicParsing="false" onAction="#displayMain" styleClass="mainButton" text="Volver" />
+                <TabPane layoutY="51.0" prefHeight="311.0" prefWidth="451.0" tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                        <Tab text="Por nombre">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="245.0" prefWidth="377.0">
+                                    <children>
+                                        <TableView fx:id="tableByName" prefHeight="283.0" prefWidth="451.0">
+                                            <columns>
+                                                <TableColumn fx:id="tableByName_name" prefWidth="143.0" text="Nombre del equipo" />
+                                                <TableColumn fx:id="tableByName_players" prefWidth="155.0" text="Integrantes" />
+                                                <TableColumn fx:id="tableByName_time" prefWidth="152.0" text="Tiempo" />
+                                            </columns>
+                                        </TableView>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                        <Tab text="Por fecha">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                    <children>
+                                        <TableView fx:id="tableByInscription" prefHeight="283.0" prefWidth="451.0">
+                                            <columns>
+                                                <TableColumn fx:id="tableByInscription_name" prefWidth="143.0" text="Nombre del equipo" />
+                                                <TableColumn fx:id="tableByInscription_players" prefWidth="155.0" text="Integrantes" />
+                                                <TableColumn fx:id="tableByInscription_time" prefWidth="152.0" text="Tiempo" />
+                                            </columns>
+                                        </TableView>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                        <Tab text="Por tiempos">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="245.0" prefWidth="377.0">
+                                    <children>
+                                        <TableView fx:id="tableByTime" prefHeight="283.0" prefWidth="451.0">
+                                            <columns>
+                                                <TableColumn fx:id="tableByTime_name" prefWidth="143.0" text="Nombre del equipo" />
+                                                <TableColumn fx:id="tableByTime_players" prefWidth="155.0" text="Integrantes" />
+                                                <TableColumn fx:id="tableByTime_time" prefWidth="152.0" text="Tiempo" />
+                                            </columns>
+                                        </TableView>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                    </tabs>
+                </TabPane>
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>
