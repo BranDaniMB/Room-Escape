@@ -40,7 +40,6 @@ public class Menu {
         for (Team team : list) {
             newList.add(new PseudoTeam(team.getTeamName(), team.printPlayers(), team.getBestTime().toString()));
         }
-
         return newList;
     }
 }
