@@ -7,7 +7,9 @@ package game;
 
 import builderteam.InvalidDataException;
 import files.PropertiesConfig;
+import gui.main.InitMainGUI;
 import java.util.ArrayList;
+import javafx.application.Application;
 import listManager.TeamList;
 import objects.Player;
 import objects.Team;
@@ -106,5 +108,10 @@ public class Game extends Thread {
 
     public void setFinishGame(boolean finishGame) {
         this.finishGame = finishGame;
+    }
+
+    @Override
+    public void run() {
+        Application.launch(InitMainGUI.class, "room1");
     }
 }
