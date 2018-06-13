@@ -7,6 +7,7 @@ package listManager;
 
 import objects.Riddle;
 import java.util.ArrayList;
+import objects.runGameRiddle;
 
 /**
  *
@@ -14,35 +15,25 @@ import java.util.ArrayList;
  */
 public class ListRiddle implements Cloneable {
 
-    private ArrayList<Riddle> listRiddle;
+    private ArrayList<runGameRiddle> listRiddle;
 
     public ListRiddle() {
 
         listRiddle = new ArrayList<>();
     }
     
-    public void addRiddle (Riddle riddle){    
+    public void addRiddle (runGameRiddle riddle){    
         listRiddle.add(riddle);
     }
     
-    public boolean removeRiddle (Riddle riddle){
+    public boolean removeRiddle (runGameRiddle riddle){
         return listRiddle.remove(riddle);
     }
 
-    public ArrayList<Riddle> copyListRiddle() throws CloneNotSupportedException {
-
-        ArrayList<Riddle> copyList = new ArrayList<>();
-        
-         for (int i = 0; i < listRiddle.size(); i++) {       
-            copyList.add((Riddle) listRiddle.get(i).clone());
-        }
-        return copyList;
-    }
-
-    public Riddle assignRiddle() {
+    public runGameRiddle assignRiddle() {
 
         int riddleRemove = (int) ((Math.random() * listRiddle.size()) + 0);
-        Riddle riddle = listRiddle.get(riddleRemove);
+        runGameRiddle riddle = listRiddle.get(riddleRemove);
         
         removeRiddle(riddle);
         return riddle;

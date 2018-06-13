@@ -6,6 +6,8 @@
 package listManager;
 
 import builderteam.InvalidDataException;
+import files.FilesManagerList;
+import files.FilesManagerListRiddles;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -17,6 +19,14 @@ public class Test {
 
     public static void main(String[] args) {
         try {
+             FilesManagerList listManager = new FilesManagerList();
+             FilesManagerListRiddles listRiddles= new FilesManagerListRiddles();
+             
+             
+             listManager.readFile("filesManager.dat");
+             listManager.writeFile("filesManager.dat", TeamList.getInstance());
+             
+             
             buildPlayers("brandons");
         } catch (InvalidDataException ex) {
             System.err.println(ex.getMessage());
