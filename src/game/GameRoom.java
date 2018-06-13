@@ -2,7 +2,7 @@ package game;
 
 import objects.Riddle;
 import files.PropertiesConfig;
-import gui.rooms.ManagerGameWindows;
+import gui.rooms.InitRoomGui;
 import java.util.ArrayList;
 import objects.Team;
 
@@ -15,7 +15,7 @@ public class GameRoom extends Thread {
     private ArrayList<Boolean> padlocksOpen;
     private ArrayList<Riddle> riddles;
     private Game game;
-    private String currentRoom = ManagerGameWindows.ROOM_3;
+    private String currentRoom = InitRoomGui.ROOM_3;
     private Team team;
 
     public GameRoom(Game game, Team team) {

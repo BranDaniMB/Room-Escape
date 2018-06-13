@@ -15,8 +15,8 @@
                 <Button layoutX="174.0" layoutY="59.0" onAction="#displayRegister" styleClass="mainButton" stylesheets="@Styles.css" text="Registrar Equipo" />
                 <Button layoutX="164.0" layoutY="94.0" mnemonicParsing="false" onAction="#displayModify" styleClass="mainButton" text="Modificar un equipo" />
                 <Label layoutX="202.0" layoutY="163.0" styleClass="secondTitle" text="Jugar" />
-                <Button layoutX="176.0" layoutY="199.0" mnemonicParsing="false" styleClass="mainButton" text="Jugar individual" />
-                <Button layoutX="167.0" layoutY="247.0" mnemonicParsing="false" styleClass="mainButton" text="Jugar por equipos" />
+                <Button layoutX="176.0" layoutY="199.0" mnemonicParsing="false" onAction="#IndividualGame" styleClass="mainButton" text="Jugar individual" />
+                <Button layoutX="167.0" layoutY="247.0" mnemonicParsing="false" onAction="#multiplayerGame" styleClass="mainButton" text="Jugar por equipos" />
                 <Label layoutX="191.0" layoutY="308.0" styleClass="secondTitle" text="Rankings" />
                 <Button layoutX="173.0" layoutY="356.0" mnemonicParsing="false" onAction="#displayRanking" styleClass="mainButton" text="Mostrar rankings" />
             </children>

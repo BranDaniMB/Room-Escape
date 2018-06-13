@@ -17,16 +17,9 @@ public class InitSelectionGUI extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLSelectionTeam.fxml"));
 
         Scene scene = new Scene(root);
-        stage.setTitle("Menú de selection");
+        stage.setTitle("Menú de selección");
         stage.setScene(scene);
         stage.show();
-    }
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        launch(args);
     }
 
 }

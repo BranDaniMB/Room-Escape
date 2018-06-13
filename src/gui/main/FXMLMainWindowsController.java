@@ -4,8 +4,10 @@ import builderteam.InvalidDataException;
 import builderteam.ModifyTeam;
 import objects.PseudoTeam;
 import game.Menu;
+import gui.game.InitSelectionGUI;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -290,6 +292,16 @@ public class FXMLMainWindowsController implements Initializable {
     private void finalizeChange() {
         modifyTeam.finalizeChange();
         makeEmptyModifyTeam();
+    }
+
+    @FXML
+    private void IndividualGame() {
+        Application.launch(InitSelectionGUI.class, new String[]{"game123"});
+    }
+
+    @FXML
+    private void multiplayerGame() {
+
     }
 
     @Override
