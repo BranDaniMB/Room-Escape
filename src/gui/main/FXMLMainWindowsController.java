@@ -296,8 +296,4 @@ public class FXMLMainWindowsController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
-
-    public static void main(String[] args) {
-        launch(args);
-    }
 }
