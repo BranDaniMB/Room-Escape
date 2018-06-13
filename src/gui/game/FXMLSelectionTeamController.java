@@ -2,11 +2,18 @@ package gui.game;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.application.Application;
+import static javafx.application.Application.launch;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.Label;
+import javafx.scene.control.SplitMenuButton;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -22,9 +29,11 @@ public class FXMLSelectionTeamController implements Initializable {
 
     //Instructions
     @FXML
-    private TextArea instructionsText;
+    private Label instructionsText;
     @FXML
     private Button initGame;
+    @FXML
+    private SplitMenuButton listTeams;
 
     //selection
     @FXML

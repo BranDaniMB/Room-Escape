@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="317.0" prefWidth="424.0" styleClass="main-pane" stylesheets="@../main/Styles.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="gui.game.FXMLSelectionTeamController">
+<AnchorPane id="AnchorPane" prefHeight="317.0" prefWidth="424.0" styleClass="main-pane" stylesheets="@../main/Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.game.FXMLSelectionTeamController">
    <children>
       <Pane fx:id="selectionPane" prefHeight="317.0" prefWidth="424.0">
          <children>
@@ -30,8 +30,8 @@
       </Pane>
       <Pane fx:id="instructionsPane" prefHeight="317.0" prefWidth="424.0" visible="false">
          <children>
-            <Label fx:id="instructionsText" layoutX="155.0" layoutY="24.0" styleClass="mainTitle" text="Instrucciones" />
-            <Label alignment="CENTER" layoutX="38.0" layoutY="64.0" prefHeight="190.0" prefWidth="348.0" styleClass="secondTitle" wrapText="true" />
+            <Label layoutX="155.0" layoutY="24.0" styleClass="mainTitle" text="Instrucciones" />
+            <Label fx:id="instructionsText" alignment="CENTER" layoutX="38.0" layoutY="64.0" prefHeight="190.0" prefWidth="348.0" styleClass="secondTitle" wrapText="true" />
             <Button layoutX="186.0" layoutY="268.0" mnemonicParsing="false" text="Jugar" />
          </children>
       </Pane>

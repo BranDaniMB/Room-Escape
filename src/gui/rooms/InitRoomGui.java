@@ -1,7 +1,6 @@
 package gui.rooms;
 
-import game.Game;
-import game.GameRoom;
+import gui.main.InvalidDataGUI;
 import java.util.List;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -13,7 +12,7 @@ import javafx.stage.Stage;
  *
  * @author BranDaniMB
  */
-public class ManagerGameWindows extends Application {
+public class InitRoomGui extends Application {
 
     public static final String ROOM_1 = "FXMLRoom1.fxml";
     public static final String ROOM_2 = "FXMLRoom2.fxml";
@@ -29,7 +28,13 @@ public class ManagerGameWindows extends Application {
     public void start(Stage stage) throws Exception {
         Parameters params = getParameters();
         List<String> list = params.getRaw();
-        this.id = list.get(0);
+
+        if (list.size() == 2) {
+            this.id = list.get(0);
+            this.currentRoom = list.get(1);
+        } else {
+            throw new InvalidDataGUI("Datos incompletos");
+        }
 
         Parent root = FXMLLoader.load(getClass().getResource(currentRoom));
 
@@ -38,9 +43,4 @@ public class ManagerGameWindows extends Application {
         stage.setScene(scene);
         stage.show();
     }
-
-    public static void main(String[] args) {
-        launch(args);
-    }
-
 }
