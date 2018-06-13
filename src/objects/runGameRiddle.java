@@ -5,7 +5,10 @@
  */
 package objects;
 
+import builderteam.InvalidDataException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import listManager.ListRiddle;
 
 /**
@@ -21,7 +24,17 @@ public class runGameRiddle implements Cloneable{
     }
 
     public void addRiddleGame(Riddle riddle) {
-        listRiddle.add(riddle);
+
+        if (riddle!=null) {
+
+            listRiddle.add(riddle);
+        }else{
+            try {
+                throw new InvalidDataException("The riddle must be different from null.");
+            } catch (InvalidDataException ex) {
+                Logger.getLogger(runGameRiddle.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     public boolean removeRiddleGame(Riddle riddle) {

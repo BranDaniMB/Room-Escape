@@ -5,7 +5,6 @@
  */
 package listManager;
 
-import objects.Riddle;
 import java.util.ArrayList;
 import objects.runGameRiddle;
 
@@ -13,14 +12,16 @@ import objects.runGameRiddle;
  *
  * @author Pedro Rodriguez
  */
-public class ListRiddle implements Cloneable {
-
+public class ListRiddle {
+    
+    
     private ArrayList<runGameRiddle> listRiddle;
 
-    public ListRiddle() {
+    private ListRiddle() {
 
         listRiddle = new ArrayList<>();
     }
+    
     
     public void addRiddle (runGameRiddle riddle){    
         listRiddle.add(riddle);
@@ -41,5 +42,13 @@ public class ListRiddle implements Cloneable {
     @Override
     public String toString() {
         return "ManagerRiddle{" + "listRiddle=" + listRiddle + '}';
-    }   
+    } 
+    public static ListRiddle getInstance() {
+        return listRiddleHolder.INSTANCE;
+    }
+    
+    private static class listRiddleHolder {
+
+        private static final ListRiddle INSTANCE = new ListRiddle();
+    }
 }
