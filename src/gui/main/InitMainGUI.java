@@ -10,7 +10,7 @@ import javafx.stage.Stage;
  *
  * @author BranDaniMB
  */
-public class Test extends Application {
+public class InitMainGUI extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
