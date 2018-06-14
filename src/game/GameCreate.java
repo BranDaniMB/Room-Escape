@@ -19,12 +19,15 @@ import objects.Team;
  */
 public class GameCreate extends Thread {
 
-    public  void selectToPlay(String TeamName, String players) throws InvalidDataException {
+    public void selectToPlayTeam(String TeamName, String players) throws InvalidDataException {
         Team aux = null;
         selectTeam(TeamName, aux);
         String[] player = players.split("-");
-        if (player.length == 1) {
+        if (player.length < PropertiesConfig.getInstance().getProperties("minPlayers")) {
             throw new InvalidDataException("Debe contener al menos 2 jugadores");
+        }
+        if (player.length >= PropertiesConfig.getInstance().getProperties("maxPlayers")) {
+            throw new InvalidDataException("Debe contener de 2 a 5 jugadores no más");
         }
         for (int i = 0; i < player.length; i++) {
             selectPlayer(player[i].toString(), aux);
@@ -58,13 +61,13 @@ public class GameCreate extends Thread {
         TeamList.getInstance().setTeamsPlaying(TeamList.getInstance().getTeamsPlaying() + 1);
     }
 
-    public void multiplayerMode() throws InterruptedException {
+    public void multiplayerMode(){
 
     }
-
-    public void starPlay() {
+    public void singleMode(){
+    
     }
-
+    
     @Override
     public void run() {
         Application.launch(InitGUI.class, "room1");
