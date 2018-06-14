@@ -7,7 +7,7 @@ package game;
 
 import builderteam.InvalidDataException;
 import files.PropertiesConfig;
-import gui.main.InitMainGUI;
+import gui.main.InitGUI;
 import java.util.ArrayList;
 import javafx.application.Application;
 import listManager.TeamList;
@@ -111,6 +111,6 @@ public class Game extends Thread {
 
     @Override
     public void run() {
-        Application.launch(InitMainGUI.class, "room1");
+        Application.launch(InitGUI.class, "room1");
     }
 }
