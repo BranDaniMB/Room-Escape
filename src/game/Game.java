@@ -13,6 +13,7 @@ import javafx.application.Application;
 import listManager.TeamList;
 import objects.Player;
 import objects.Team;
+import objects.runGameRiddle;
 
 /**
  *
@@ -79,8 +80,8 @@ public class Game extends Thread {
     public void starPlay() {
     }
 
-    public void createGameRoom(Team team) {
-        GameRoom gameRoom = new GameRoom(this, team);
+    public void createGameRoom(Team team, runGameRiddle gameRiddle, int players) {
+        GameRoom gameRoom = new GameRoom(this, team, gameRiddle, players);
         gameRooms.add(gameRoom);
         gameRoom.start();
     }
