@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="517.0" prefWidth="632.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.main.FXMLRoomsController">
+    <stylesheets>
+        <URL value="@Styles.css" />
+    </stylesheets>
+    <children>
+        <Pane id="room_1" layoutY="-1.0" prefHeight="441.0" prefWidth="633.0" styleClass="room">
+            <children>
+                <Button fx:id="objectButton1" layoutX="471.0" layoutY="30.0" mnemonicParsing="false" onAction="#pressObject" prefHeight="51.0" prefWidth="51.0" styleClass="transparent-button" />
+                <Button fx:id="objectButton2" layoutX="158.0" layoutY="81.0" mnemonicParsing="false" onAction="#pressObject" prefHeight="51.0" prefWidth="51.0" styleClass="transparent-button" />
+                <Button fx:id="objectButton3" layoutX="568.0" layoutY="67.0" mnemonicParsing="false" onAction="#pressObject" prefHeight="51.0" prefWidth="51.0" styleClass="transparent-button" />
+                <Button fx:id="objectButton4" layoutX="400.0" layoutY="139.0" mnemonicParsing="false" onAction="#pressObject" prefHeight="51.0" prefWidth="51.0" styleClass="transparent-button" />
+                <Button fx:id="objectButton5" layoutX="26.0" layoutY="162.0" mnemonicParsing="false" onAction="#pressObject" prefHeight="51.0" prefWidth="51.0" styleClass="transparent-button" />
+                <Button fx:id="objectButton6" layoutX="56.0" layoutY="342.0" mnemonicParsing="false" onAction="#pressObject" prefHeight="51.0" prefWidth="51.0" styleClass="transparent-button" />
+                <Button fx:id="objectButton7" layoutX="471.0" layoutY="354.0" mnemonicParsing="false" onAction="#pressObject" prefHeight="51.0" prefWidth="51.0" styleClass="transparent-button" />
+                <Button fx:id="objectButton8" layoutX="487.0" layoutY="148.0" mnemonicParsing="false" onAction="#pressObject" prefHeight="51.0" prefWidth="51.0" styleClass="transparent-button" />
+                <Button fx:id="objectButton9" layoutX="387.0" layoutY="30.0" mnemonicParsing="false" onAction="#pressObject" prefHeight="51.0" prefWidth="51.0" styleClass="transparent-button" />
+                <Button fx:id="objectButton10" layoutX="224.0" layoutY="57.0" mnemonicParsing="false" onAction="#pressObject" prefHeight="51.0" prefWidth="51.0" styleClass="transparent-button" />
+                <Button fx:id="objectButton11" layoutX="20.0" layoutY="256.0" mnemonicParsing="false" onAction="#pressObject" prefHeight="51.0" prefWidth="51.0" styleClass="transparent-button" />
+                <Button fx:id="objectButton12" layoutX="106.0" layoutY="209.0" mnemonicParsing="false" onAction="#pressObject" prefHeight="51.0" prefWidth="51.0" styleClass="transparent-button" />
+            </children>
+        </Pane>
+        <Pane layoutY="439.0" prefHeight="78.0" prefWidth="633.0">
+            <children>
+                <Button fx:id="padlock1" layoutX="14.0" layoutY="16.0" mnemonicParsing="false" onAction="#pressPadlock" prefHeight="51.0" prefWidth="51.0" styleClass="padlock" />
+                <Button fx:id="padlock2" layoutX="206.0" layoutY="16.0" mnemonicParsing="false" onAction="#pressPadlock" prefHeight="51.0" prefWidth="51.0" styleClass="padlock" />
+                <Button fx:id="padlock3" layoutX="142.0" layoutY="16.0" mnemonicParsing="false" onAction="#pressPadlock" prefHeight="51.0" prefWidth="51.0" styleClass="padlock" />
+                <Button fx:id="padlock4" layoutX="79.0" layoutY="16.0" mnemonicParsing="false" onAction="#pressPadlock" prefHeight="51.0" prefWidth="51.0" styleClass="padlock" />
+                <TextArea fx:id="tracksText" editable="false" layoutX="273.0" prefHeight="78.0" prefWidth="360.0" styleClass="tracks-text" />
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>

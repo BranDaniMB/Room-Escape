@@ -4,9 +4,11 @@ import builderteam.InvalidDataException;
 import builderteam.ModifyTeam;
 import objects.PseudoTeam;
 import game.Menu;
-import gui.game.InitSelectionGUI;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.collections.FXCollections;
@@ -26,10 +28,12 @@ import javafx.scene.layout.Pane;
  *
  * @author BranDaniMB
  */
-public class FXMLMainWindowsController implements Initializable {
+public class FXMLMainWindowsController implements Initializable, ControllerGUI {
 
     private final Menu menu = new Menu();
     private final ModifyTeam modifyTeam = new ModifyTeam();
+
+    private InitGUI root;
 
     // Pane
     @FXML
@@ -97,6 +101,11 @@ public class FXMLMainWindowsController implements Initializable {
     private TableColumn<PseudoTeam, String> tableByTime_players;
     @FXML
     private TableColumn<PseudoTeam, String> tableByTime_time;
+
+    @Override
+    public void setMainGUI(InitGUI gui) {
+        this.root = gui;
+    }
 
     @FXML
     private void displayMain() {
@@ -296,7 +305,11 @@ public class FXMLMainWindowsController implements Initializable {
 
     @FXML
     private void IndividualGame() {
-        Application.launch(InitSelectionGUI.class, new String[]{"game123"});
+        try {
+            this.root.displaySelectionWindows();
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLMainWindowsController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML
