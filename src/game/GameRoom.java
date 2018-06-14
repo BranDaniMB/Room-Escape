@@ -18,7 +18,6 @@ public class GameRoom extends Thread {
     private Team team;
     private ArrayList<Padlock> padlocks;
     private int unlock;
-    private int players;
     private boolean update;
     private int loadInfo;
 
@@ -30,13 +29,15 @@ public class GameRoom extends Thread {
         this.update = update;
     }
 
+<<<<<<< HEAD
+    public GameRoom(Game game, Team team, runGameRiddle gameRiddle) {
+=======
     public GameRoom(Game game, Team team, runGameRiddle gameRiddle, int players) {
+>>>>>>> 4fdbdd37d5a35be173cc44a31bac8213916d9cee
         this.game = game;
         this.team = team;
         this.unlock = 0;
         this.loadInfo = 0;
-        this.players = players;
-        openWindowsPlay();
     }
 
     public String getCurrentRoom() {
@@ -61,8 +62,17 @@ public class GameRoom extends Thread {
         }
     }
 
+<<<<<<< HEAD
+    public void openWindow() {
+
+    }
+
+    public void openWindowsPlayTeam() {
+        for (int i = 0; i <= team.getPlayersOnline(); i++) {
+=======
     private void openWindowsPlay() {
         for (int i = 0; i < players; i++) {
+>>>>>>> 4fdbdd37d5a35be173cc44a31bac8213916d9cee
 
         }
     }

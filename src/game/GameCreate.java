@@ -8,6 +8,7 @@ package game;
 import builderteam.InvalidDataException;
 import files.PropertiesConfig;
 import gui.main.InitGUI;
+import java.util.ArrayList;
 import javafx.application.Application;
 import listManager.TeamList;
 import objects.Player;
@@ -19,7 +20,14 @@ import objects.Team;
  */
 public class GameCreate extends Thread {
 
-    public void selectToPlayTeam(String TeamName, String players) throws InvalidDataException {
+    private ArrayList<Team> teams;
+
+    public void createSingleGame(String TeamName, String players) throws InvalidDataException {
+        Team team = selectToPlayTeam(TeamName, players);
+        new Game();
+    }
+
+    public Team selectToPlayTeam(String TeamName, String players) throws InvalidDataException {
         Team aux = null;
         selectTeam(TeamName, aux);
         String[] player = players.split("-");
@@ -32,6 +40,7 @@ public class GameCreate extends Thread {
         for (int i = 0; i < player.length; i++) {
             selectPlayer(player[i].toString(), aux);
         }
+        return aux;
     }
 
     private void selectPlayer(String name, Team team) throws InvalidDataException {
@@ -61,13 +70,18 @@ public class GameCreate extends Thread {
         TeamList.getInstance().setTeamsPlaying(TeamList.getInstance().getTeamsPlaying() + 1);
     }
 
-    public void multiplayerMode(){
+    public void multiplayerMode() {
 
     }
-    public void singleMode(){
-    
+
+    public void singleMode() {
+
     }
-    
+
+    public void finishSelect() {
+        new Game(teams);
+    }
+
     @Override
     public void run() {
         Application.launch(InitGUI.class, "room1");
