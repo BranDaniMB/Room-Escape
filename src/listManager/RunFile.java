@@ -8,6 +8,7 @@ package listManager;
 import builderteam.InvalidDataException;
 import files.FilesManagerList;
 import files.FilesManagerListRiddles;
+import files.PropertiesConfig;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -18,17 +19,20 @@ import java.util.regex.Pattern;
 public class RunFile {
 
     FilesManagerList listManager = new FilesManagerList();
-    FilesManagerListRiddles listRiddles= new FilesManagerListRiddles();
-             
-       
-    public void charmingReadFile (){    
-     listManager.readFile("filesManager.dat");
-     listRiddles.readFile("filesRiddle.dat");
+    FilesManagerListRiddles listRiddles = new FilesManagerListRiddles();
+    PropertiesConfig config = new PropertiesConfig ();
+    
+    public void charmingReadFile() {
+        listManager.readFile("filesManager.dat");
+        listRiddles.readFile("filesRiddle.dat");
+        config.readConfig();
     }
-    public void charmingWriteFile (){
-        
+
+    public void charmingWriteFile() {
         listManager.writeFile("/files/filesManager.dat", TeamList.getInstance());
         listRiddles.writeFile("/files/filesManager.dat", ListRiddle.getInstance());
     }
-      
+    
+    
+
 }
