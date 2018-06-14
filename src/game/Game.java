@@ -13,7 +13,8 @@ import objects.runGameRiddle;
  *
  * @author Jermy
  */
-public class Game extends Thread{
+public class Game extends Thread {
+
     private boolean finishGame;
     private Chrono chrono;
     private ArrayList<Team> teamsPlaying;
@@ -23,7 +24,7 @@ public class Game extends Thread{
         this.chrono = new Chrono();
         this.teamsPlaying = new ArrayList<>();
     }
-    
+
     public void createGameRoom(Team team, runGameRiddle gameRiddle, int players) {
         GameRoom gameRoom = new GameRoom(this, team, gameRiddle, players);
         gameRoom.start();

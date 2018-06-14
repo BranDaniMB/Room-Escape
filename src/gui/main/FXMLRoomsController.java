@@ -18,7 +18,7 @@ import javafx.scene.control.TextArea;
  *
  * @author BranDaniMB
  */
-public class FXMLRoomsController implements Initializable {
+public class FXMLRoomsController implements Initializable, ControllerGUI {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -61,6 +61,13 @@ public class FXMLRoomsController implements Initializable {
 
     @FXML
     private TextArea tracksText;
+
+    private InitGUI root;
+
+    @Override
+    public void setMainGUI(InitGUI gui) {
+        this.root = gui;
+    }
 
     @FXML
     private void pressObject(Event event) {

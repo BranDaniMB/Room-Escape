@@ -32,7 +32,7 @@
             <children>
                 <Label layoutX="155.0" layoutY="24.0" styleClass="mainTitle" text="Instrucciones" />
                 <Label fx:id="instructionsText" alignment="CENTER" layoutX="38.0" layoutY="64.0" prefHeight="190.0" prefWidth="348.0" styleClass="secondTitle" wrapText="true" />
-                <Button layoutX="186.0" layoutY="268.0" mnemonicParsing="false" text="Jugar" />
+                <Button layoutX="186.0" layoutY="268.0" mnemonicParsing="false" onAction="#runGame" text="Jugar" />
             </children>
         </Pane>
     </children>
