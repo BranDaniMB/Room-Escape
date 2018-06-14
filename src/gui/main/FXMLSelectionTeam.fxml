@@ -7,33 +7,33 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="317.0" prefWidth="424.0" styleClass="main-pane" stylesheets="@../main/Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.game.FXMLSelectionTeamController">
-   <children>
-      <Pane fx:id="selectionPane" prefHeight="317.0" prefWidth="424.0">
-         <children>
-            <Label layoutX="147.0" layoutY="22.0" styleClass="mainTitle" text="Elegir tu equipo" />
-            <Label layoutX="126.0" layoutY="55.0" styleClass="secondTitle" text="Elige un equipo de la lista" />
-            <SplitMenuButton layoutX="143.0" layoutY="85.0" mnemonicParsing="false" text="Obtener jugadores">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
-                <MenuItem mnemonicParsing="false" text="Action 2" />
-              </items>
-            </SplitMenuButton>
-            <Label layoutX="140.0" layoutY="118.0" styleClass="secondTitle" text="Selecciona tus jugadores" />
-            <Button fx:id="nextInstructions" layoutX="181.0" layoutY="268.0" mnemonicParsing="false" onAction="#displayInstructions" text="Siguiente" />
-            <ChoiceBox layoutX="52.0" layoutY="146.0" prefWidth="150.0" />
-            <ChoiceBox layoutX="221.0" layoutY="146.0" prefWidth="150.0" />
-            <ChoiceBox layoutX="52.0" layoutY="181.0" prefWidth="150.0" />
-            <ChoiceBox layoutX="221.0" layoutY="181.0" prefWidth="150.0" />
-            <ChoiceBox layoutX="137.0" layoutY="222.0" prefWidth="150.0" />
-         </children>
-      </Pane>
-      <Pane fx:id="instructionsPane" prefHeight="317.0" prefWidth="424.0" visible="false">
-         <children>
-            <Label layoutX="155.0" layoutY="24.0" styleClass="mainTitle" text="Instrucciones" />
-            <Label fx:id="instructionsText" alignment="CENTER" layoutX="38.0" layoutY="64.0" prefHeight="190.0" prefWidth="348.0" styleClass="secondTitle" wrapText="true" />
-            <Button layoutX="186.0" layoutY="268.0" mnemonicParsing="false" text="Jugar" />
-         </children>
-      </Pane>
-   </children>
+<AnchorPane id="AnchorPane" prefHeight="317.0" prefWidth="424.0" styleClass="main-pane" stylesheets="@../main/Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.main.FXMLSelectionTeamController">
+    <children>
+        <Pane fx:id="selectionPane" prefHeight="317.0" prefWidth="424.0">
+            <children>
+                <Label layoutX="147.0" layoutY="22.0" styleClass="mainTitle" text="Elegir tu equipo" />
+                <Label layoutX="126.0" layoutY="55.0" styleClass="secondTitle" text="Elige un equipo de la lista" />
+                <SplitMenuButton layoutX="143.0" layoutY="85.0" mnemonicParsing="false" text="Obtener jugadores">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Action 1" />
+                        <MenuItem mnemonicParsing="false" text="Action 2" />
+                    </items>
+                </SplitMenuButton>
+                <Label layoutX="140.0" layoutY="118.0" styleClass="secondTitle" text="Selecciona tus jugadores" />
+                <Button fx:id="nextInstructions" layoutX="181.0" layoutY="268.0" mnemonicParsing="false" onAction="#displayInstructions" text="Siguiente" />
+                <ChoiceBox layoutX="52.0" layoutY="146.0" prefWidth="150.0" />
+                <ChoiceBox layoutX="221.0" layoutY="146.0" prefWidth="150.0" />
+                <ChoiceBox layoutX="52.0" layoutY="181.0" prefWidth="150.0" />
+                <ChoiceBox layoutX="221.0" layoutY="181.0" prefWidth="150.0" />
+                <ChoiceBox layoutX="137.0" layoutY="222.0" prefWidth="150.0" />
+            </children>
+        </Pane>
+        <Pane fx:id="instructionsPane" prefHeight="317.0" prefWidth="424.0" visible="false">
+            <children>
+                <Label layoutX="155.0" layoutY="24.0" styleClass="mainTitle" text="Instrucciones" />
+                <Label fx:id="instructionsText" alignment="CENTER" layoutX="38.0" layoutY="64.0" prefHeight="190.0" prefWidth="348.0" styleClass="secondTitle" wrapText="true" />
+                <Button layoutX="186.0" layoutY="268.0" mnemonicParsing="false" onAction="#runGame" text="Jugar" />
+            </children>
+        </Pane>
+    </children>
 </AnchorPane>

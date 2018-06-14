@@ -2,7 +2,6 @@ package game;
 
 import builderteam.InvalidDataException;
 import files.PropertiesConfig;
-import gui.main.InitRoomGui;
 import java.util.ArrayList;
 import objects.Padlock;
 import objects.Team;
@@ -15,7 +14,7 @@ import objects.runGameRiddle;
 public class GameRoom extends Thread {
 
     private Game game;
-    private String currentRoom = InitRoomGui.ROOM_3;
+    private String currentRoom;
     private Team team;
     private ArrayList<Padlock> padlocks;
     private int unlock;
@@ -30,7 +29,11 @@ public class GameRoom extends Thread {
         this.update = update;
     }
 
+<<<<<<< HEAD
     public GameRoom(Game game, Team team, runGameRiddle gameRiddle) {
+=======
+    public GameRoom(Game game, Team team, runGameRiddle gameRiddle, int players) {
+>>>>>>> 4fdbdd37d5a35be173cc44a31bac8213916d9cee
         this.game = game;
         this.team = team;
         this.unlock = 0;
@@ -59,12 +62,17 @@ public class GameRoom extends Thread {
         }
     }
 
+<<<<<<< HEAD
     public void openWindow() {
 
     }
 
     public void openWindowsPlayTeam() {
         for (int i = 0; i <= team.getPlayersOnline(); i++) {
+=======
+    private void openWindowsPlay() {
+        for (int i = 0; i < players; i++) {
+>>>>>>> 4fdbdd37d5a35be173cc44a31bac8213916d9cee
 
         }
     }

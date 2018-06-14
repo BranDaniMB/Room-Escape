@@ -53,10 +53,10 @@ public class InitGUI extends Application {
     }
 
     public void displayGame() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLSelectionTeam.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLRoom1.fxml"));
         AnchorPane pane = (AnchorPane) loader.load();
         Stage windows = new Stage();
-        windows.setTitle("Menú de selección");
+        windows.setTitle("room Escape");
         windows.initOwner(this.stage);
         Scene scene = new Scene(pane);
 

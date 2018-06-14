@@ -31,6 +31,7 @@ public class Game extends Thread {
         this.teamsPlaying = new ArrayList<>();
     }
 
+<<<<<<< HEAD
     public void createGameRoom(Team team, runGameRiddle gameRiddle) {
         new GameRoom(this, team, gameRiddle).openWindowsPlayTeam();
     }
@@ -39,6 +40,11 @@ public class Game extends Thread {
         for (int i = 0; i < team.getPlayersOnline(); i++) {
             new GameRoom(this, team, gameRiddle).openWindow();
         }
+=======
+    public void createGameRoom(Team team, runGameRiddle gameRiddle, int players) {
+        GameRoom gameRoom = new GameRoom(this, team, gameRiddle, players);
+        gameRoom.start();
+>>>>>>> 4fdbdd37d5a35be173cc44a31bac8213916d9cee
     }
 
     public Chrono getChrono() {
