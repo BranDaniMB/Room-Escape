@@ -15,12 +15,17 @@ import objects.runGameRiddle;
  */
 public class Game extends Thread{
     private boolean finishGame;
-    private ArrayList<GameRoom> gameRooms;
     private Chrono chrono;
+    private ArrayList<Team> teamsPlaying;
 
+    public Game() {
+        this.finishGame = false;
+        this.chrono = new Chrono();
+        this.teamsPlaying = new ArrayList<>();
+    }
+    
     public void createGameRoom(Team team, runGameRiddle gameRiddle, int players) {
         GameRoom gameRoom = new GameRoom(this, team, gameRiddle, players);
-        gameRooms.add(gameRoom);
         gameRoom.start();
     }
 
@@ -30,14 +35,6 @@ public class Game extends Thread{
 
     public void setChrono(Chrono chrono) {
         this.chrono = chrono;
-    }
-
-    public ArrayList<GameRoom> getGameRooms() {
-        return gameRooms;
-    }
-
-    public void setGameRooms(ArrayList<GameRoom> gameRooms) {
-        this.gameRooms = gameRooms;
     }
 
     public boolean isFinishGame() {
