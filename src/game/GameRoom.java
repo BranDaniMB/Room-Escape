@@ -2,7 +2,7 @@ package game;
 
 import builderteam.InvalidDataException;
 import files.PropertiesConfig;
-import gui.rooms.InitRoomGui;
+import gui.main.InitRoomGui;
 import java.util.ArrayList;
 import objects.Padlock;
 import objects.Team;

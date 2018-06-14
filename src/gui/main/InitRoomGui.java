@@ -1,4 +1,4 @@
-package gui.rooms;
+package gui.main;
 
 import gui.main.InvalidDataGUI;
 import java.util.List;

@@ -1,7 +1,12 @@
-package gui.game;
+package gui.main;
 
+import gui.main.ControllerGUI;
+import gui.main.InitGUI;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXML;
@@ -20,7 +25,7 @@ import javafx.stage.Stage;
  *
  * @author BranDaniMB
  */
-public class FXMLSelectionTeamController implements Initializable {
+public class FXMLSelectionTeamController implements Initializable, ControllerGUI {
 
     @FXML
     private Pane selectionPane;
@@ -39,6 +44,13 @@ public class FXMLSelectionTeamController implements Initializable {
     @FXML
     private Button nextInstructions;
 
+    private InitGUI root;
+
+    @Override
+    public void setMainGUI(InitGUI gui) {
+        this.root = gui;
+    }
+
     @FXML
     private void displayInstructions() {
         selectionPane.setVisible(false);
@@ -50,8 +62,11 @@ public class FXMLSelectionTeamController implements Initializable {
 
     @FXML
     private void runGame() {
-        System.out.println("Run game");
-
+        try {
+            root.displayGame();
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLSelectionTeamController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
