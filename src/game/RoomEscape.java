@@ -7,6 +7,7 @@ package game;
 
 import files.FilesManagerList;
 import files.FilesManagerListRiddles;
+import files.PropertiesConfig;
 
 /**
  *
@@ -18,8 +19,10 @@ public class RoomEscape {
     final static FilesManagerListRiddles FILES_MANAGER_LIST_RIDDLES = new FilesManagerListRiddles();
 
     public static void main(String[] args) {
-        FILES_MANAGER_LIST.readFile(fileName);
-        FILES_MANAGER_LIST_RIDDLES.readFile(fileName);
+        FILES_MANAGER_LIST.readFile("Files/TeamList.ser");
+        FILES_MANAGER_LIST_RIDDLES.readFile("Files/RiddlesList.ser");
+        PropertiesConfig.getInstance().readConfig();
+        new Menu().saveAllData();
     }
 
 }

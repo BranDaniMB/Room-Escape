@@ -8,6 +8,7 @@ import objects.Team;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import listManager.ListRoomRiddle;
 import listManager.TeamList;
 
 /**
@@ -50,6 +51,7 @@ public class Menu {
     }
 
     public void saveAllData() {
-        
+        RoomEscape.FILES_MANAGER_LIST.writeFile("Files/TeamList.ser", TeamList.getInstance());
+        RoomEscape.FILES_MANAGER_LIST_RIDDLES.writeFile("Files/RiddlesList.ser", ListRoomRiddle.getInstance());
     }
 }
