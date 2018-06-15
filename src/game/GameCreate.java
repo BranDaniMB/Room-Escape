@@ -79,9 +79,5 @@ public class GameCreate extends Thread {
     public void singleMode() {
 
     }
-
-    @Override
-    public void run() {
-        Application.launch(InitGUI.class, "room1");
-    }
+    
 }
