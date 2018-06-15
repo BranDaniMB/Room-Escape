@@ -26,9 +26,11 @@ public class GameCreate extends Thread {
         Team team = selectToPlayTeam(TeamName, players);
         new Game().createSingleGame(team);
     }
-    public void createMultiplayerGame(){
+
+    public void createMultiplayerGame() {
         new Game(teams).creatMultiplayerGame();
     }
+
     public Team selectToPlayTeam(String TeamName, String players) throws InvalidDataException {
         Team aux = null;
         selectTeam(TeamName, aux);
@@ -73,15 +75,10 @@ public class GameCreate extends Thread {
     }
 
     public void multiplayerMode() {
-        
+
     }
 
     public void singleMode() {
 
-    }
-
-    @Override
-    public void run() {
-        Application.launch(InitGUI.class, "room1");
     }
 }
