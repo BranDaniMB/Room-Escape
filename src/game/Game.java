@@ -6,6 +6,8 @@
 package game;
 
 import java.util.ArrayList;
+import listManager.ListRoomRiddle;
+import objects.Riddle;
 import objects.Team;
 import objects.RoomRiddle;
 
@@ -14,53 +16,60 @@ import objects.RoomRiddle;
  * @author Jermy
  */
 public class Game extends Thread {
-
+    
     private boolean finishGame;
     private Chrono chrono;
     private ArrayList<Team> teamsPlaying;
-
+    private ArrayList<RoomRiddle> roomRiddles;
+    
     public Game(ArrayList<Team> teams) {
         this.finishGame = false;
         this.chrono = new Chrono();
         this.teamsPlaying = teams;
+        this.roomRiddles = (ArrayList<RoomRiddle>) ListRoomRiddle.getInstance().getListRiddle().clone();
     }
-
+    
     public Game() {
         this.finishGame = false;
         this.chrono = new Chrono();
         this.teamsPlaying = new ArrayList<>();
     }
-
-    public void createGameRoom(Team team, RoomRiddle gameRiddle) {
-        new GameRoom(this, team, gameRiddle);
+    
+    public RoomRiddle generateRoom() {
+        RoomRiddle roomRiddle = roomRiddles.remove((int) (Math.random() * roomRiddles.size()));
+        return roomRiddle;
     }
-
-    public void createSingleGame(Team team, RoomRiddle gameRiddle) {
-        for (int i = 0; i < ; i++) {
-            new GameRoom(this, team, gameRiddle);
+    
+    public void createGameRoom(Team team) {
+        new GameRoom(this, team, generateRoom());
+    }
+    
+    public void createSingleGame(Team team) {
+        for (int i = 0; i <; i++) {
+            new GameRoom(this, team, generateRoom());
         }
     }
-
+    
     public boolean isFinishGame() {
         return finishGame;
     }
-
+    
     public void setFinishGame(boolean finishGame) {
         this.finishGame = finishGame;
     }
-
+    
     public Chrono getChrono() {
         return chrono;
     }
-
+    
     public void setChrono(Chrono chrono) {
         this.chrono = chrono;
     }
-
+    
     public ArrayList<Team> getTeamsPlaying() {
         return teamsPlaying;
     }
-
+    
     public void setTeamsPlaying(ArrayList<Team> teamsPlaying) {
         this.teamsPlaying = teamsPlaying;
     }

@@ -9,13 +9,13 @@ import builderteam.InvalidDataException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import listManager.ListRiddle;
+import listManager.ListRoomRiddle;
 
 /**
  *
  * @author Pedro Rodriguez
  */
-public class RoomRiddle implements Cloneable{
+public class RoomRiddle implements Cloneable {
 
     private ArrayList<Riddle> listRiddle;
     private String roomId;
@@ -24,13 +24,13 @@ public class RoomRiddle implements Cloneable{
         this.listRiddle = listRiddle;
         this.roomId = roomId;
     }
-    
+
     public void addRiddleGame(Riddle riddle) {
 
-        if (riddle!=null) {
+        if (riddle != null) {
 
             listRiddle.add(riddle);
-        }else{
+        } else {
             try {
                 throw new InvalidDataException("The riddle must be different from null.");
             } catch (InvalidDataException ex) {
@@ -47,13 +47,34 @@ public class RoomRiddle implements Cloneable{
         return listRiddle.toString();
     }
 
-    public ArrayList<Riddle> copy() {
+    public ArrayList<Riddle> copy() throws CloneNotSupportedException {
 
         ArrayList<Riddle> aux = new ArrayList<>();
         for (int i = 0; i < listRiddle.size(); i++) {
-            aux.add(listRiddle.get(i));
+            aux.add((Riddle) listRiddle.get(i).clone());
         }
         return aux;
     }
+
+    public ArrayList<Riddle> getListRiddle() {
+        return listRiddle;
+    }
+
+    public void setListRiddle(ArrayList<Riddle> listRiddle) {
+        this.listRiddle = listRiddle;
+    }
+
+    public String getRoomId() {
+        return roomId;
+    }
+
+    public void setRoomId(String roomId) {
+        this.roomId = roomId;
+    }
     
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return new RoomRiddle(copy(), roomId.toString());
+    }
+
 }

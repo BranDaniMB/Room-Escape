@@ -5,7 +5,7 @@
  */
 package files;
 
-import listManager.ListRiddle;
+import listManager.ListRoomRiddle;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -24,8 +24,8 @@ public class FilesManagerListRiddles {
         reader = new ObjectInputStream(new FileInputStream(fileName));
     }
 
-    private ListRiddle read() throws IOException, ClassNotFoundException {
-        return (ListRiddle) reader.readObject();
+    private ListRoomRiddle read() throws IOException, ClassNotFoundException {
+        return (ListRoomRiddle) reader.readObject();
     }
 
     private void closeReader() throws IOException {
@@ -36,7 +36,7 @@ public class FilesManagerListRiddles {
         writer = new ObjectOutputStream(new FileOutputStream(fileName));
     }
 
-    private void write(ListRiddle element) throws IOException {
+    private void write(ListRoomRiddle element) throws IOException {
         writer.writeObject(element);
     }
 
@@ -44,8 +44,8 @@ public class FilesManagerListRiddles {
         writer.close();
     }
 
-    public ListRiddle readFile(String fileName) {
-        ListRiddle listRiddle = null;
+    public ListRoomRiddle readFile(String fileName) {
+        ListRoomRiddle listRiddle = null;
         try {
             openReader(fileName);
             listRiddle = read();
@@ -58,7 +58,7 @@ public class FilesManagerListRiddles {
         return listRiddle;
     }
 
-    public void writeFile(String fileName, ListRiddle listRiddle) {
+    public void writeFile(String fileName, ListRoomRiddle listRiddle) {
         try {
             openWriter(fileName);
             write(listRiddle);

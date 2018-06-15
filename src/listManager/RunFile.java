@@ -30,7 +30,7 @@ public class RunFile {
 
     public void charmingWriteFile() {
         listManager.writeFile("/files/filesManager.dat", TeamList.getInstance());
-        listRiddles.writeFile("/files/filesManager.dat", ListRiddle.getInstance());
+        listRiddles.writeFile("/files/filesManager.dat", ListRoomRiddle.getInstance());
     }
     
     
