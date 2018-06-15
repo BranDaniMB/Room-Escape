@@ -38,7 +38,7 @@ public class Menu {
         ArrayList<PseudoTeam> newList = new ArrayList<>();
 
         for (Team team : list) {
-            newList.add(new PseudoTeam(team.getTeamName(), team.printPlayers(), team.getBestTimeMultiplayer().toString()));
+            newList.add(new PseudoTeam(team.getTeamName(), team.printPlayers(), team.getBestTimeMultiplayer(), team.getDateInscription().toString()));
         }
         return newList;
     }

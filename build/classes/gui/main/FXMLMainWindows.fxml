@@ -80,10 +80,10 @@
                                     <children>
                                         <TableView fx:id="tableByName" prefHeight="283.0" prefWidth="451.0">
                                             <columns>
-                                                <TableColumn fx:id="tableByName_name" prefWidth="102.0" text="Nombre del equipo" />
-                                                <TableColumn fx:id="tableByName_players" prefWidth="104.0" text="Integrantes" />
-                                                <TableColumn fx:id="tableByName_time" prefWidth="117.0" text="Tiempo" />
-                                                <TableColumn fx:id="tableByName_inscription" prefWidth="127.0" text="Inscripción" />
+                                                <TableColumn fx:id="tableByName_name" prefWidth="112.5" text="Nombre del equipo" />
+                                                <TableColumn fx:id="tableByName_players" prefWidth="112.5" text="Integrantes" />
+                                                <TableColumn fx:id="tableByName_time" prefWidth="112.5" text="Tiempo" />
+                                                <TableColumn fx:id="tableByName_date" prefWidth="112.5" text="Inscripción" />
                                             </columns>
                                         </TableView>
                                     </children>
@@ -96,10 +96,10 @@
                                     <children>
                                         <TableView fx:id="tableByInscription" prefHeight="283.0" prefWidth="451.0">
                                             <columns>
-                                                <TableColumn fx:id="tableByInscription_name" prefWidth="143.0" text="Nombre del equipo" />
-                                                <TableColumn fx:id="tableByInscription_players" prefWidth="155.0" text="Integrantes" />
-                                                <TableColumn fx:id="tableByInscription_time" prefWidth="152.0" text="Tiempo" />
-                                                <TableColumn fx:id="tableByName_time11" prefWidth="127.0" text="Inscripción" />
+                                                <TableColumn fx:id="tableByInscription_name" prefWidth="112.5" text="Nombre del equipo" />
+                                                <TableColumn fx:id="tableByInscription_players" prefWidth="112.5" text="Integrantes" />
+                                                <TableColumn fx:id="tableByInscription_time" prefWidth="112.5" text="Tiempo" />
+                                                <TableColumn fx:id="tableByInscription_date" prefWidth="112.5" text="Inscripción" />
                                             </columns>
                                         </TableView>
                                     </children>
@@ -112,9 +112,10 @@
                                     <children>
                                         <TableView fx:id="tableByTime" prefHeight="283.0" prefWidth="451.0">
                                             <columns>
-                                                <TableColumn fx:id="tableByTime_name" prefWidth="143.0" text="Nombre del equipo" />
-                                                <TableColumn fx:id="tableByTime_players" prefWidth="155.0" text="Integrantes" />
-                                                <TableColumn fx:id="tableByTime_time" prefWidth="152.0" text="Tiempo" />
+                                                <TableColumn fx:id="tableByTime_name" prefWidth="112.5" text="Nombre del equipo" />
+                                                <TableColumn fx:id="tableByTime_players" prefWidth="112.5" text="Integrantes" />
+                                                <TableColumn fx:id="tableByTime_time" prefWidth="112.5" text="Tiempo" />
+                                                <TableColumn fx:id="tableByTime_date" prefWidth="112.5" text="Inscripción" />
                                             </columns>
                                         </TableView>
                                     </children>

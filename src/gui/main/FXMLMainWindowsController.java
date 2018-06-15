@@ -154,6 +154,7 @@ public class FXMLMainWindowsController implements Initializable, ControllerGUI {
         tableByName_name.setCellValueFactory(new PropertyValueFactory<>("name"));
         tableByName_players.setCellValueFactory(new PropertyValueFactory<>("players"));
         tableByName_time.setCellValueFactory(new PropertyValueFactory<>("time"));
+        tableByName_date.setCellValueFactory(new PropertyValueFactory<>("inscription"));
         tableByName.setItems(listByName);
 
         ObservableList<PseudoTeam> listByInscription = FXCollections.observableArrayList(menu.listByInscription());
@@ -161,6 +162,7 @@ public class FXMLMainWindowsController implements Initializable, ControllerGUI {
         tableByInscription_name.setCellValueFactory(new PropertyValueFactory<>("name"));
         tableByInscription_players.setCellValueFactory(new PropertyValueFactory<>("players"));
         tableByInscription_time.setCellValueFactory(new PropertyValueFactory<>("time"));
+        tableByInscription_date.setCellValueFactory(new PropertyValueFactory<>("inscription"));
         tableByInscription.setItems(listByInscription);
 
         ObservableList<PseudoTeam> listByTime = FXCollections.observableArrayList(menu.listByTime());
@@ -168,6 +170,7 @@ public class FXMLMainWindowsController implements Initializable, ControllerGUI {
         tableByTime_name.setCellValueFactory(new PropertyValueFactory<>("name"));
         tableByTime_players.setCellValueFactory(new PropertyValueFactory<>("players"));
         tableByTime_time.setCellValueFactory(new PropertyValueFactory<>("time"));
+        tableByTime_date.setCellValueFactory(new PropertyValueFactory<>("inscription"));
         tableByTime.setItems(listByTime);
     }
 
