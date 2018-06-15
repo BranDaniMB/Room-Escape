@@ -81,8 +81,4 @@ public class GameCreate extends Thread {
     public void singleMode() {
 
     }
-<<<<<<< HEAD
-=======
-    
->>>>>>> 2ca723f229a1e58d90596558ac2a77115fc923b2
 }
