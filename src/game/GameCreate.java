@@ -7,9 +7,7 @@ package game;
 
 import builderteam.InvalidDataException;
 import files.PropertiesConfig;
-import gui.main.InitGUI;
 import java.util.ArrayList;
-import javafx.application.Application;
 import listManager.TeamList;
 import objects.Player;
 import objects.Team;
@@ -27,7 +25,13 @@ public class GameCreate extends Thread {
         new Game().createSingleGame(team);
     }
 
-    public void runMultiplayerGame() {
+    public void runMultiplayerGame() throws InvalidDataException {
+        if (teams.size() < PropertiesConfig.getInstance().getProperties("minTeamsPlaying")) {
+            throw new InvalidDataException("Debe registrar a minimo 2 equipos");
+        }
+        if (teams.size() > PropertiesConfig.getInstance().getProperties("minTeamsPlaying")) {
+            throw new InvalidDataException("Debe registrar a minimo 2 equipos y máximo 5 equipos");
+        }
         new Game(teams).creatMultiplayerGame();
     }
 
@@ -71,7 +75,10 @@ public class GameCreate extends Thread {
         if (aux == null) {
             throw new InvalidDataException("Equipo Inexistente");
         }
-        if ((TeamList.getInstance().getTeamsPlaying() == PropertiesConfig.getInstance().getProperties("maxTeamsPlaying")) && !aux.isPlaying()) {
+        if (aux.isPlaying()) {
+            throw new InvalidDataException("Equipo ya esta jugando");
+        }
+        if ((teams.size() == PropertiesConfig.getInstance().getProperties("maxTeamsPlaying")) && !aux.isPlaying()) {
             throw new InvalidDataException("Ya se encuentran los equipos completos");
         }
         aux.setPlaying(true);
