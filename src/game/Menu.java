@@ -54,4 +54,8 @@ public class Menu {
         RoomEscape.FILES_MANAGER_LIST.writeFile("Files/TeamList.ser", TeamList.getInstance());
         RoomEscape.FILES_MANAGER_LIST_RIDDLES.writeFile("Files/RiddlesList.ser", ListRoomRiddle.getInstance());
     }
+
+    public void starGui() {
+
+    }
 }

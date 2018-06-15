@@ -22,7 +22,6 @@ public class RoomEscape {
         FILES_MANAGER_LIST.readFile("Files/TeamList.ser");
         FILES_MANAGER_LIST_RIDDLES.readFile("Files/RiddlesList.ser");
         PropertiesConfig.getInstance().readConfig();
-        new Menu().saveAllData();
+        new Menu();
     }
-
 }
