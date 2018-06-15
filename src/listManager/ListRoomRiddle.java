@@ -14,7 +14,12 @@ import objects.RoomRiddle;
  */
 public class ListRoomRiddle implements Cloneable {
 
+    private static final ListRoomRiddle INSTANCE = new ListRoomRiddle();
     private ArrayList<RoomRiddle> listRiddle;
+
+    public static ListRoomRiddle getInstance() {
+        return INSTANCE;
+    }
 
     private ListRoomRiddle() {
         listRiddle = new ArrayList<>();
@@ -24,31 +29,15 @@ public class ListRoomRiddle implements Cloneable {
         listRiddle.add(riddle);
     }
 
-    public boolean removeRiddle(RoomRiddle riddle) {
-        return listRiddle.remove(riddle);
-    }
-
     public RoomRiddle assignRiddle() {
-
         int riddleRemove = (int) ((Math.random() * listRiddle.size()) + 0);
-        RoomRiddle riddle = listRiddle.get(riddleRemove);
 
-        removeRiddle(riddle);
-        return riddle;
+        return listRiddle.remove(riddleRemove);
     }
 
     @Override
     public String toString() {
         return "ManagerRiddle{" + "listRiddle=" + listRiddle + '}';
-    }
-
-    public static ListRoomRiddle getInstance() {
-        return listRiddleHolder.INSTANCE;
-    }
-
-    private static class listRiddleHolder {
-
-        private static final ListRoomRiddle INSTANCE = new ListRoomRiddle();
     }
 
     public ArrayList<RoomRiddle> getListRiddle() {
