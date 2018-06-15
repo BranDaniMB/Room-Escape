@@ -30,8 +30,7 @@ public class Game extends Thread {
     }
 
     public RoomRiddle generateRoom() {
-        RoomRiddle roomRiddle = roomRiddles.remove((int) (Math.random() * roomRiddles.size()));
-        return roomRiddle;
+        return roomRiddles.remove((int) (Math.random() * roomRiddles.size()));
     }
 
     public void creatMultiplayerGame() {

@@ -59,16 +59,12 @@ public class GameRoom extends Thread {
     }
 
     public void openWindowSingle() {
-
+        
     }
 
     private void openWindowsPlayTeam(int players) {
         for (int i = 0; i < players; i++) {
         }
-    }
-
-    public String buttonInfo() {
-        return padlocks.get(unlock).getRiddle().getTracks().get(loadInfo++);
     }
 
     public String updateWindow() {
