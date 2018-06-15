@@ -26,12 +26,18 @@ public class GameCreate extends Thread {
         Team team = selectToPlayTeam(TeamName, players);
         new Game().createSingleGame(team);
     }
-    public void createMultiplayerGame(){
+
+    public void runMultiplayerGame() {
         new Game(teams).creatMultiplayerGame();
     }
-    public Team selectToPlayTeam(String TeamName, String players) throws InvalidDataException {
+
+    public void addTeam(String teamName, String players) throws InvalidDataException {
+        teams.add(selectToPlayTeam(teamName, players));
+    }
+
+    private Team selectToPlayTeam(String teamName, String players) throws InvalidDataException {
         Team aux = null;
-        selectTeam(TeamName, aux);
+        selectTeam(teamName, aux);
         String[] player = players.split("-");
         if (player.length < PropertiesConfig.getInstance().getProperties("minPlayers")) {
             throw new InvalidDataException("Debe contener al menos 2 jugadores");
@@ -73,11 +79,11 @@ public class GameCreate extends Thread {
     }
 
     public void multiplayerMode() {
-        
+
     }
 
     public void singleMode() {
 
     }
-    
+
 }
