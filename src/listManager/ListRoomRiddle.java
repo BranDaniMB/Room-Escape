@@ -29,10 +29,6 @@ public class ListRoomRiddle implements Cloneable {
         listRiddle.add(riddle);
     }
 
-    public RoomRiddle assignRiddle() {
-        return listRiddle.remove((int) ((Math.random() * listRiddle.size()) + 0));
-    }
-
     @Override
     public String toString() {
         return "ManagerRiddle{" + "listRiddle=" + listRiddle + '}';

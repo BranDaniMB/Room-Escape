@@ -14,7 +14,7 @@ import javafx.stage.Stage;
  */
 public class InitGUI extends Application {
 
-    private ControllerGUI windowsController;
+    public static ControllerGUI windowsController;
     private Stage stage;
     private AnchorPane rootPane;
 

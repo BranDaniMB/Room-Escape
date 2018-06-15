@@ -83,6 +83,8 @@ public class FXMLMainWindowsController implements Initializable, ControllerGUI {
     private TableColumn<PseudoTeam, String> tableByName_players;
     @FXML
     private TableColumn<PseudoTeam, String> tableByName_time;
+    @FXML
+    private TableColumn<PseudoTeam, String> tableByName_date;
     // By Inscription
     @FXML
     private TableView<PseudoTeam> tableByInscription;
@@ -92,6 +94,8 @@ public class FXMLMainWindowsController implements Initializable, ControllerGUI {
     private TableColumn<PseudoTeam, String> tableByInscription_players;
     @FXML
     private TableColumn<PseudoTeam, String> tableByInscription_time;
+    @FXML
+    private TableColumn<PseudoTeam, String> tableByInscription_date;
     // By Time
     @FXML
     private TableView<PseudoTeam> tableByTime;
@@ -101,6 +105,8 @@ public class FXMLMainWindowsController implements Initializable, ControllerGUI {
     private TableColumn<PseudoTeam, String> tableByTime_players;
     @FXML
     private TableColumn<PseudoTeam, String> tableByTime_time;
+    @FXML
+    private TableColumn<PseudoTeam, String> tableByTime_date;
 
     @Override
     public void setMainGUI(InitGUI gui) {
