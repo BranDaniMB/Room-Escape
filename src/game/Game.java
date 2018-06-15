@@ -9,7 +9,7 @@ import objects.RoomRiddle;
  *
  * @author Jermy
  */
-public class Game extends Thread {
+public class Game extends Thread{
 
     private boolean finishGame;
     private Chrono chrono;
@@ -55,6 +55,7 @@ public class Game extends Thread {
 
     public void setFinishGame(boolean finishGame) {
         this.finishGame = finishGame;
+        notifyAll();
     }
 
     public Chrono getChrono() {
