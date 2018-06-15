@@ -7,7 +7,6 @@ package game;
 
 import java.util.ArrayList;
 import listManager.ListRoomRiddle;
-import objects.Riddle;
 import objects.Team;
 import objects.RoomRiddle;
 
@@ -40,12 +39,18 @@ public class Game extends Thread {
         return roomRiddle;
     }
     
-    public void createGameRoom(Team team) {
+    public void creatMultiplayerGame() {
+        for (int i = 0; i < teamsPlaying.size(); i++) {
+            createGameRoom(teamsPlaying.get(i));            
+        }
+    }
+    
+    private void createGameRoom(Team team) {
         new GameRoom(this, team, generateRoom());
     }
     
     public void createSingleGame(Team team) {
-        for (int i = 0; i <; i++) {
+        for (int i = 0; i < team.getPlayersOnline(); i++) {
             new GameRoom(this, team, generateRoom());
         }
     }
