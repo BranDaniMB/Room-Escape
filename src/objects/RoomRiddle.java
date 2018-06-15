@@ -15,14 +15,16 @@ import listManager.ListRiddle;
  *
  * @author Pedro Rodriguez
  */
-public class runGameRiddle implements Cloneable{
+public class RoomRiddle implements Cloneable{
 
     private ArrayList<Riddle> listRiddle;
+    private String roomId;
 
-    public runGameRiddle() {
-        listRiddle = new ArrayList<>();
+    public RoomRiddle(ArrayList<Riddle> listRiddle, String roomId) {
+        this.listRiddle = listRiddle;
+        this.roomId = roomId;
     }
-
+    
     public void addRiddleGame(Riddle riddle) {
 
         if (riddle!=null) {
@@ -32,7 +34,7 @@ public class runGameRiddle implements Cloneable{
             try {
                 throw new InvalidDataException("The riddle must be different from null.");
             } catch (InvalidDataException ex) {
-                Logger.getLogger(runGameRiddle.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(RoomRiddle.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -53,5 +55,5 @@ public class runGameRiddle implements Cloneable{
         }
         return aux;
     }
-
+    
 }

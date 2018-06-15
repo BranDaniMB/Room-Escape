@@ -7,7 +7,7 @@ package game;
 
 import java.util.ArrayList;
 import objects.Team;
-import objects.runGameRiddle;
+import objects.RoomRiddle;
 
 /**
  *
@@ -31,20 +31,22 @@ public class Game extends Thread {
         this.teamsPlaying = new ArrayList<>();
     }
 
-<<<<<<< HEAD
-    public void createGameRoom(Team team, runGameRiddle gameRiddle) {
-        new GameRoom(this, team, gameRiddle).openWindowsPlayTeam();
+    public void createGameRoom(Team team, RoomRiddle gameRiddle) {
+        new GameRoom(this, team, gameRiddle);
     }
 
-    public void createSingleGame(Team team, runGameRiddle gameRiddle) {
-        for (int i = 0; i < team.getPlayersOnline(); i++) {
-            new GameRoom(this, team, gameRiddle).openWindow();
+    public void createSingleGame(Team team, RoomRiddle gameRiddle) {
+        for (int i = 0; i < ; i++) {
+            new GameRoom(this, team, gameRiddle);
         }
-=======
-    public void createGameRoom(Team team, runGameRiddle gameRiddle, int players) {
-        GameRoom gameRoom = new GameRoom(this, team, gameRiddle, players);
-        gameRoom.start();
->>>>>>> 4fdbdd37d5a35be173cc44a31bac8213916d9cee
+    }
+
+    public boolean isFinishGame() {
+        return finishGame;
+    }
+
+    public void setFinishGame(boolean finishGame) {
+        this.finishGame = finishGame;
     }
 
     public Chrono getChrono() {
@@ -55,11 +57,12 @@ public class Game extends Thread {
         this.chrono = chrono;
     }
 
-    public boolean isFinishGame() {
-        return finishGame;
+    public ArrayList<Team> getTeamsPlaying() {
+        return teamsPlaying;
     }
 
-    public void setFinishGame(boolean finishGame) {
-        this.finishGame = finishGame;
+    public void setTeamsPlaying(ArrayList<Team> teamsPlaying) {
+        this.teamsPlaying = teamsPlaying;
     }
+    
 }

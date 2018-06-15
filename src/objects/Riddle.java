@@ -11,11 +11,21 @@ public class Riddle implements Cloneable {
     private ArrayList<String> tracks;
     private String question;
     private String answer;
+    private TrackLock trackLock;
 
-    public Riddle(String question, String answer, ArrayList tracks) {
+    public Riddle(String question, String answer, ArrayList tracks, TrackLock trackLock) {
         this.question = question;
         this.answer = answer;
         this.tracks = tracks;
+        this.trackLock = trackLock;
+    }
+
+    public TrackLock getTrackLock() {
+        return trackLock;
+    }
+
+    public void setTrackLock(TrackLock trackLock) {
+        this.trackLock = trackLock;
     }
 
     public Riddle() {
@@ -63,7 +73,7 @@ public class Riddle implements Cloneable {
 
     @Override
     public Object clone() throws CloneNotSupportedException {
-        return new Riddle(question, answer, copy());
+        return new Riddle(question, answer, copy(), (TrackLock) trackLock.clone());
     }
 
     public boolean isCorrect(String msg) {

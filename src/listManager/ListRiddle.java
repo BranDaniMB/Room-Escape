@@ -6,7 +6,7 @@
 package listManager;
 
 import java.util.ArrayList;
-import objects.runGameRiddle;
+import objects.RoomRiddle;
 
 /**
  *
@@ -15,7 +15,7 @@ import objects.runGameRiddle;
 public class ListRiddle {
     
     
-    private ArrayList<runGameRiddle> listRiddle;
+    private ArrayList<RoomRiddle> listRiddle;
 
     private ListRiddle() {
 
@@ -23,18 +23,18 @@ public class ListRiddle {
     }
     
     
-    public void addRiddle (runGameRiddle riddle){    
+    public void addRiddle (RoomRiddle riddle){    
         listRiddle.add(riddle);
     }
     
-    public boolean removeRiddle (runGameRiddle riddle){
+    public boolean removeRiddle (RoomRiddle riddle){
         return listRiddle.remove(riddle);
     }
 
-    public runGameRiddle assignRiddle() {
+    public RoomRiddle assignRiddle() {
 
         int riddleRemove = (int) ((Math.random() * listRiddle.size()) + 0);
-        runGameRiddle riddle = listRiddle.get(riddleRemove);
+        RoomRiddle riddle = listRiddle.get(riddleRemove);
         
         removeRiddle(riddle);
         return riddle;

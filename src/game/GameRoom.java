@@ -5,14 +5,14 @@ import files.PropertiesConfig;
 import java.util.ArrayList;
 import objects.Padlock;
 import objects.Team;
-import objects.runGameRiddle;
+import objects.RoomRiddle;
 
 /**
  *
  * @author Jermy
  */
 public class GameRoom extends Thread {
-
+    
     private Game game;
     private String currentRoom;
     private Team team;
@@ -29,11 +29,7 @@ public class GameRoom extends Thread {
         this.update = update;
     }
 
-<<<<<<< HEAD
-    public GameRoom(Game game, Team team, runGameRiddle gameRiddle) {
-=======
-    public GameRoom(Game game, Team team, runGameRiddle gameRiddle, int players) {
->>>>>>> 4fdbdd37d5a35be173cc44a31bac8213916d9cee
+    public GameRoom(Game game, Team team, RoomRiddle gameRiddle) {
         this.game = game;
         this.team = team;
         this.unlock = 0;
@@ -62,18 +58,12 @@ public class GameRoom extends Thread {
         }
     }
 
-<<<<<<< HEAD
-    public void openWindow() {
+    public void openWindowSingle() {
 
     }
 
-    public void openWindowsPlayTeam() {
-        for (int i = 0; i <= team.getPlayersOnline(); i++) {
-=======
-    private void openWindowsPlay() {
+    private void openWindowsPlayTeam(int players) {
         for (int i = 0; i < players; i++) {
->>>>>>> 4fdbdd37d5a35be173cc44a31bac8213916d9cee
-
         }
     }
 
@@ -83,14 +73,6 @@ public class GameRoom extends Thread {
 
     public String updateWindow() {
         switch (unlock) {
-            case 0:
-                return "padlock1-objectButton1-objectButton2-objectButton3";
-            case 1:
-                return "padlock2-objectButton4-objectButton5-objectButton6";
-            case 2:
-                return "padlock3-objectButton7-objectButton8-objectButton9";
-            case 3:
-                return "padlock4-objectButton10-objectButton11-objectButton12";
         }
         return "";
     }
