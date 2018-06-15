@@ -24,7 +24,7 @@ public class GameCreate extends Thread {
 
     public void createSingleGame(String TeamName, String players) throws InvalidDataException {
         Team team = selectToPlayTeam(TeamName, players);
-        new Game();
+        new Game().createSingleGame(team);
     }
 
     public Team selectToPlayTeam(String TeamName, String players) throws InvalidDataException {
