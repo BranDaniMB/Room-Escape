@@ -26,10 +26,10 @@ public class Game extends Thread {
     public Game() {
         this.finishGame = false;
         this.chrono = new Chrono();
-        this.teamsPlaying = new ArrayList<>();
+        this.roomRiddles = (ArrayList<RoomRiddle>) ListRoomRiddle.getInstance().getListRiddle().clone();
     }
 
-    public RoomRiddle generateRoom() {
+    private RoomRiddle generateRoom() {
         return roomRiddles.remove((int) (Math.random() * roomRiddles.size()));
     }
 
@@ -40,12 +40,12 @@ public class Game extends Thread {
     }
 
     private void createGameRoom(Team team) {
-        new GameRoom(this, team, generateRoom());
+        new GameRoom(this, team, generateRoom()).openWindowsPlayTeam();
     }
 
     public void createSingleGame(Team team) {
         for (int i = 0; i < team.getPlayersOnline(); i++) {
-            new GameRoom(this, team, generateRoom());
+            new GameRoom(this, team, generateRoom()).openWindowSingle();
         }
     }
 

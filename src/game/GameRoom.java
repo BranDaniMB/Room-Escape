@@ -12,14 +12,13 @@ import objects.RoomRiddle;
  * @author Jermy
  */
 public class GameRoom extends Thread {
-    
+
     private Game game;
-    private String currentRoom;
+    private RoomRiddle roomRiddle;
     private Team team;
     private ArrayList<Padlock> padlocks;
     private int unlock;
     private boolean update;
-    private int loadInfo;
 
     public boolean isUpdate() {
         return update;
@@ -31,13 +30,11 @@ public class GameRoom extends Thread {
 
     public GameRoom(Game game, Team team, RoomRiddle gameRiddle) {
         this.game = game;
+        this.roomRiddle = gameRiddle;
         this.team = team;
         this.unlock = 0;
-        this.loadInfo = 0;
-    }
-
-    public String getCurrentRoom() {
-        return this.currentRoom;
+        this.update = false;
+        loadPadlocks();
     }
 
     public void winner() throws InvalidDataException {
@@ -48,22 +45,29 @@ public class GameRoom extends Thread {
     }
 
     public void tryUnlock(String msj) {
-        if (padlocks.get(unlock).tryOpen(msj)) {
-            unlock++;
-            loadInfo = 0;
-            if (unlock == PropertiesConfig.getInstance().getProperties("padlocksCount")) {
-                game.setFinishGame(true);
-                notifyAll();
+        for (int i = 0; i < padlocks.size(); i++) {
+            if (padlocks.get(i).tryOpen(msj)) {
+                unlock++;
+                if (unlock == PropertiesConfig.getInstance().getProperties("padlocksCount")) {
+                    game.setFinishGame(true);
+                    notifyAll();
+                }
             }
         }
     }
 
-    public void openWindowSingle() {
-        
+    private void loadPadlocks() {
+        for (int i = 0; i < roomRiddle.getListRiddle().size(); i++) {
+            padlocks.add(new Padlock(roomRiddle.getListRiddle().get(i)));
+        }
     }
 
-    private void openWindowsPlayTeam(int players) {
-        for (int i = 0; i < players; i++) {
+    public void openWindowSingle() {
+
+    }
+
+    public void openWindowsPlayTeam() {
+        for (int i = 0; i < team.getPlayersOnline(); i++) {
         }
     }
 

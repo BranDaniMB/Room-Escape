@@ -35,7 +35,7 @@ public class GameCreate extends Thread {
         teams.add(selectToPlayTeam(teamName, players));
     }
 
-    public Team selectToPlayTeam(String teamName, String players) throws InvalidDataException {
+    private Team selectToPlayTeam(String teamName, String players) throws InvalidDataException {
         Team aux = null;
         selectTeam(teamName, aux);
         String[] player = players.split("-");
