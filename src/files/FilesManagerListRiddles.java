@@ -11,6 +11,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import objects.RoomRiddle;
 /**
  *
  * @author Jermy
@@ -24,8 +26,8 @@ public class FilesManagerListRiddles {
         reader = new ObjectInputStream(new FileInputStream(fileName));
     }
 
-    private ListRoomRiddle read() throws IOException, ClassNotFoundException {
-        return (ListRoomRiddle) reader.readObject();
+    private ArrayList<RoomRiddle> read() throws IOException, ClassNotFoundException {
+        return (ArrayList<RoomRiddle>) reader.readObject();
     }
 
     private void closeReader() throws IOException {
@@ -36,7 +38,7 @@ public class FilesManagerListRiddles {
         writer = new ObjectOutputStream(new FileOutputStream(fileName));
     }
 
-    private void write(ListRoomRiddle element) throws IOException {
+    private void write(ArrayList<RoomRiddle> element) throws IOException {
         writer.writeObject(element);
     }
 
@@ -44,8 +46,8 @@ public class FilesManagerListRiddles {
         writer.close();
     }
 
-    public ListRoomRiddle readFile(String fileName) {
-        ListRoomRiddle listRiddle = null;
+    public ArrayList<RoomRiddle> readFile(String fileName) {
+        ArrayList<RoomRiddle> listRiddle = new ArrayList<>();
         try {
             openReader(fileName);
             listRiddle = read();
@@ -58,7 +60,7 @@ public class FilesManagerListRiddles {
         return listRiddle;
     }
 
-    public void writeFile(String fileName, ListRoomRiddle listRiddle) {
+    public void writeFile(String fileName, ArrayList<RoomRiddle> listRiddle) {
         try {
             openWriter(fileName);
             write(listRiddle);

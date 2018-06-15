@@ -3,11 +3,13 @@ package game;
 import builderteam.BuilderDirector;
 import builderteam.InvalidDataException;
 import files.PropertiesConfig;
+import gui.main.InitGUI;
 import objects.PseudoTeam;
 import objects.Team;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.application.Application;
 import listManager.ListRoomRiddle;
 import listManager.TeamList;
 
@@ -23,6 +25,7 @@ public class Menu {
     public Menu() {
         teamList = TeamList.getInstance();
         buildTeam = new BuilderDirector();
+//        starGui();
     }
 
     public void registerTeamProcess(String name, String id, LocalDate date) throws InvalidDataException {
@@ -51,11 +54,11 @@ public class Menu {
     }
 
     public void saveAllData() {
-        RoomEscape.FILES_MANAGER_LIST.writeFile("Files/TeamList.ser", TeamList.getInstance());
-        RoomEscape.FILES_MANAGER_LIST_RIDDLES.writeFile("Files/RiddlesList.ser", ListRoomRiddle.getInstance());
+        RoomEscape.FILES_MANAGER_LIST.writeFile("Files/TeamList.ser", TeamList.getInstance().getTeamsList());
+        RoomEscape.FILES_MANAGER_LIST_RIDDLES.writeFile("Files/RiddlesList.ser", ListRoomRiddle.getInstance().getListRiddle());
     }
 
     public void starGui() {
-
+        Application.launch(InitGUI.class, "id");
     }
 }

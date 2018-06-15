@@ -5,6 +5,7 @@
  */
 package listManager;
 
+import java.io.Serializable;
 import objects.Team;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -15,7 +16,7 @@ import java.util.TreeSet;
  *
  * @author Jermy
  */
-public class TeamList {
+public class TeamList implements Serializable{
 
     private TreeSet<Team> teamsList;
     private PrintOrder printMethod;
