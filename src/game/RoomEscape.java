@@ -5,17 +5,21 @@
  */
 package game;
 
+import files.FilesManagerList;
+import files.FilesManagerListRiddles;
+
 /**
  *
  * @author Jermy
  */
 public class RoomEscape {
 
-    /**
-     * @param args the command line arguments
-     */
+    final static FilesManagerList FILES_MANAGER_LIST = new FilesManagerList();
+    final static FilesManagerListRiddles FILES_MANAGER_LIST_RIDDLES = new FilesManagerListRiddles();
+
     public static void main(String[] args) {
-        
+        FILES_MANAGER_LIST.readFile(fileName);
+        FILES_MANAGER_LIST_RIDDLES.readFile(fileName);
     }
 
 }

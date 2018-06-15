@@ -2,6 +2,7 @@ package game;
 
 import builderteam.BuilderDirector;
 import builderteam.InvalidDataException;
+import files.PropertiesConfig;
 import objects.PseudoTeam;
 import objects.Team;
 import java.time.LocalDate;
@@ -15,8 +16,13 @@ import listManager.TeamList;
  */
 public class Menu {
 
-    private final BuilderDirector buildTeam = new BuilderDirector();
-    private final TeamList teamList = TeamList.getInstance();
+    private final BuilderDirector buildTeam;
+    private final TeamList teamList;
+
+    public Menu() {
+        teamList = TeamList.getInstance();
+        buildTeam = new BuilderDirector();
+    }
 
     public void registerTeamProcess(String name, String id, LocalDate date) throws InvalidDataException {
         teamList.add(buildTeam.createTeam(null, name, id, date));
@@ -41,5 +47,9 @@ public class Menu {
             newList.add(new PseudoTeam(team.getTeamName(), team.printPlayers(), team.getBestTimeMultiplayer(), team.getDateInscription().toString()));
         }
         return newList;
+    }
+
+    public void saveAllData() {
+        
     }
 }
