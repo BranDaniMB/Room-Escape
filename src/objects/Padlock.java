@@ -13,12 +13,22 @@ public class Padlock {
 
     private boolean open;
     private Riddle riddle;
+    private String idPadlock;
 
-    public Padlock(Riddle riddle) {
+    public Padlock(Riddle riddle, String idPadlock) {
         this.open = false;
         this.riddle = riddle;
+        this.idPadlock = idPadlock;
     }
 
+    public String getIdPadlock() {
+        return idPadlock;
+    }
+
+    public void setIdPadlock(String idPadlock) {
+        this.idPadlock = idPadlock;
+    }
+    
     public boolean isOpen() {
         return open;
     }

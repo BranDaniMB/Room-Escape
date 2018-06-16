@@ -10,8 +10,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import listManager.ListRoomRiddle;
-
 /**
  *
  * @author Pedro Rodriguez

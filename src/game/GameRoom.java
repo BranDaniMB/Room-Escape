@@ -74,7 +74,7 @@ public class GameRoom extends Thread {
 
     private void loadPadlocks() {
         for (int i = 0; i < roomRiddle.getListRiddle().size(); i++) {
-            padlocks.add(new Padlock(roomRiddle.getListRiddle().get(i)));
+            padlocks.add(new Padlock(roomRiddle.getListRiddle().get(i), "Candado: " + i));
         }
     }
 
