@@ -1,20 +1,31 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package game;
+
+import gui.main.FXMLMainWindowsController;
+import javafx.fxml.FXMLLoader;
 
 /**
  *
  * @author Jermy
  */
-public class RoomEscape {
+public class RoomEscape extends Thread {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
+    @Override
+    public void run() {
+        load l = new load();
+        l.getController().makeEmptyRegister();
+    }
+
+    private class load {
+
+        private final FXMLLoader loader;
+
+        public load() {
+            this.loader = new FXMLLoader(getClass().getResource("FXMLMainWindows.fxml"));
+        }
+
+        public FXMLMainWindowsController getController() {
+            return this.loader.getController();
+        }
     }
 
 }

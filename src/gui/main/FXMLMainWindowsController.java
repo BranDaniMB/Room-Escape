@@ -201,7 +201,7 @@ public class FXMLMainWindowsController implements Initializable, ControllerGUI {
     }
 
     @FXML
-    private void makeEmptyRegister() {
+    public void makeEmptyRegister() {
         registerStatus.setText("Estado: Sin acciones");
         registerStatus.getStyleClass().clear();
         registerStatus.getStyleClass().add("status");
