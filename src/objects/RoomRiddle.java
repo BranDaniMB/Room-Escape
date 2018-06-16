@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 /**
  *
  * @author Pedro Rodriguez
@@ -27,7 +28,6 @@ public class RoomRiddle implements Cloneable, Serializable {
     public void addRiddleGame(Riddle riddle) {
 
         if (riddle != null) {
-
             listRiddle.add(riddle);
         } else {
             try {

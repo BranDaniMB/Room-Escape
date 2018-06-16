@@ -41,7 +41,7 @@ public class GameCreate extends Thread {
         if (teams.size() > PropertiesConfig.getInstance().getProperties("minTeamsPlaying")) {
             throw new InvalidDataException("Debe registrar a minimo 2 equipos y máximo 5 equipos");
         }
-        new Game(teams, subTeams).creatMultiplayerGame();
+        new Game(teams, subTeams).createMultiplayerGame();
     }
 
     public void addTeam(String teamName, String players) throws InvalidDataException {

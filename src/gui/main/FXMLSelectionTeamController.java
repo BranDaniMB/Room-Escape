@@ -12,6 +12,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitMenuButton;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 
 /**
@@ -21,32 +23,41 @@ import javafx.scene.layout.Pane;
  */
 public class FXMLSelectionTeamController implements Initializable, ControllerGUI {
 
+    private InitGUI root;
+
     @FXML
     private Pane selectionPane;
     @FXML
     private Pane instructionsPane;
-
-    //Instructions
+    @FXML
+    private TextArea selectableTeams;
+    @FXML
+    private TextField teamToPlayField;
+    @FXML
+    private TextArea listTeamsToPlay;
     @FXML
     private Label instructionsText;
     @FXML
     private Button initGame;
     @FXML
     private SplitMenuButton listTeams;
-
-    //selection
     @FXML
-    private Button nextInstructions;
-
-    private InitGUI root;
+    private Button next;
+    @FXML
+    private Button back;
 
     @Override
     public void setMainGUI(InitGUI gui) {
         this.root = gui;
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        selectableTeams.setText(root.getMenu().listSelectableTeams());
+    }
+
     @FXML
-    private void displayInstructions() {
+    private void next() {
         selectionPane.setVisible(false);
         instructionsText.setText("El objetivo de este juego es salir de la habitación en un tiempo menor a los 30 minutos."
                 + "\nBusque las pistas ocultas dentro de la habitación del juego, que te ayudarán a descubrir la respuesta al acertijo de cada candado."
@@ -55,16 +66,17 @@ public class FXMLSelectionTeamController implements Initializable, ControllerGUI
     }
 
     @FXML
-    private void runGame() {
-        try {
-            root.displayGame();
-        } catch (IOException ex) {
-            Logger.getLogger(FXMLSelectionTeamController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    private void addTeamToPlay() {
+
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+    @FXML
+    private void back() {
+
+    }
+
+    @FXML
+    private void runGame() {
+
     }
 }

@@ -33,19 +33,19 @@ public class Game extends Thread {
         return roomRiddles.remove((int) (Math.random() * roomRiddles.size()));
     }
 
-    public void creatMultiplayerGame() {
+    public void createMultiplayerGame() {
         for (int i = 0; i < teamsPlaying.size(); i++) {
-            createGameRoom(teamsPlaying.get(i), subteams.get(i).size());
+            createGameRoom(teamsPlaying.get(i), subteams.get(i).size(), GameRoom.TYPE_GAME_MULTIPLAYER);
         }
     }
 
-    private void createGameRoom(Team team, int players) {
-        new GameRoom(this, team, generateRoom()).openWindowsPlayTeam(players);
+    private void createGameRoom(Team team, int players, String type) {
+        new GameRoom(this, team, generateRoom(), type).openWindowsMultiplayer(players);
     }
 
     public void createSingleGame(Team team, int players) {
         for (int i = 0; i < players; i++) {
-            new GameRoom(this, team, generateRoom()).openWindowSingle();
+            new GameRoom(this, team, generateRoom(), GameRoom.TYPE_GAME_SINGLE).openWindowSingle();
         }
     }
 

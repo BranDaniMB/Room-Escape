@@ -13,51 +13,44 @@ import objects.RoomRiddle;
  */
 public class GameRoom extends Thread {
 
+    public static final String TYPE_GAME_SINGLE = "single";
+    public static final String TYPE_GAME_MULTIPLAYER = "multiplayer";
+
     private Game game;
     private RoomRiddle roomRiddle;
     private Team team;
     private ArrayList<Padlock> padlocks;
     private int unlock;
-    private boolean singleGame;
+    private String type;
 
     public boolean isSingleGame() {
-        return singleGame;
+        return type.equals("single");
     }
 
-    public void setSingleGame(boolean singleGame) {
-        this.singleGame = singleGame;
-    }
-
-    public GameRoom(Game game, Team team, RoomRiddle gameRiddle) {
+    public GameRoom(Game game, Team team, RoomRiddle gameRiddle, String type) {
         this.game = game;
         this.roomRiddle = gameRiddle;
         this.padlocks = new ArrayList();
         this.team = team;
         this.unlock = 0;
-        this.singleGame = false;
+        this.type = type;
         loadPadlocks();
     }
 
-    public GameRoom(Game game, Team team, RoomRiddle gameRiddle, boolean singleGmae) {
-        this.game = game;
-        this.roomRiddle = gameRiddle;
-        this.padlocks = new ArrayList();
-        this.team = team;
-        this.unlock = 0;
-        this.singleGame = singleGame;
-        loadPadlocks();
-    }
-
+    /**
+     * @deprecated not necessary
+     */
     public void winner() throws InvalidDataException {
         if (unlock == PropertiesConfig.getInstance().getProperties("padlocksCount")) {
-            if (singleGame) {
+            if (type.equals(TYPE_GAME_SINGLE)) {
                 team.setBestTimeSingle("");
             } else {
                 team.setBestTimeMultiplayer("");
             }
             throw new InvalidDataException("Ganó");
+        } else {
+            throw new InvalidDataException("Perdió");
         }
-        throw new InvalidDataException("Perdió");
     }
 
     public void tryUnlock(String msj) {
@@ -81,7 +74,7 @@ public class GameRoom extends Thread {
     public void openWindowSingle() {
     }
 
-    public void openWindowsPlayTeam(int players) {
+    public void openWindowsMultiplayer(int players) {
         for (int i = 0; i < players; i++) {
 
         }

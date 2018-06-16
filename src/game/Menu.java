@@ -7,7 +7,10 @@ import objects.PseudoTeam;
 import objects.Team;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 import javafx.application.Application;
 import listManager.ListRoomRiddle;
 import listManager.TeamList;
@@ -20,10 +23,12 @@ public class Menu {
 
     private final BuilderDirector buildTeam;
     private final TeamList teamList;
+    private final LinkedList<Team> listOfTeamsToPlay;
 
     public Menu() {
         teamList = TeamList.getInstance();
         buildTeam = new BuilderDirector();
+        listOfTeamsToPlay = new LinkedList<>();
     }
 
     public void registerTeamProcess(String name, String id, LocalDate date) throws InvalidDataException {
@@ -55,6 +60,25 @@ public class Menu {
         RoomEscape.FILES_MANAGER_LIST.writeFile("Files/TeamList.ser", TeamList.getInstance().getTeamsList());
         RoomEscape.FILES_MANAGER_LIST_RIDDLES.writeFile("Files/RiddlesList.ser", ListRoomRiddle.getInstance().getListRiddle());
         System.out.println("Save all data.");
+    }
+
+    public void addTeamToPlay() {
+
+    }
+
+    public String listSelectableTeams() {
+        String list = "";
+        if (teamList.size() > 0) {
+            Iterator<Team> iterator = teamList.getTeamsList().iterator();
+
+            while (iterator.hasNext()) {
+                list += iterator.next().getTeamName() + "-";
+            }
+        } else {
+            list = "No hay equipos, añade alguno para jugar.";
+        }
+
+        return list;
     }
 
     public void runGui() {
