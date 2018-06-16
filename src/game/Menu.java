@@ -55,6 +55,7 @@ public class Menu {
     public void saveAllData() {
         RoomEscape.FILES_MANAGER_LIST.writeFile("Files/TeamList.ser", TeamList.getInstance().getTeamsList());
         RoomEscape.FILES_MANAGER_LIST_RIDDLES.writeFile("Files/RiddlesList.ser", ListRoomRiddle.getInstance().getListRiddle());
+        System.out.println("Save all data.");
     }
 
     public void runGui() {

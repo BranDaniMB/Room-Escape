@@ -1,9 +1,10 @@
 package gui.main;
 
+import game.Menu;
 import java.io.IOException;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -17,6 +18,7 @@ public class InitGUI extends Application {
     public ControllerGUI windowsController;
     private Stage stage;
     private AnchorPane rootPane;
+    private final Menu menu = new Menu();
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -66,8 +68,18 @@ public class InitGUI extends Application {
         windows.show();
     }
 
-    public static void main(String[] args) {
-        launch(args);
+    public Menu getMenu() {
+        return this.menu;
+    }
+
+    @Override
+    public void stop() {
+        this.menu.saveAllData();
+        System.out.println("stop.");
+    }
+
+    public void close() throws Exception {
+        Platform.exit();
     }
 
 }

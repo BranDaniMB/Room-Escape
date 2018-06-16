@@ -1,7 +1,5 @@
 package game;
 
-import gui.main.FXMLMainWindowsController;
-import javafx.fxml.FXMLLoader;
 import files.FilesManagerList;
 import files.FilesManagerListRiddles;
 import files.PropertiesConfig;
@@ -21,28 +19,6 @@ public class RoomEscape extends Thread {
         TeamList.getInstance().setTeamsList(FILES_MANAGER_LIST.readFile("Files/TeamList.ser"));
         ListRoomRiddle.getInstance().setListRiddle(FILES_MANAGER_LIST_RIDDLES.readFile("Files/RiddlesList.ser"));
         PropertiesConfig.getInstance().readConfig();
-        Menu menu = new Menu();
-        menu.saveAllData();
-        menu.runGui();
-        new Menu().saveAllData();
-    }
-
-    @Override
-    public void run() {
-        load l = new load();
-        l.getController().makeEmptyRegister();
-    }
-
-    private class load {
-
-        private final FXMLLoader loader;
-
-        public load() {
-            this.loader = new FXMLLoader(getClass().getResource("FXMLMainWindows.fxml"));
-        }
-
-        public FXMLMainWindowsController getController() {
-            return this.loader.getController();
-        }
+        new Menu().runGui();
     }
 }
