@@ -56,7 +56,9 @@ public class Team implements Comparable<Team>, Serializable {
     }
 
     public void setBestTimeSingle(String bestTimeSingle) {
-        this.bestTimeSingle = bestTimeSingle;
+        if ((this.bestTimeSingle.compareTo(bestTimeSingle)) > 0)  {
+            this.bestTimeSingle = bestTimeSingle;
+        }
     }
 
     public String getBestTimeMultiplayer() {
@@ -64,9 +66,11 @@ public class Team implements Comparable<Team>, Serializable {
     }
 
     public void setBestTimeMultiplayer(String bestTimeMultiplayer) {
-        this.bestTimeMultiplayer = bestTimeMultiplayer;
+        if ((this.bestTimeMultiplayer.compareTo(bestTimeMultiplayer)) > 0) {
+            this.bestTimeMultiplayer = bestTimeMultiplayer;
+        }
     }
-    
+
     public synchronized boolean isPlaying() {
         return playing;
     }

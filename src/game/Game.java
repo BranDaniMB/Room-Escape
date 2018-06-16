@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import listManager.ListRoomRiddle;
 import objects.Team;
 import objects.RoomRiddle;
+import objects.Subteam;
 
 /**
  *
@@ -13,13 +14,13 @@ public class Game extends Thread {
 
     private boolean finishGame;
     private ArrayList<Team> teamsPlaying;
-    private ArrayList<Integer> countPlayers;
+    private ArrayList<Subteam> subteams;
     private ArrayList<RoomRiddle> roomRiddles;
 
-    public Game(ArrayList<Team> teams) {
+    public Game(ArrayList<Team> teams, ArrayList<Subteam> subteams) {
         this.finishGame = false;
         this.teamsPlaying = teams;
-        this.countPlayers= new ArrayList<>();
+        this.subteams = subteams;
         this.roomRiddles = (ArrayList<RoomRiddle>) ListRoomRiddle.getInstance().getListRiddle().clone();
     }
 
@@ -34,7 +35,7 @@ public class Game extends Thread {
 
     public void creatMultiplayerGame() {
         for (int i = 0; i < teamsPlaying.size(); i++) {
-            createGameRoom(teamsPlaying.get(i),countPlayers.get(i));
+            createGameRoom(teamsPlaying.get(i), subteams.get(i).size());
         }
     }
 
@@ -42,7 +43,7 @@ public class Game extends Thread {
         new GameRoom(this, team, generateRoom()).openWindowsPlayTeam(players);
     }
 
-    public void createSingleGame(Team team,int players) {
+    public void createSingleGame(Team team, int players) {
         for (int i = 0; i < players; i++) {
             new GameRoom(this, team, generateRoom()).openWindowSingle();
         }
@@ -50,14 +51,6 @@ public class Game extends Thread {
 
     public boolean isFinishGame() {
         return finishGame;
-    }
-
-    public ArrayList<Integer> getCountPlayers() {
-        return countPlayers;
-    }
-
-    public void setCountPlayers(ArrayList<Integer> countPlayers) {
-        this.countPlayers = countPlayers;
     }
 
     public ArrayList<RoomRiddle> getRoomRiddles() {
@@ -81,4 +74,10 @@ public class Game extends Thread {
         this.teamsPlaying = teamsPlaying;
     }
 
+    public void gameFinishTeamsOff() {
+        for (int i = 0; i < teamsPlaying.size(); i++) {
+            teamsPlaying.get(i).setPlaying(false);
+            subteams.get(i).finisPlayerOff();
+        }
+    }
 }

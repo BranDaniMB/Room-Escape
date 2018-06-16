@@ -18,29 +18,43 @@ public class GameRoom extends Thread {
     private Team team;
     private ArrayList<Padlock> padlocks;
     private int unlock;
-    private boolean update;
+    private boolean singleGame;
 
-    public GameRoom() {
+    public boolean isSingleGame() {
+        return singleGame;
     }
 
-    public boolean isUpdate() {
-        return update;
-    }
-
-    public void setUpdate(boolean update) {
-        this.update = update;
+    public void setSingleGame(boolean singleGame) {
+        this.singleGame = singleGame;
     }
 
     public GameRoom(Game game, Team team, RoomRiddle gameRiddle) {
         this.game = game;
         this.roomRiddle = gameRiddle;
+        this.padlocks = new ArrayList();
         this.team = team;
         this.unlock = 0;
+        this.singleGame = false;
+        loadPadlocks();
+    }
+
+    public GameRoom(Game game, Team team, RoomRiddle gameRiddle, boolean singleGmae) {
+        this.game = game;
+        this.roomRiddle = gameRiddle;
+        this.padlocks = new ArrayList();
+        this.team = team;
+        this.unlock = 0;
+        this.singleGame = singleGame;
         loadPadlocks();
     }
 
     public void winner() throws InvalidDataException {
         if (unlock == PropertiesConfig.getInstance().getProperties("padlocksCount")) {
+            if (singleGame) {
+                team.setBestTimeSingle("");
+            } else {
+                team.setBestTimeMultiplayer("");
+            }
             throw new InvalidDataException("Ganó");
         }
         throw new InvalidDataException("Perdió");
@@ -69,13 +83,7 @@ public class GameRoom extends Thread {
 
     public void openWindowsPlayTeam(int players) {
         for (int i = 0; i < players; i++) {
-            
-        }
-    }
 
-    public String updateWindow() {
-        switch (unlock) {
         }
-        return "";
     }
 }
