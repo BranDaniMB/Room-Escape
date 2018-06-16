@@ -186,7 +186,7 @@ public class FXMLMainWindowsController implements Initializable, ControllerGUI {
                 registerStatus.getStyleClass().clear();
                 registerStatus.getStyleClass().add("status-success");
                 registerStatus.setText("Estado: Registrado");
-
+                root.getMenu().saveAllData();
             }
         }
     }

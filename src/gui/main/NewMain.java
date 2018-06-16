@@ -5,6 +5,8 @@
  */
 package gui.main;
 
+import gui.rooms.Room1;
+
 /**
  *
  * @author BranDaniMB
@@ -15,7 +17,8 @@ public class NewMain {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
+        Room1 room = new Room1();
+        room.setVisible(true);
     }
 
 }
