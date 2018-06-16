@@ -3,14 +3,11 @@ package gui.main;
 import builderteam.InvalidDataException;
 import builderteam.ModifyTeam;
 import objects.PseudoTeam;
-import game.Menu;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.application.Application;
-import static javafx.application.Application.launch;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -30,7 +27,6 @@ import javafx.scene.layout.Pane;
  */
 public class FXMLMainWindowsController implements Initializable, ControllerGUI {
 
-    private final Menu menu = new Menu();
     private final ModifyTeam modifyTeam = new ModifyTeam();
 
     private InitGUI root;
@@ -149,7 +145,8 @@ public class FXMLMainWindowsController implements Initializable, ControllerGUI {
     }
 
     private void getRankings() {
-        ObservableList<PseudoTeam> listByName = FXCollections.observableArrayList(menu.listByName());
+        ObservableList<PseudoTeam> listByName = FXCollections.observableArrayList(root.getMenu().listByName()
+        );
 
         tableByName_name.setCellValueFactory(new PropertyValueFactory<>("name"));
         tableByName_players.setCellValueFactory(new PropertyValueFactory<>("players"));
@@ -157,7 +154,7 @@ public class FXMLMainWindowsController implements Initializable, ControllerGUI {
         tableByName_date.setCellValueFactory(new PropertyValueFactory<>("inscription"));
         tableByName.setItems(listByName);
 
-        ObservableList<PseudoTeam> listByInscription = FXCollections.observableArrayList(menu.listByInscription());
+        ObservableList<PseudoTeam> listByInscription = FXCollections.observableArrayList(root.getMenu().listByInscription());
 
         tableByInscription_name.setCellValueFactory(new PropertyValueFactory<>("name"));
         tableByInscription_players.setCellValueFactory(new PropertyValueFactory<>("players"));
@@ -165,7 +162,7 @@ public class FXMLMainWindowsController implements Initializable, ControllerGUI {
         tableByInscription_date.setCellValueFactory(new PropertyValueFactory<>("inscription"));
         tableByInscription.setItems(listByInscription);
 
-        ObservableList<PseudoTeam> listByTime = FXCollections.observableArrayList(menu.listByTime());
+        ObservableList<PseudoTeam> listByTime = FXCollections.observableArrayList(root.getMenu().listByTime());
 
         tableByTime_name.setCellValueFactory(new PropertyValueFactory<>("name"));
         tableByTime_players.setCellValueFactory(new PropertyValueFactory<>("players"));
@@ -178,7 +175,7 @@ public class FXMLMainWindowsController implements Initializable, ControllerGUI {
     private void registerTeam() {
         boolean isRegister = true;
         try {
-            menu.registerTeamProcess(registerTeamName.getText(), listPlayers.getText(), registerTeamDatePicker.getValue());
+            root.getMenu().registerTeamProcess(registerTeamName.getText(), listPlayers.getText(), registerTeamDatePicker.getValue());
         } catch (InvalidDataException ex) {
             isRegister = false;
             registerStatus.getStyleClass().clear();
@@ -324,6 +321,15 @@ public class FXMLMainWindowsController implements Initializable, ControllerGUI {
     @FXML
     private void multiplayerGame() {
 
+    }
+
+    @FXML
+    private void close() {
+        try {
+            this.root.close();
+        } catch (Exception ex) {
+            Logger.getLogger(FXMLMainWindowsController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override

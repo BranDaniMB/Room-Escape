@@ -46,7 +46,7 @@ public class Menu {
         ArrayList<PseudoTeam> newList = new ArrayList<>();
 
         for (Team team : list) {
-            newList.add(new PseudoTeam(team.getTeamName(), team.printPlayers(), team.getBestTimeMultiplayer(), team.getDateInscription().toString()));
+            newList.add(new PseudoTeam(team.getTeamName(), team.printPlayers(), team.getBestTimeSingle(), team.getDateInscription().toString()));
         }
         return newList;
     }
@@ -54,6 +54,7 @@ public class Menu {
     public void saveAllData() {
         RoomEscape.FILES_MANAGER_LIST.writeFile("Files/TeamList.ser", TeamList.getInstance().getTeamsList());
         RoomEscape.FILES_MANAGER_LIST_RIDDLES.writeFile("Files/RiddlesList.ser", ListRoomRiddle.getInstance().getListRiddle());
+        System.out.println("Save all data.");
     }
 
     public void runGui() {

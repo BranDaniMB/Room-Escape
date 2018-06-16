@@ -1,7 +1,5 @@
 package game;
 
-import gui.main.FXMLMainWindowsController;
-import javafx.fxml.FXMLLoader;
 import files.FilesManagerList;
 import files.FilesManagerListRiddles;
 import files.PropertiesConfig;
@@ -23,5 +21,4 @@ public class RoomEscape {
         PropertiesConfig.getInstance().readConfig();
         new Menu().runGui();
     }
-
 }

@@ -9,16 +9,17 @@
 <AnchorPane id="Panel" prefHeight="423.0" prefWidth="451.0" styleClass="main-pane" stylesheets="@Styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.main.FXMLMainWindowsController">
 
     <children>
-        <Pane fx:id="mainWindows" prefHeight="423.0" prefWidth="451.0" styleClass="pane" visible="false">
+        <Pane fx:id="mainWindows" prefHeight="423.0" prefWidth="451.0" styleClass="pane">
             <children>
                 <Label layoutX="163.0" layoutY="14.0" minHeight="16" minWidth="69" styleClass="mainTitle" text="Room Escape" />
                 <Button layoutX="174.0" layoutY="59.0" onAction="#displayRegister" styleClass="mainButton" stylesheets="@Styles.css" text="Registrar Equipo" />
                 <Button layoutX="164.0" layoutY="94.0" mnemonicParsing="false" onAction="#displayModify" styleClass="mainButton" text="Modificar un equipo" />
-                <Label layoutX="202.0" layoutY="163.0" styleClass="secondTitle" text="Jugar" />
-                <Button layoutX="176.0" layoutY="199.0" mnemonicParsing="false" onAction="#IndividualGame" styleClass="mainButton" text="Jugar individual" />
-                <Button layoutX="167.0" layoutY="247.0" mnemonicParsing="false" onAction="#multiplayerGame" styleClass="mainButton" text="Jugar por equipos" />
-                <Label layoutX="191.0" layoutY="308.0" styleClass="secondTitle" text="Rankings" />
-                <Button layoutX="173.0" layoutY="356.0" mnemonicParsing="false" onAction="#displayRanking" styleClass="mainButton" text="Mostrar rankings" />
+                <Label layoutX="204.0" layoutY="137.0" styleClass="secondTitle" text="Jugar" />
+                <Button layoutX="178.0" layoutY="164.0" mnemonicParsing="false" onAction="#IndividualGame" styleClass="mainButton" text="Jugar individual" />
+                <Button layoutX="173.0" layoutY="199.0" mnemonicParsing="false" onAction="#multiplayerGame" styleClass="mainButton" text="Jugar por equipos" />
+                <Label layoutX="195.0" layoutY="260.0" styleClass="secondTitle" text="Rankings" />
+                <Button layoutX="174.0" layoutY="287.0" mnemonicParsing="false" onAction="#displayRanking" styleClass="mainButton" text="Mostrar rankings" />
+            <Button layoutX="206.0" layoutY="367.0" mnemonicParsing="false" onAction="#close" text="Salir" />
             </children>
         </Pane>
         <Pane fx:id="registerWindows" prefHeight="423.0" prefWidth="451.0" visible="false">
@@ -68,7 +69,7 @@
                 <Button layoutX="254.0" layoutY="384.0" mnemonicParsing="false" onAction="#finalizeChange" text="Finalizar cambios" />
             </children>
         </Pane>
-        <Pane fx:id="rankingWindows" prefHeight="423.0" prefWidth="451.0">
+        <Pane fx:id="rankingWindows" prefHeight="423.0" prefWidth="451.0" visible="false">
             <children>
                 <Label layoutX="182.0" layoutY="15.0" styleClass="mainTitle" text="Rankings" />
                 <Button layoutX="201.0" layoutY="378.0" mnemonicParsing="false" onAction="#displayMain" styleClass="mainButton" text="Volver" />
