@@ -67,8 +67,9 @@ public class GameRoom extends Thread {
     public void openWindowSingle() {
     }
 
-    public void openWindowsPlayTeam() {
-        for (int i = 0; i < team.getPlayersOnline(); i++) {
+    public void openWindowsPlayTeam(int players) {
+        for (int i = 0; i < players; i++) {
+            
         }
     }
 

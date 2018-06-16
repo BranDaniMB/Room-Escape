@@ -9,15 +9,17 @@ import objects.RoomRiddle;
  *
  * @author Jermy
  */
-public class Game extends Thread{
+public class Game extends Thread {
 
     private boolean finishGame;
     private ArrayList<Team> teamsPlaying;
+    private ArrayList<Integer> countPlayers;
     private ArrayList<RoomRiddle> roomRiddles;
 
     public Game(ArrayList<Team> teams) {
         this.finishGame = false;
         this.teamsPlaying = teams;
+        this.countPlayers= new ArrayList<>();
         this.roomRiddles = (ArrayList<RoomRiddle>) ListRoomRiddle.getInstance().getListRiddle().clone();
     }
 
@@ -32,16 +34,16 @@ public class Game extends Thread{
 
     public void creatMultiplayerGame() {
         for (int i = 0; i < teamsPlaying.size(); i++) {
-            createGameRoom(teamsPlaying.get(i));
+            createGameRoom(teamsPlaying.get(i),countPlayers.get(i));
         }
     }
 
-    private void createGameRoom(Team team) {
-        new GameRoom(this, team, generateRoom()).openWindowsPlayTeam();
+    private void createGameRoom(Team team, int players) {
+        new GameRoom(this, team, generateRoom()).openWindowsPlayTeam(players);
     }
 
-    public void createSingleGame(Team team) {
-        for (int i = 0; i < team.getPlayersOnline(); i++) {
+    public void createSingleGame(Team team,int players) {
+        for (int i = 0; i < players; i++) {
             new GameRoom(this, team, generateRoom()).openWindowSingle();
         }
     }
@@ -50,11 +52,27 @@ public class Game extends Thread{
         return finishGame;
     }
 
+    public ArrayList<Integer> getCountPlayers() {
+        return countPlayers;
+    }
+
+    public void setCountPlayers(ArrayList<Integer> countPlayers) {
+        this.countPlayers = countPlayers;
+    }
+
+    public ArrayList<RoomRiddle> getRoomRiddles() {
+        return roomRiddles;
+    }
+
+    public void setRoomRiddles(ArrayList<RoomRiddle> roomRiddles) {
+        this.roomRiddles = roomRiddles;
+    }
+
     public void setFinishGame(boolean finishGame) {
         this.finishGame = finishGame;
         notifyAll();
     }
-    
+
     public ArrayList<Team> getTeamsPlaying() {
         return teamsPlaying;
     }

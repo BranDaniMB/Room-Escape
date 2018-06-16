@@ -19,10 +19,18 @@ import objects.Team;
 public class GameCreate extends Thread {
 
     private ArrayList<Team> teams;
+    private ArrayList<Integer> countPlayers;
+    private int pos;
+
+    public GameCreate() {
+        this.teams = new ArrayList<>();
+        this.countPlayers = new ArrayList<>();
+        this.pos = 0;
+    }
 
     public void createSingleGame(String TeamName, String players) throws InvalidDataException {
         Team team = selectToPlayTeam(TeamName, players);
-        new Game().createSingleGame(team);
+        new Game().createSingleGame(team, countPlayers.get(pos));
     }
 
     public void runMultiplayerGame() throws InvalidDataException {
@@ -37,6 +45,7 @@ public class GameCreate extends Thread {
 
     public void addTeam(String teamName, String players) throws InvalidDataException {
         teams.add(selectToPlayTeam(teamName, players));
+        pos++;
     }
 
     private Team selectToPlayTeam(String teamName, String players) throws InvalidDataException {
@@ -60,14 +69,14 @@ public class GameCreate extends Thread {
         if (player.isSelected()) {
             throw new InvalidDataException("Jugador ya seleccionado\n Eliga diferentes jugadores");
         }
-        if ((team.getPlayersOnline() == PropertiesConfig.getInstance().getProperties("maxPlayers")) && !player.isSelected()) {
+        if ((countPlayers.get(pos) == PropertiesConfig.getInstance().getProperties("maxPlayers")) && !player.isSelected()) {
             throw new InvalidDataException("Ya se encuentran los jugadores completos");
         }
         if (player == null) {
             throw new InvalidDataException("Jugador No existe");
         }
         player.setSelected(true);
-        team.setPlayersOnline(team.getPlayersOnline() + 1);
+        countPlayers.set(pos, countPlayers.get(pos) + 1);
     }
 
     private void selectTeam(String name, Team aux) throws InvalidDataException {
@@ -82,7 +91,6 @@ public class GameCreate extends Thread {
             throw new InvalidDataException("Ya se encuentran los equipos completos");
         }
         aux.setPlaying(true);
-        TeamList.getInstance().setTeamsPlaying(TeamList.getInstance().getTeamsPlaying() + 1);
     }
 
     public void multiplayerMode() {
