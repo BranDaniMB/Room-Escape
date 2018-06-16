@@ -10,7 +10,7 @@ import listManager.TeamList;
  *
  * @author Jermy
  */
-public class RoomEscape extends Thread {
+public class RoomEscape {
 
     final static FilesManagerList FILES_MANAGER_LIST = new FilesManagerList();
     final static FilesManagerListRiddles FILES_MANAGER_LIST_RIDDLES = new FilesManagerListRiddles();

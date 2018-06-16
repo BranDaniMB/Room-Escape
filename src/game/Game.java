@@ -4,28 +4,28 @@ import java.util.ArrayList;
 import listManager.ListRoomRiddle;
 import objects.Team;
 import objects.RoomRiddle;
+import objects.Subteam;
 
 /**
  *
  * @author Jermy
  */
-public class Game extends Thread{
+public class Game extends Thread {
 
     private boolean finishGame;
-    private Chrono chrono;
     private ArrayList<Team> teamsPlaying;
+    private ArrayList<Subteam> subteams;
     private ArrayList<RoomRiddle> roomRiddles;
 
-    public Game(ArrayList<Team> teams) {
+    public Game(ArrayList<Team> teams, ArrayList<Subteam> subteams) {
         this.finishGame = false;
-        this.chrono = new Chrono();
         this.teamsPlaying = teams;
+        this.subteams = subteams;
         this.roomRiddles = (ArrayList<RoomRiddle>) ListRoomRiddle.getInstance().getListRiddle().clone();
     }
 
     public Game() {
         this.finishGame = false;
-        this.chrono = new Chrono();
         this.roomRiddles = (ArrayList<RoomRiddle>) ListRoomRiddle.getInstance().getListRiddle().clone();
     }
 
@@ -35,16 +35,16 @@ public class Game extends Thread{
 
     public void creatMultiplayerGame() {
         for (int i = 0; i < teamsPlaying.size(); i++) {
-            createGameRoom(teamsPlaying.get(i));
+            createGameRoom(teamsPlaying.get(i), subteams.get(i).size());
         }
     }
 
-    private void createGameRoom(Team team) {
-        new GameRoom(this, team, generateRoom()).openWindowsPlayTeam();
+    private void createGameRoom(Team team, int players) {
+        new GameRoom(this, team, generateRoom()).openWindowsPlayTeam(players);
     }
 
-    public void createSingleGame(Team team) {
-        for (int i = 0; i < team.getPlayersOnline(); i++) {
+    public void createSingleGame(Team team, int players) {
+        for (int i = 0; i < players; i++) {
             new GameRoom(this, team, generateRoom()).openWindowSingle();
         }
     }
@@ -53,17 +53,17 @@ public class Game extends Thread{
         return finishGame;
     }
 
+    public ArrayList<RoomRiddle> getRoomRiddles() {
+        return roomRiddles;
+    }
+
+    public void setRoomRiddles(ArrayList<RoomRiddle> roomRiddles) {
+        this.roomRiddles = roomRiddles;
+    }
+
     public void setFinishGame(boolean finishGame) {
         this.finishGame = finishGame;
         notifyAll();
-    }
-
-    public Chrono getChrono() {
-        return chrono;
-    }
-
-    public void setChrono(Chrono chrono) {
-        this.chrono = chrono;
     }
 
     public ArrayList<Team> getTeamsPlaying() {
@@ -74,4 +74,10 @@ public class Game extends Thread{
         this.teamsPlaying = teamsPlaying;
     }
 
+    public void gameFinishTeamsOff() {
+        for (int i = 0; i < teamsPlaying.size(); i++) {
+            teamsPlaying.get(i).setPlaying(false);
+            subteams.get(i).finisPlayerOff();
+        }
+    }
 }

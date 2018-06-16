@@ -10,6 +10,7 @@ import files.PropertiesConfig;
 import java.util.ArrayList;
 import listManager.TeamList;
 import objects.Player;
+import objects.Subteam;
 import objects.Team;
 
 /**
@@ -19,10 +20,18 @@ import objects.Team;
 public class GameCreate extends Thread {
 
     private ArrayList<Team> teams;
+    private ArrayList<Subteam> subTeams;
+    private int pos;
+
+    public GameCreate() {
+        this.teams = new ArrayList<>();
+        this.subTeams = new ArrayList<>();
+        this.pos = 0;
+    }
 
     public void createSingleGame(String TeamName, String players) throws InvalidDataException {
         Team team = selectToPlayTeam(TeamName, players);
-        new Game().createSingleGame(team);
+        new Game().createSingleGame(team, subTeams.get(pos).size());
     }
 
     public void runMultiplayerGame() throws InvalidDataException {
@@ -32,11 +41,12 @@ public class GameCreate extends Thread {
         if (teams.size() > PropertiesConfig.getInstance().getProperties("minTeamsPlaying")) {
             throw new InvalidDataException("Debe registrar a minimo 2 equipos y máximo 5 equipos");
         }
-        new Game(teams).creatMultiplayerGame();
+        new Game(teams, subTeams).creatMultiplayerGame();
     }
 
     public void addTeam(String teamName, String players) throws InvalidDataException {
         teams.add(selectToPlayTeam(teamName, players));
+        pos++;
     }
 
     private Team selectToPlayTeam(String teamName, String players) throws InvalidDataException {
@@ -60,14 +70,14 @@ public class GameCreate extends Thread {
         if (player.isSelected()) {
             throw new InvalidDataException("Jugador ya seleccionado\n Eliga diferentes jugadores");
         }
-        if ((team.getPlayersOnline() == PropertiesConfig.getInstance().getProperties("maxPlayers")) && !player.isSelected()) {
+        if ((subTeams.get(pos).size() == PropertiesConfig.getInstance().getProperties("maxPlayers")) && !player.isSelected()) {
             throw new InvalidDataException("Ya se encuentran los jugadores completos");
         }
         if (player == null) {
             throw new InvalidDataException("Jugador No existe");
         }
         player.setSelected(true);
-        team.setPlayersOnline(team.getPlayersOnline() + 1);
+        subTeams.get(pos).add(player);
     }
 
     private void selectTeam(String name, Team aux) throws InvalidDataException {
@@ -82,7 +92,6 @@ public class GameCreate extends Thread {
             throw new InvalidDataException("Ya se encuentran los equipos completos");
         }
         aux.setPlaying(true);
-        TeamList.getInstance().setTeamsPlaying(TeamList.getInstance().getTeamsPlaying() + 1);
     }
 
     public void multiplayerMode() {

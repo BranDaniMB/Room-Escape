@@ -2,9 +2,7 @@ package game;
 
 import builderteam.InvalidDataException;
 import files.PropertiesConfig;
-import gui.main.InitGUI;
 import java.util.ArrayList;
-import javafx.application.Application;
 import objects.Padlock;
 import objects.Team;
 import objects.RoomRiddle;
@@ -20,30 +18,43 @@ public class GameRoom extends Thread {
     private Team team;
     private ArrayList<Padlock> padlocks;
     private int unlock;
-    private boolean update;
+    private boolean singleGame;
 
-    public GameRoom() {
+    public boolean isSingleGame() {
+        return singleGame;
     }
 
-    public boolean isUpdate() {
-        return update;
-    }
-
-    public void setUpdate(boolean update) {
-        this.update = update;
+    public void setSingleGame(boolean singleGame) {
+        this.singleGame = singleGame;
     }
 
     public GameRoom(Game game, Team team, RoomRiddle gameRiddle) {
         this.game = game;
         this.roomRiddle = gameRiddle;
+        this.padlocks = new ArrayList();
         this.team = team;
         this.unlock = 0;
-        this.update = false;
+        this.singleGame = false;
+        loadPadlocks();
+    }
+
+    public GameRoom(Game game, Team team, RoomRiddle gameRiddle, boolean singleGmae) {
+        this.game = game;
+        this.roomRiddle = gameRiddle;
+        this.padlocks = new ArrayList();
+        this.team = team;
+        this.unlock = 0;
+        this.singleGame = singleGame;
         loadPadlocks();
     }
 
     public void winner() throws InvalidDataException {
         if (unlock == PropertiesConfig.getInstance().getProperties("padlocksCount")) {
+            if (singleGame) {
+                team.setBestTimeSingle("");
+            } else {
+                team.setBestTimeMultiplayer("");
+            }
             throw new InvalidDataException("Ganó");
         }
         throw new InvalidDataException("Perdió");
@@ -70,14 +81,9 @@ public class GameRoom extends Thread {
     public void openWindowSingle() {
     }
 
-    public void openWindowsPlayTeam() {
-        for (int i = 0; i < team.getPlayersOnline(); i++) {
-        }
-    }
+    public void openWindowsPlayTeam(int players) {
+        for (int i = 0; i < players; i++) {
 
-    public String updateWindow() {
-        switch (unlock) {
         }
-        return "";
     }
 }
