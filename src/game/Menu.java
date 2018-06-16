@@ -2,7 +2,6 @@ package game;
 
 import builderteam.BuilderDirector;
 import builderteam.InvalidDataException;
-import files.PropertiesConfig;
 import gui.main.InitGUI;
 import objects.PseudoTeam;
 import objects.Team;

@@ -23,7 +23,7 @@ public class Team implements Comparable<Team>, Serializable {
         this.teamName = "";
         this.playersList = new TreeSet<>();
         this.dateInscription = null;
-        this.bestTimeSingle = "30:00";
+        this.bestTimeSingle = "28:45";
         this.bestTimeMultiplayer = "30:00";
         this.playersOnline = 0;
         this.playing = false;
