@@ -5,6 +5,7 @@
  */
 package gui.rooms;
 
+import files.PropertiesConfig;
 import java.awt.Graphics;
 import java.awt.Image;
 import static java.lang.Thread.sleep;
@@ -28,11 +29,11 @@ public class Room1 extends javax.swing.JFrame {
     }
 
     public void background() {
-        ImageIcon image = new ImageIcon(getClass().getResource("../images/room_3.jpg"));
+        ImageIcon image = new ImageIcon(getClass().getResource("../images/room_6.jpg"));
         Icon icon = new ImageIcon(image.getImage().getScaledInstance(background.getWidth(), background.getHeight(), Image.SCALE_AREA_AVERAGING));
         background.setIcon(icon);
         ImageIcon imagePadlock = new ImageIcon(getClass().getResource("../images/padlock.png"));
-        Icon iconPadlock = new ImageIcon(imagePadlock.getImage().getScaledInstance(padlock1.getWidth(),padlock1.getHeight(), Image.SCALE_AREA_AVERAGING));
+        Icon iconPadlock = new ImageIcon(imagePadlock.getImage().getScaledInstance(padlock1.getWidth(), padlock1.getHeight(), Image.SCALE_AREA_AVERAGING));
         padlock1.setIcon(iconPadlock);
         padlock2.setIcon(iconPadlock);
         padlock3.setIcon(iconPadlock);
@@ -151,7 +152,8 @@ public class Room1 extends javax.swing.JFrame {
         @Override
         public void run() {
 
-            for (int i = 0; i < 1800 || !stop; i++) {
+            for (int i = 0; i < 1800 && !stop; i++) {
+//                for (int i = 0; i < PropertiesConfig.getInstance().getProperties("timeLimit") && !stop; i++) {
                 second++;
                 if (second == 60) {
                     minut++;
