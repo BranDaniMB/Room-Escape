@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -33,7 +34,7 @@ public class PropertiesConfig {
 
     public void readConfig() {
         try {
-            properties.load(new FileReader("config.properties"));
+            properties.load(new FileReader("Files/config.properties"));
         } catch (IOException e) {
             System.err.println("Archivo no encontrado\nCreando archivo");
             writeConfig();
@@ -49,7 +50,7 @@ public class PropertiesConfig {
             properties.setProperty("maxPlayers", "5");
             properties.setProperty("minPlayers", "2");
             properties.setProperty("padlocksCount", "4");
-            properties.store(new FileWriter("config.properties"), "Config");
+            properties.store(new FileWriter("Files/config.properties"), "Config");
         } catch (IOException ex) {
             System.err.println("No se pudo sobreescribir el archivo");
         }
@@ -59,7 +60,7 @@ public class PropertiesConfig {
     public void addConfig(String key, String value) {
         try {
             properties.setProperty(key, value);
-            properties.store(new FileWriter("config.properties"), "Config");
+            properties.store(new FileWriter("Files/config.properties"), "Config");
         } catch (IOException ex) {
             System.err.println("No se pudo sobreescribir el archivo");
         }

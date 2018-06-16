@@ -10,7 +10,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.TreeSet;
 import listManager.TeamList;
+import objects.Team;
 
 /**
  *
@@ -25,8 +28,8 @@ public class FilesManagerList {
         reader = new ObjectInputStream(new FileInputStream(fileName));
     }
 
-    private TeamList read() throws IOException, ClassNotFoundException {
-        return (TeamList) reader.readObject();
+    private TreeSet<Team> read() throws IOException, ClassNotFoundException {
+        return (TreeSet<Team>) reader.readObject();
     }
 
     private void closeReader() throws IOException {
@@ -37,7 +40,7 @@ public class FilesManagerList {
         writer = new ObjectOutputStream(new FileOutputStream(fileName));
     }
 
-    private void write(TeamList element) throws IOException {
+    private void write(TreeSet<Team> element) throws IOException {
         writer.writeObject(element);
     }
 
@@ -45,24 +48,24 @@ public class FilesManagerList {
         writer.close();
     }
 
-    public TeamList readFile(String fileName) {
-        TeamList teamList = null;
+    public TreeSet<Team> readFile(String fileName) {
+        TreeSet<Team> teams = new TreeSet<>();
         try {
             openReader(fileName);
-            teamList = read();
+            teams = read();
             closeReader();
         } catch (IOException ex) {
             System.err.println(ex.getMessage());
         } catch (ClassNotFoundException ex) {
             System.err.println(ex.getMessage());
         }
-        return teamList;
+        return teams;
     }
 
-    public void writeFile(String fileName, TeamList teamList) {
+    public void writeFile(String fileName, TreeSet<Team> teams) {
         try {
             openWriter(fileName);
-            write(teamList);
+            write(teams);
             closeWriter();
         } catch (IOException ex) {
             System.err.println(ex.getMessage());

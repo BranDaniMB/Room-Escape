@@ -1,8 +1,7 @@
 package objects;
 
-import java.sql.Time;
+import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.TreeSet;
 
@@ -10,7 +9,7 @@ import java.util.TreeSet;
  *
  * @author Jermy
  */
-public class Team implements Comparable<Team> {
+public class Team implements Comparable<Team>, Serializable {
 
     private String teamName;
     private TreeSet<Player> playersList;

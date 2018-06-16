@@ -1,12 +1,13 @@
 package objects;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author Pedro Rodriguez
  */
-public class Riddle implements Cloneable {
+public class Riddle implements Cloneable, Serializable {
 
     private ArrayList<String> tracks;
     private String question;

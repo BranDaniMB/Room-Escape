@@ -6,6 +6,7 @@
 package objects;
 
 import builderteam.InvalidDataException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,7 +16,7 @@ import listManager.ListRoomRiddle;
  *
  * @author Pedro Rodriguez
  */
-public class RoomRiddle implements Cloneable {
+public class RoomRiddle implements Cloneable, Serializable {
 
     private ArrayList<Riddle> listRiddle;
     private String roomId;
@@ -71,7 +72,7 @@ public class RoomRiddle implements Cloneable {
     public void setRoomId(String roomId) {
         this.roomId = roomId;
     }
-    
+
     @Override
     public Object clone() throws CloneNotSupportedException {
         return new RoomRiddle(copy(), roomId.toString());

@@ -5,6 +5,7 @@
  */
 package listManager;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import objects.RoomRiddle;
 
@@ -12,7 +13,7 @@ import objects.RoomRiddle;
  *
  * @author Pedro Rodriguez
  */
-public class ListRoomRiddle implements Cloneable {
+public class ListRoomRiddle implements Cloneable, Serializable{
 
     private static final ListRoomRiddle INSTANCE = new ListRoomRiddle();
     private ArrayList<RoomRiddle> listRiddle;

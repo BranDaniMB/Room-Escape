@@ -1,10 +1,12 @@
 package objects;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Jermy
  */
-public class Player implements Comparable<Player> {
+public class Player implements Comparable<Player>, Serializable {
 
     private String id;
     private boolean selected;
