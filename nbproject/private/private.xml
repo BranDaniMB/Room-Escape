@@ -3,16 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/Dell/Documents/GitHub/Room_Escape/src/game/Game.java</file>
-            <file>file:/C:/Users/Dell/Documents/GitHub/Room_Escape/src/gui/main/Test.java</file>
-            <file>file:/C:/Users/Dell/Documents/GitHub/Room_Escape/src/gui/main/InitGUI.java</file>
-=======
-            <file>file:/C:/Users/Jermy/Documents/GitHub/project_violet/src/game/Game.java</file>
-            <file>file:/C:/Users/Jermy/Documents/GitHub/project_violet/src/game/Menu.java</file>
-            <file>file:/C:/Users/Jermy/Documents/GitHub/project_violet/src/game/GameRoom.java</file>
-            <file>file:/C:/Users/Jermy/Documents/GitHub/project_violet/src/game/GameCreate.java</file>
->>>>>>> 22601f09fe5445617e90b2231770eee5ddacbfb9
+            <file>file:/C:/Users/Dell/Documents/GitHub/Room_Escape/src/game/Menu.java</file>
+            <file>file:/C:/Users/Dell/Documents/GitHub/Room_Escape/src/game/RoomEscape.java</file>
+            <file>file:/C:/Users/Dell/Documents/GitHub/Room_Escape/src/objects/Team.java</file>
         </group>
     </open-files>
 </project-private>
