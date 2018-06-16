@@ -12,20 +12,17 @@ import objects.RoomRiddle;
 public class Game extends Thread{
 
     private boolean finishGame;
-    private Chrono chrono;
     private ArrayList<Team> teamsPlaying;
     private ArrayList<RoomRiddle> roomRiddles;
 
     public Game(ArrayList<Team> teams) {
         this.finishGame = false;
-        this.chrono = new Chrono();
         this.teamsPlaying = teams;
         this.roomRiddles = (ArrayList<RoomRiddle>) ListRoomRiddle.getInstance().getListRiddle().clone();
     }
 
     public Game() {
         this.finishGame = false;
-        this.chrono = new Chrono();
         this.roomRiddles = (ArrayList<RoomRiddle>) ListRoomRiddle.getInstance().getListRiddle().clone();
     }
 
@@ -57,15 +54,7 @@ public class Game extends Thread{
         this.finishGame = finishGame;
         notifyAll();
     }
-
-    public Chrono getChrono() {
-        return chrono;
-    }
-
-    public void setChrono(Chrono chrono) {
-        this.chrono = chrono;
-    }
-
+    
     public ArrayList<Team> getTeamsPlaying() {
         return teamsPlaying;
     }

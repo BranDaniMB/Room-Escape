@@ -2,9 +2,7 @@ package game;
 
 import builderteam.InvalidDataException;
 import files.PropertiesConfig;
-import gui.main.InitGUI;
 import java.util.ArrayList;
-import javafx.application.Application;
 import objects.Padlock;
 import objects.Team;
 import objects.RoomRiddle;
@@ -38,7 +36,6 @@ public class GameRoom extends Thread {
         this.roomRiddle = gameRiddle;
         this.team = team;
         this.unlock = 0;
-        this.update = false;
         loadPadlocks();
     }
 
