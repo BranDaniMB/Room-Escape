@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gui.main;
+package deadgui;
 
+import gui.main.ControllerGUI;
+import gui.main.InitGUI;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.Event;
