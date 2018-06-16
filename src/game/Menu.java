@@ -25,7 +25,6 @@ public class Menu {
     public Menu() {
         teamList = TeamList.getInstance();
         buildTeam = new BuilderDirector();
-//        starGui();
     }
 
     public void registerTeamProcess(String name, String id, LocalDate date) throws InvalidDataException {
@@ -58,7 +57,7 @@ public class Menu {
         RoomEscape.FILES_MANAGER_LIST_RIDDLES.writeFile("Files/RiddlesList.ser", ListRoomRiddle.getInstance().getListRiddle());
     }
 
-    public void starGui() {
+    public void runGui() {
         Application.launch(InitGUI.class, "id");
     }
 }

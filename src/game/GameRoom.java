@@ -2,7 +2,9 @@ package game;
 
 import builderteam.InvalidDataException;
 import files.PropertiesConfig;
+import gui.main.InitGUI;
 import java.util.ArrayList;
+import javafx.application.Application;
 import objects.Padlock;
 import objects.Team;
 import objects.RoomRiddle;
@@ -19,6 +21,9 @@ public class GameRoom extends Thread {
     private ArrayList<Padlock> padlocks;
     private int unlock;
     private boolean update;
+
+    public GameRoom() {
+    }
 
     public boolean isUpdate() {
         return update;
@@ -63,7 +68,6 @@ public class GameRoom extends Thread {
     }
 
     public void openWindowSingle() {
-
     }
 
     public void openWindowsPlayTeam() {

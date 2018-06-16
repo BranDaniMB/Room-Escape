@@ -24,6 +24,8 @@ public class RoomEscape {
         TeamList.getInstance().setTeamsList(FILES_MANAGER_LIST.readFile("Files/TeamList.ser"));
         ListRoomRiddle.getInstance().setListRiddle(FILES_MANAGER_LIST_RIDDLES.readFile("Files/RiddlesList.ser"));
         PropertiesConfig.getInstance().readConfig();
-        new Menu().saveAllData();
+        Menu menu = new Menu();
+        menu.saveAllData();
+        menu.runGui();
     }
 }
