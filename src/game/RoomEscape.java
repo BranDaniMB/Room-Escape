@@ -1,10 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package game;
 
+import gui.main.FXMLMainWindowsController;
+import javafx.fxml.FXMLLoader;
 import files.FilesManagerList;
 import files.FilesManagerListRiddles;
 import files.PropertiesConfig;
@@ -15,7 +12,7 @@ import listManager.TeamList;
  *
  * @author Jermy
  */
-public class RoomEscape {
+public class RoomEscape extends Thread {
 
     final static FilesManagerList FILES_MANAGER_LIST = new FilesManagerList();
     final static FilesManagerListRiddles FILES_MANAGER_LIST_RIDDLES = new FilesManagerListRiddles();
@@ -27,5 +24,25 @@ public class RoomEscape {
         Menu menu = new Menu();
         menu.saveAllData();
         menu.runGui();
+        new Menu().saveAllData();
+    }
+
+    @Override
+    public void run() {
+        load l = new load();
+        l.getController().makeEmptyRegister();
+    }
+
+    private class load {
+
+        private final FXMLLoader loader;
+
+        public load() {
+            this.loader = new FXMLLoader(getClass().getResource("FXMLMainWindows.fxml"));
+        }
+
+        public FXMLMainWindowsController getController() {
+            return this.loader.getController();
+        }
     }
 }
