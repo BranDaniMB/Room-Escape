@@ -29,10 +29,10 @@ public class Room1 extends javax.swing.JFrame {
     }
 
     public void background() {
-        ImageIcon image = new ImageIcon(getClass().getResource("../images/room_6.jpg"));
+        ImageIcon image = new ImageIcon(getClass().getResource("/images/room_1.jpg"));
         Icon icon = new ImageIcon(image.getImage().getScaledInstance(background.getWidth(), background.getHeight(), Image.SCALE_AREA_AVERAGING));
         background.setIcon(icon);
-        ImageIcon imagePadlock = new ImageIcon(getClass().getResource("../images/padlock.png"));
+        ImageIcon imagePadlock = new ImageIcon(getClass().getResource("/images/padlock.png"));
         Icon iconPadlock = new ImageIcon(imagePadlock.getImage().getScaledInstance(padlock1.getWidth(), padlock1.getHeight(), Image.SCALE_AREA_AVERAGING));
         padlock1.setIcon(iconPadlock);
         padlock2.setIcon(iconPadlock);
@@ -61,13 +61,11 @@ public class Room1 extends javax.swing.JFrame {
         setBackground(new java.awt.Color(255, 255, 255));
         setIconImages(null);
         setMinimumSize(new java.awt.Dimension(700, 500));
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         chrono.setBackground(new java.awt.Color(255, 255, 255));
         chrono.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         chrono.setForeground(new java.awt.Color(255, 0, 0));
         chrono.setText("30:00");
-        getContentPane().add(chrono, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 430, 70, 20));
 
         padlock1.setBackground(new java.awt.Color(51, 51, 51));
         padlock1.setForeground(new java.awt.Color(255, 255, 255));
@@ -79,36 +77,69 @@ public class Room1 extends javax.swing.JFrame {
                 padlock1ActionPerformed(evt);
             }
         });
-        getContentPane().add(padlock1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, 60, 40));
 
         jButton1.setBorder(null);
         jButton1.setBorderPainted(false);
         jButton1.setContentAreaFilled(false);
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.setOpaque(true);
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 150, 20, 20));
 
         padlock2.setForeground(new java.awt.Color(255, 255, 255));
         padlock2.setBorder(null);
         padlock2.setBorderPainted(false);
         padlock2.setContentAreaFilled(false);
-        getContentPane().add(padlock2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 420, 60, 40));
 
         padlock3.setForeground(new java.awt.Color(255, 255, 255));
         padlock3.setBorder(null);
         padlock3.setBorderPainted(false);
         padlock3.setContentAreaFilled(false);
-        getContentPane().add(padlock3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 420, 60, 40));
 
         padlock4.setForeground(new java.awt.Color(255, 255, 255));
         padlock4.setBorder(null);
         padlock4.setBorderPainted(false);
         padlock4.setContentAreaFilled(false);
-        getContentPane().add(padlock4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 420, 60, 40));
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/room_1.jpg"))); // NOI18N
         background.setOpaque(true);
-        getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 410));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(510, 510, 510)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(background)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(padlock1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(padlock2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(padlock3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(padlock4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(370, 370, 370)
+                .addComponent(chrono, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(150, 150, 150)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(background))
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(padlock1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(padlock2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(padlock3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(padlock4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(chrono, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
