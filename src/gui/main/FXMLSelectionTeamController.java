@@ -4,6 +4,8 @@ import builderteam.InvalidDataException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -149,8 +151,16 @@ public class FXMLSelectionTeamController implements Initializable {
     }
 
     @FXML
-    private void runGame() {
+    private void runGame(Event event) {
+        try {
+            root.getMenu().initGame();
 
+            Button b = (Button) event.getSource();
+            Stage stage = (Stage) b.getScene().getWindow();
+            stage.close();
+        } catch (InvalidDataException ex) {
+            Logger.getLogger(FXMLSelectionTeamController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML

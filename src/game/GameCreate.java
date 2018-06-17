@@ -6,12 +6,10 @@
 package game;
 
 import builderteam.InvalidDataException;
-import files.PropertiesConfig;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map.Entry;
 import java.util.TreeMap;
-import listManager.TeamList;
 import objects.Player;
 import objects.Subteam;
 import objects.Team;
@@ -53,7 +51,12 @@ public class GameCreate extends Thread {
         do {
             entry = list.pollFirstEntry();
 
-        } while (entry != null);
+            if (entry == null) {
+                break;
+            }
+            teams.add(entry.getKey());
+            subTeams.add(entry.getValue());
+        } while (true);
         new Game(teams, subTeams).createMultiplayerGame();
     }
 
