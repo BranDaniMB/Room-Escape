@@ -83,7 +83,7 @@ public class Riddle implements Cloneable, Serializable {
 
     @Override
     public String toString() {
-        return "Riddle{" + "tracks=" + tracks + ", question=" + question + ", answer=" + answer + ", trackLock=" + trackLock + '}';
+        return "Riddle{" + "tracks=" + tracks + ", question=" + question + ", answer=" + answer + ", trackLock=" + trackLock + "\n";
     }
     
 }

@@ -26,8 +26,12 @@ public class RoomRiddle implements Cloneable, Serializable {
         this.roomInterface = roomInterface;
     }
 
-    public void addRiddleGame(Riddle riddle) {
+    public RoomRiddle(RoomInterface roomInterface) {
+        this.listRiddle = new ArrayList<>();
+        this.roomInterface = roomInterface;
+    }
 
+    public void addRiddleGame(Riddle riddle) {
         if (riddle != null) {
             listRiddle.add(riddle);
         } else {
@@ -81,5 +85,5 @@ public class RoomRiddle implements Cloneable, Serializable {
     public String toString() {
         return "RoomRiddle{" + "listRiddle=" + listRiddle + ", roomInterface=" + roomInterface + '}';
     }
-    
+
 }

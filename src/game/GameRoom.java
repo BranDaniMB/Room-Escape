@@ -32,9 +32,10 @@ public class GameRoom extends Thread {
 
     public GameRoom(Game game, Team team, RoomRiddle gameRiddle, String type) {
         this.game = game;
-        this.padlocks = new ArrayList();
+        this.padlocks = new ArrayList<>();
         this.team = team;
         this.unlock = 0;
+        this.rooms = new ArrayList<>();
         this.type = type;
         this.room = gameRiddle.getRoomInterface();
         loadPadlocks(gameRiddle);
@@ -69,7 +70,7 @@ public class GameRoom extends Thread {
     }
 
     public void tryUnlockTrack(String msj, int padlock) {
-        if (padlocks.get(padlock).getRiddle().getTrackLock().tryUnlock(msj.toLowerCase().trim())) {
+        if (padlocks.get(padlock).getRiddle().getTrackLock().tryUnlock((msj.toLowerCase().trim()))) {
             updateInfo(padlocks.get(padlock).getIdPadlock() + " pista desbloqueada+\n");
             updateTracks(padlock);
         }
@@ -93,7 +94,7 @@ public class GameRoom extends Thread {
 
     private void loadPadlocks(RoomRiddle roomRiddle) {
         for (int i = 0; i < roomRiddle.getListRiddle().size(); i++) {
-            padlocks.add(new Padlock(roomRiddle.getListRiddle().get(i), "Candado: " + i));
+            padlocks.add(new Padlock(roomRiddle.getListRiddle().get(i), "Candado: " + (i + 1)));
         }
     }
 
@@ -102,8 +103,11 @@ public class GameRoom extends Thread {
 
     public void openWindowsMultiplayer(int players) {
         for (int i = 0; i < players; i++) {
-            room = new Room1();
-            rooms.add(room);
+            if (room instanceof Room1) {
+                Room1 room1 = new Room1(this);
+                rooms.add(room1);
+                room1.setVisible(true);
+            }
         }
     }
 
