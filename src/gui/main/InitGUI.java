@@ -15,7 +15,6 @@ import javafx.stage.Stage;
  */
 public class InitGUI extends Application {
 
-    public ControllerGUI windowsController;
     private Stage stage;
     private AnchorPane rootPane;
     private final Menu menu = new Menu();
@@ -34,8 +33,8 @@ public class InitGUI extends Application {
         Scene scene = new Scene(rootPane);
         this.stage.setTitle("Menú");
         this.stage.setScene(scene);
-        this.windowsController = loader.getController();
-        this.windowsController.setMainGUI(this);
+        FXMLMainWindowsController controller = loader.getController();
+        controller.setMainGUI(this);
 
         this.stage.show();
     }
@@ -49,22 +48,9 @@ public class InitGUI extends Application {
         Scene scene = new Scene(pane);
 
         windows.setScene(scene);
-        this.windowsController = loader.getController();
-        windowsController.setMainGUI(this);
-        windows.show();
-    }
-
-    public void displayGame() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLRoom1.fxml"));
-        AnchorPane pane = (AnchorPane) loader.load();
-        Stage windows = new Stage();
-        windows.setTitle("room Escape");
-        windows.initOwner(this.stage);
-        Scene scene = new Scene(pane);
-
-        windows.setScene(scene);
-        this.windowsController = loader.getController();
-        windowsController.setMainGUI(this);
+        FXMLSelectionTeamController controller = loader.getController();
+        controller.setMainGUI(this);
+        controller.init();
         windows.show();
     }
 

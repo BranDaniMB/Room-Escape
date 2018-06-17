@@ -22,7 +22,7 @@ public class Team implements Comparable<Team>, Serializable {
         this.teamName = "";
         this.playersList = new TreeSet<>();
         this.dateInscription = null;
-        this.bestTimeSingle = "28:45";
+        this.bestTimeSingle = "30:00";
         this.bestTimeMultiplayer = "30:00";
         this.playing = false;
     }
@@ -56,7 +56,7 @@ public class Team implements Comparable<Team>, Serializable {
     }
 
     public void setBestTimeSingle(String bestTimeSingle) {
-        if ((this.bestTimeSingle.compareTo(bestTimeSingle)) > 0)  {
+        if ((this.bestTimeSingle.compareTo(bestTimeSingle)) > 0) {
             this.bestTimeSingle = bestTimeSingle;
         }
     }
