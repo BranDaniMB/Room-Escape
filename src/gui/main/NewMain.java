@@ -5,6 +5,7 @@
  */
 package gui.main;
 
+import game.Menu;
 import gui.rooms.Room1;
 
 /**
@@ -17,8 +18,7 @@ public class NewMain {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Room1 room = new Room1();
-        room.setVisible(true);
+        new Menu().runGui();
     }
 
 }

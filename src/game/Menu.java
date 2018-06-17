@@ -78,7 +78,12 @@ public class Menu {
         }
 
         for (String item : s) {
-            team.add(currentSelectionTeam.searchPlayer(item));
+            Player p = currentSelectionTeam.searchPlayer(item);
+            if (p != null) {
+                team.add(p);
+            } else {
+                throw new InvalidDataException("Jugador inexistente.");
+            }
         }
 
         list.put(currentSelectionTeam, team);
@@ -127,7 +132,13 @@ public class Menu {
         }
 
         for (String item : s) {
-            listOfTeamsToPlay.add(teamList.searchTeam(item));
+            Team t = teamList.searchTeam(item);
+
+            if (t != null) {
+                listOfTeamsToPlay.add(t);
+            } else {
+                throw new InvalidDataException("Ese equipo no existe.");
+            }
         }
     }
 

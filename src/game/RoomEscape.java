@@ -26,7 +26,7 @@ public class RoomEscape {
         PropertiesConfig.getInstance().readConfig();
 //        chargeRiddles();
 //        FILES_MANAGER_LIST_RIDDLES.writeFile("Files/RiddlesList.ser", ListRoomRiddle.getInstance().getListRiddle());
-        System.out.println(ListRoomRiddle.getInstance().getListRiddle().get(0).toString());
+//        System.out.println(ListRoomRiddle.getInstance().getListRiddle().get(0).toString());
         new Menu().runGui();
     }
 
