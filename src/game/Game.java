@@ -78,7 +78,7 @@ public class Game extends Thread {
     
     public void closeAllGames() {
         for (GameRoom currentGame : currentGames) {
-            currentGame.finishMessage();
+            currentGame.finshGameM();
         }
     }
 }
