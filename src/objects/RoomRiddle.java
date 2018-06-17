@@ -9,8 +9,6 @@ import builderteam.InvalidDataException;
 import gui.rooms.RoomsInterface;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -76,11 +74,7 @@ public class RoomRiddle implements Cloneable, Serializable {
     public void setRoom(RoomsInterface room) {
         this.room = room;
     }
-<<<<<<< HEAD
     
-=======
-
->>>>>>> c99480f9ca8e0ae7b23f490a028e2cd5175f47c0
     @Override
     public Object clone() throws CloneNotSupportedException {
         return new RoomRiddle(copy(), room);
