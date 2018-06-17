@@ -5,19 +5,16 @@
  */
 package gui.rooms;
 
-import files.PropertiesConfig;
-import java.awt.Graphics;
 import java.awt.Image;
 import static java.lang.Thread.sleep;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JPanel;
 
 /**
  *
  * @author Jermy
  */
-public class Room1 extends javax.swing.JFrame {
+public class Room1 extends javax.swing.JFrame implements RoomInterface {
 
     /**
      * Creates new form Room1
@@ -39,6 +36,15 @@ public class Room1 extends javax.swing.JFrame {
         padlock3.setIcon(iconPadlock);
         padlock4.setIcon(iconPadlock);
     }
+
+    @Override
+    public void update(String msj){}
+
+    @Override
+    public void unlockTrack(int trackPadLock){}
+
+    @Override
+    public void unlockPadlock(int padlock){}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -248,7 +254,7 @@ public class Room1 extends javax.swing.JFrame {
 
     private void padlock1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_padlock1ActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_padlock1ActionPerformed
 
     /**

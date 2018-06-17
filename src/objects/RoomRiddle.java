@@ -6,6 +6,7 @@
 package objects;
 
 import builderteam.InvalidDataException;
+import gui.rooms.RoomInterface;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -18,11 +19,11 @@ import java.util.logging.Logger;
 public class RoomRiddle implements Cloneable, Serializable {
 
     private ArrayList<Riddle> listRiddle;
-    private String roomId;
+    private RoomInterface roomInterface;
 
-    public RoomRiddle(ArrayList<Riddle> listRiddle, String roomId) {
+    public RoomRiddle(ArrayList<Riddle> listRiddle, RoomInterface roomInterface) {
         this.listRiddle = listRiddle;
-        this.roomId = roomId;
+        this.roomInterface = roomInterface;
     }
 
     public void addRiddleGame(Riddle riddle) {
@@ -63,17 +64,16 @@ public class RoomRiddle implements Cloneable, Serializable {
         this.listRiddle = listRiddle;
     }
 
-    public String getRoomId() {
-        return roomId;
+    public RoomInterface getRoomInterface() {
+        return roomInterface;
     }
 
-    public void setRoomId(String roomId) {
-        this.roomId = roomId;
+    public void setRoomInterface(RoomInterface roomInterface) {
+        this.roomInterface = roomInterface;
     }
 
     @Override
     public Object clone() throws CloneNotSupportedException {
-        return new RoomRiddle(copy(), roomId.toString());
+        return new RoomRiddle(copy(), roomInterface);
     }
-
 }
