@@ -37,7 +37,7 @@ public class Room2 extends javax.swing.JFrame implements RoomsInterface {
     }
 
     public void background() {
-        ImageIcon image = new ImageIcon(getClass().getResource("/images/room_1.jpg"));
+        ImageIcon image = new ImageIcon(getClass().getResource("/images/room_2.jpg"));
         Icon icon = new ImageIcon(image.getImage().getScaledInstance(background.getWidth(), background.getHeight(), Image.SCALE_AREA_AVERAGING));
         background.setIcon(icon);
         ImageIcon imagePadlock = new ImageIcon(getClass().getResource("/images/padlock.png"));
@@ -192,7 +192,7 @@ public class Room2 extends javax.swing.JFrame implements RoomsInterface {
                 trackOneP1ActionPerformed(evt);
             }
         });
-        getContentPane().add(trackOneP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 300, 20, 20));
+        getContentPane().add(trackOneP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 320, 20, 20));
 
         trackTwoP1.setBorder(null);
         trackTwoP1.setBorderPainted(false);
@@ -203,7 +203,7 @@ public class Room2 extends javax.swing.JFrame implements RoomsInterface {
                 trackTwoP1ActionPerformed(evt);
             }
         });
-        getContentPane().add(trackTwoP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 130, 20, 20));
+        getContentPane().add(trackTwoP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, 20, 20));
 
         trackLockP1.setBackground(new java.awt.Color(255, 255, 255));
         trackLockP1.setBorder(null);
@@ -215,7 +215,7 @@ public class Room2 extends javax.swing.JFrame implements RoomsInterface {
                 trackLockP1ActionPerformed(evt);
             }
         });
-        getContentPane().add(trackLockP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 70, 20, 20));
+        getContentPane().add(trackLockP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 100, 20, 20));
 
         trackThreeP1.setBorder(null);
         trackThreeP1.setBorderPainted(false);
@@ -226,7 +226,7 @@ public class Room2 extends javax.swing.JFrame implements RoomsInterface {
                 trackThreeP1ActionPerformed(evt);
             }
         });
-        getContentPane().add(trackThreeP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 70, 20, 20));
+        getContentPane().add(trackThreeP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 100, 20, 20));
 
         trackOneP2.setBorder(null);
         trackOneP2.setBorderPainted(false);
@@ -237,7 +237,7 @@ public class Room2 extends javax.swing.JFrame implements RoomsInterface {
                 trackOneP2ActionPerformed(evt);
             }
         });
-        getContentPane().add(trackOneP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 50, 20, 20));
+        getContentPane().add(trackOneP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 60, 20, 20));
 
         trackTwoP2.setBorder(null);
         trackTwoP2.setBorderPainted(false);
@@ -248,7 +248,7 @@ public class Room2 extends javax.swing.JFrame implements RoomsInterface {
                 trackTwoP2ActionPerformed(evt);
             }
         });
-        getContentPane().add(trackTwoP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 20, 20));
+        getContentPane().add(trackTwoP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 20, 20));
 
         trackLockP2.setBackground(new java.awt.Color(255, 255, 255));
         trackLockP2.setBorder(null);
@@ -260,7 +260,7 @@ public class Room2 extends javax.swing.JFrame implements RoomsInterface {
                 trackLockP2ActionPerformed(evt);
             }
         });
-        getContentPane().add(trackLockP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 40, 20, 20));
+        getContentPane().add(trackLockP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 70, 20, 20));
 
         trackThreeP2.setBorder(null);
         trackThreeP2.setBorderPainted(false);
@@ -271,7 +271,7 @@ public class Room2 extends javax.swing.JFrame implements RoomsInterface {
                 trackThreeP2ActionPerformed(evt);
             }
         });
-        getContentPane().add(trackThreeP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 40, 20, 20));
+        getContentPane().add(trackThreeP2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 70, 20, 20));
 
         trackOneP3.setBorder(null);
         trackOneP3.setBorderPainted(false);
@@ -282,7 +282,7 @@ public class Room2 extends javax.swing.JFrame implements RoomsInterface {
                 trackOneP3ActionPerformed(evt);
             }
         });
-        getContentPane().add(trackOneP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, 20, 20));
+        getContentPane().add(trackOneP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, 20, 20));
 
         trackTwoP3.setBorder(null);
         trackTwoP3.setBorderPainted(false);
@@ -293,7 +293,7 @@ public class Room2 extends javax.swing.JFrame implements RoomsInterface {
                 trackTwoP3ActionPerformed(evt);
             }
         });
-        getContentPane().add(trackTwoP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 260, 20, 20));
+        getContentPane().add(trackTwoP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 50, 20, 20));
 
         trackLockP3.setBackground(new java.awt.Color(255, 255, 255));
         trackLockP3.setBorder(null);
@@ -305,7 +305,7 @@ public class Room2 extends javax.swing.JFrame implements RoomsInterface {
                 trackLockP3ActionPerformed(evt);
             }
         });
-        getContentPane().add(trackLockP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 220, 20, 20));
+        getContentPane().add(trackLockP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 190, 20, 20));
 
         trackThreeP3.setBorder(null);
         trackThreeP3.setBorderPainted(false);
@@ -316,7 +316,7 @@ public class Room2 extends javax.swing.JFrame implements RoomsInterface {
                 trackThreeP3ActionPerformed(evt);
             }
         });
-        getContentPane().add(trackThreeP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 220, 20, 20));
+        getContentPane().add(trackThreeP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 190, 20, 20));
 
         trackOneP4.setBorder(null);
         trackOneP4.setBorderPainted(false);
@@ -327,7 +327,7 @@ public class Room2 extends javax.swing.JFrame implements RoomsInterface {
                 trackOneP4ActionPerformed(evt);
             }
         });
-        getContentPane().add(trackOneP4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 20, 20));
+        getContentPane().add(trackOneP4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 20, 20));
 
         trackTwoP4.setBorder(null);
         trackTwoP4.setBorderPainted(false);
@@ -338,7 +338,7 @@ public class Room2 extends javax.swing.JFrame implements RoomsInterface {
                 trackTwoP4ActionPerformed(evt);
             }
         });
-        getContentPane().add(trackTwoP4, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 150, 20, 20));
+        getContentPane().add(trackTwoP4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 170, 20, 20));
 
         trackLockP4.setBackground(new java.awt.Color(255, 255, 255));
         trackLockP4.setBorder(null);
@@ -350,7 +350,7 @@ public class Room2 extends javax.swing.JFrame implements RoomsInterface {
                 trackLockP4ActionPerformed(evt);
             }
         });
-        getContentPane().add(trackLockP4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, 20, 20));
+        getContentPane().add(trackLockP4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 350, 20, 20));
 
         trackThreeP4.setBorder(null);
         trackThreeP4.setBorderPainted(false);
@@ -361,7 +361,7 @@ public class Room2 extends javax.swing.JFrame implements RoomsInterface {
                 trackThreeP4ActionPerformed(evt);
             }
         });
-        getContentPane().add(trackThreeP4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, 20, 20));
+        getContentPane().add(trackThreeP4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 350, 20, 20));
 
         padlock1.setBackground(new java.awt.Color(51, 51, 51));
         padlock1.setForeground(new java.awt.Color(255, 255, 255));
@@ -415,7 +415,7 @@ public class Room2 extends javax.swing.JFrame implements RoomsInterface {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 420, 290, 50));
 
-        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/room_1.jpg"))); // NOI18N
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/room_2.jpg"))); // NOI18N
         background.setOpaque(true);
         getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 410));
 
