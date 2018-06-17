@@ -33,18 +33,8 @@ public class Game extends Thread {
     }
 
     public void createMultiplayerGame() {
-        ArrayList<Team> teams = new ArrayList<>();
-        ArrayList<Subteam> subteams = new ArrayList<>();
-        Map.Entry<Team, Subteam> entry;
-        do {
-            entry = list.pollFirstEntry();
-
-            if (entry == null) {
-                break;
-            }
-            teams.add(entry.getKey());
-            subteams.add(entry.getValue());
-        } while (true);
+        ArrayList<Team> teams = setIsPlayingTeams(new ArrayList<>(list.keySet()));
+        ArrayList<Subteam> subteams = setIsPlayingPlayers(new ArrayList<>(list.values()));
         
         for (int i = 0; i < teams.size(); i++) {
             new GameRoom(this, teams.get(i), generateRoom(), GameRoom.TYPE_GAME_MULTIPLAYER).openWindowsMultiplayer(subteams.get(i).size());
@@ -85,6 +75,22 @@ public class Game extends Thread {
     public ArrayList<Team> getTeamsPlaying() {
         Set<Team> t = list.keySet();
         return new ArrayList<>(t);
+    }
+    
+    public ArrayList<Team> setIsPlayingTeams(ArrayList<Team> list) {
+        list.forEach((e) -> {
+            e.setSelect(true);
+        });
+        
+        return list;
+    }
+    
+    public ArrayList<Subteam> setIsPlayingPlayers(ArrayList<Subteam> list) {
+        list.forEach((e) -> {
+            e.isPlaying();
+        });
+        
+        return list;
     }
 
     public void gameFinishTeamsOff() {

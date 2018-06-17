@@ -10,6 +10,7 @@ import files.PropertiesConfig;
 import gui.rooms.Room1;
 import gui.rooms.RoomsInterface;
 import java.util.ArrayList;
+import java.util.Map.Entry;
 import objects.Padlock;
 import objects.RoomRiddle;
 import objects.Subteam;
@@ -37,7 +38,7 @@ public class GameRoom extends Thread implements Subject {
         return type.equals("single");
     }
 
-    public GameRoom(Game game, Team team, Subteam subteam, RoomRiddle gameRiddle, String type) {
+    public GameRoom(Game game, Entry<Team, Subteam> entry, RoomRiddle gameRiddle, String type) {
         this.game = game;
         this.padlocks = new ArrayList<>();
         this.team = team;
@@ -130,19 +131,41 @@ public class GameRoom extends Thread implements Subject {
     }
 
     public void openWindowsSingle() {
+        createWindows();
     }
 
-    private RoomsInterface createWindows() {
-
-        return null;
+    private void createWindows() {
+        if (room instanceof Room1) {
+            Room1 room1 = new Room1(this);
+            addObserver(room1);
+            room1.setVisible(true);
+        }
+//        } else if (room instanceof Room2) {
+//            Room2 room2 = new Room2(this);
+//            addObserver(room2);
+//            room3.setVisible(true);
+//        } else if (room instanceof Room3) {
+//            Room3 room3 = new Room1(this);
+//            addObserver(room3);
+//            room3.setVisible(true);
+//        } else if (room instanceof Room4) {
+//            Room4 room4 = new Room4(this);
+//            addObserver(room4);
+//            room4.setVisible(true);
+//        } else if (room instanceof Room5) {
+//            Room5 room5 = new Room5(this);
+//            addObserver(room5);
+//            room1.setVisible(true);
+//        } else if (room instanceof Room6) {
+//            Room6 room6 = new Room6(this);
+//            addObserver(room6);
+//            room6.setVisible(true);
+//        }
     }
 
     public void openWindowsMultiplayer(int players) {
         for (int i = 0; i < players; i++) {
-            if (room instanceof Room1) {
-                Room1 room1 = new Room1(this);
-                room1.setVisible(true);
-            }
+            createWindows();
         }
     }
 
@@ -184,12 +207,12 @@ public class GameRoom extends Thread implements Subject {
     }
 
     @Override
-    public void add(RoomsInterface e) {
+    public void addObserver(RoomsInterface e) {
         roomsObserver.add(e);
     }
 
     @Override
-    public RoomsInterface remove(int index) {
+    public RoomsInterface removeObserver(int index) {
         return roomsObserver.remove(index);
     }
 

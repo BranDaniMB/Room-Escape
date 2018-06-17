@@ -13,7 +13,7 @@ import gui.rooms.RoomsInterface;
  */
 interface Subject {
 
-    void add(RoomsInterface e);
+    void addObserver(RoomsInterface e);
 
-    RoomsInterface remove(int index);
+    RoomsInterface removeObserver(int index);
 }
