@@ -9,7 +9,6 @@ import listManager.ListRoomRiddle;
 import listManager.TeamList;
 import objects.Riddle;
 import objects.RoomRiddle;
-import objects.Team;
 import objects.TrackLocked;
 
 /**

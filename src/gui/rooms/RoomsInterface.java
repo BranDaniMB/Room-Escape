@@ -18,4 +18,6 @@ public interface RoomsInterface {
     void unlockTrackLocked(int padlock);
 
     void showMessageWin(String msg);
+    
+    String getTime();
 }

@@ -17,13 +17,13 @@ import javax.swing.JOptionPane;
  *
  * @author Jermy
  */
-public class Room1 extends javax.swing.JFrame implements RoomsInterface {
+public class Room3 extends javax.swing.JFrame implements RoomsInterface {
 
     /**
      * Creates new form Room1
      * @param gameRoom
      */
-    public Room1(GameRoom gameRoom, String title) {
+    public Room3(GameRoom gameRoom, String title) {
         this.gameRoom = gameRoom;
         initComponents();
         hideTracks();
@@ -33,7 +33,7 @@ public class Room1 extends javax.swing.JFrame implements RoomsInterface {
         setTitle("Equipo " + title);
     }
 
-    public Room1() {
+    public Room3() {
     }
 
     public void background() {

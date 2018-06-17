@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gui.rooms;
 
 import files.PropertiesConfig;
@@ -17,13 +12,13 @@ import javax.swing.JOptionPane;
  *
  * @author Jermy
  */
-public class Room1 extends javax.swing.JFrame implements RoomsInterface {
+public class Room6 extends javax.swing.JFrame implements RoomsInterface {
 
     /**
      * Creates new form Room1
      * @param gameRoom
      */
-    public Room1(GameRoom gameRoom, String title) {
+    public Room6(GameRoom gameRoom, String title) {
         this.gameRoom = gameRoom;
         initComponents();
         hideTracks();
@@ -33,7 +28,7 @@ public class Room1 extends javax.swing.JFrame implements RoomsInterface {
         setTitle("Equipo " + title);
     }
 
-    public Room1() {
+    public Room6() {
     }
 
     public void background() {

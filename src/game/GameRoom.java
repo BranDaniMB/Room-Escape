@@ -12,6 +12,7 @@ import gui.rooms.RoomsInterface;
 import java.util.ArrayList;
 import java.util.Map.Entry;
 import objects.Padlock;
+import objects.Player;
 import objects.RoomRiddle;
 import objects.Subteam;
 import objects.Team;
@@ -31,6 +32,7 @@ public class GameRoom extends Thread implements Subject {
     private ArrayList<RoomsInterface> roomsObserver;
     private int unlock;
     private String type;
+    private Player player;
     private Subteam subteam;
     private RoomsInterface room;
 
@@ -41,29 +43,37 @@ public class GameRoom extends Thread implements Subject {
     public GameRoom(Game game, Entry<Team, Subteam> entry, RoomRiddle gameRiddle, String type) {
         this.game = game;
         this.padlocks = new ArrayList<>();
-        this.team = team;
+        this.team = entry.getKey();
         this.unlock = 0;
         this.roomsObserver = new ArrayList<>();
         this.type = type;
-        this.subteam = subteam;
+        this.player = null;
+        this.subteam = entry.getValue();
+        this.subteam.makePlaying();
         this.room = gameRiddle.getRoom();
         loadPadlocks(gameRiddle);
-        team.setSelect(false);
     }
 
-    public GameRoom(Game game, Team team, RoomRiddle gameRiddle, String type) {
+    public GameRoom(Game game, Team team, Player player, RoomRiddle gameRiddle, String type) {
         this.game = game;
         this.padlocks = new ArrayList<>();
         this.team = team;
         this.unlock = 0;
         this.roomsObserver = new ArrayList<>();
         this.type = type;
-        this.subteam = new Subteam();
+        this.player = player;
+        this.player.setSelected(true);
+        this.subteam = null;
         this.room = gameRiddle.getRoom();
         loadPadlocks(gameRiddle);
-        team.setSelect(false);
     }
 
+<<<<<<< HEAD
+=======
+    /**
+     * 
+     */
+>>>>>>> e6a940f54ddee962688048124d0c92c19dcb05c3
     public void tryUnlockPadlock(String msj, int padlock) {
         if (padlocks.get(padlock).tryOpen((msj.toLowerCase().trim()))) {
             unlock++;
@@ -115,41 +125,40 @@ public class GameRoom extends Thread implements Subject {
     }
 
     public void openWindowsSingle() {
-        createWindows();
+        createWindows(player.getId());
     }
 
-    private void createWindows() {
+    private void createWindows(String playerId) {
         if (room instanceof Room1) {
-            Room1 room1 = new Room1(this);
+            Room1 room1 = new Room1(this, team.getTeamName() + " - " + playerId);
             addObserver(room1);
             room1.setVisible(true);
-        }
-//        } else if (room instanceof Room2) {
-//            Room2 room2 = new Room2(this);
-//            addObserver(room2);
-//            room3.setVisible(true);
-//        } else if (room instanceof Room3) {
-//            Room3 room3 = new Room1(this);
-//            addObserver(room3);
-//            room3.setVisible(true);
-//        } else if (room instanceof Room4) {
-//            Room4 room4 = new Room4(this);
-//            addObserver(room4);
-//            room4.setVisible(true);
-//        } else if (room instanceof Room5) {
-//            Room5 room5 = new Room5(this);
-//            addObserver(room5);
-//            room1.setVisible(true);
-//        } else if (room instanceof Room6) {
-//            Room6 room6 = new Room6(this);
-//            addObserver(room6);
-//            room6.setVisible(true);
-//        }
+        } /*else if (room instanceof Room2) {
+            Room2 room2 = new Room2(this);
+            addObserver(room2);
+            room3.setVisible(true);
+        } else if (room instanceof Room3) {
+            Room3 room3 = new Room1(this);
+            addObserver(room3);
+            room3.setVisible(true);
+        } else if (room instanceof Room4) {
+            Room4 room4 = new Room4(this);
+            addObserver(room4);
+            room4.setVisible(true);
+        } else if (room instanceof Room5) {
+            Room5 room5 = new Room5(this);
+            addObserver(room5);
+            room1.setVisible(true);
+        } else if (room instanceof Room6) {
+            Room6 room6 = new Room6(this);
+            addObserver(room6);
+            room6.setVisible(true);
+        }*/
     }
 
-    public void openWindowsMultiplayer(int players) {
-        for (int i = 0; i < players; i++) {
-            createWindows();
+    public void openWindowsMultiplayer() {
+        for (int i = 0; i < subteam.size(); i++) {
+            createWindows(subteam.get(i).getId());
         }
     }
 
@@ -175,7 +184,13 @@ public class GameRoom extends Thread implements Subject {
         String txt = "";
         if (!game.isFinishGame()) {
             game.setFinishGame(true);
+            if (this.type.equals(TYPE_GAME_SINGLE)) {
+                team.setBestTimeSingle(roomsObserver.get(0).getTime());
+            } else if (this.type.equals(TYPE_GAME_MULTIPLAYER)) {
+                team.setBestTimeMultiplayer(roomsObserver.get(0).getTime());
+            }
             txt = "Ganó";
+            
         } else {
             txt = "Perdió";
         }
@@ -184,9 +199,9 @@ public class GameRoom extends Thread implements Subject {
         }
     }
 
-    public void deselectTeam() {
+    public void deselect() {
         for (int i = 0; i < subteam.size(); i++) {
-            subteam.get(i).setSelected(false);
+            subteam.finishPlayerOff();
         }
     }
 
