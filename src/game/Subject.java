@@ -5,7 +5,7 @@
  */
 package game;
 
-import gui.rooms.RoomInterface;
+import gui.rooms.Rooms;
 
 /**
  *
@@ -13,7 +13,7 @@ import gui.rooms.RoomInterface;
  */
 interface Subject {
 
-    void add(RoomInterface e);
+    void add(Rooms e);
 
-    RoomInterface remove(int index);
+    Rooms remove(int index);
 }

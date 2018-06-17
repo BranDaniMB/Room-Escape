@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
  *
  * @author Jermy
  */
-public class Room1 extends javax.swing.JFrame implements RoomInterface {
+public class Room1 extends Rooms{
 
     /**
      * Creates new form Room1

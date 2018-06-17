@@ -8,8 +8,9 @@ package game;
 import builderteam.InvalidDataException;
 import files.PropertiesConfig;
 import gui.rooms.Room1;
-import gui.rooms.RoomInterface;
+import gui.rooms.Rooms;
 import java.util.ArrayList;
+import listManager.ListRoomsInterface;
 import objects.Padlock;
 import objects.RoomRiddle;
 import objects.Subteam;
@@ -27,11 +28,11 @@ public class GameRoom extends Thread implements Subject {
     private Game game;
     private Team team;
     private ArrayList<Padlock> padlocks;
-    private ArrayList<RoomInterface> rooms;
+    private ArrayList<Rooms> rooms;
     private int unlock;
     private String type;
     private Subteam subteam;
-    private RoomInterface room;
+    private String room;
 
     public boolean isSingleGame() {
         return type.equals("single");
@@ -132,30 +133,24 @@ public class GameRoom extends Thread implements Subject {
     public void openWindowSingle() {
     }
 
-    private RoomInterface createWindows() {
-        if (room instanceof Room1) {
-            Room1 room1 = new Room1(this);
-            room1.setVisible(true);
-            return room1;
-        }
+    private Rooms createWindows() {
+
         return null;
     }
 
     public void openWindowsMultiplayer(int players) {
-        for (int i = 0; i < players; i++) {
-            if (room instanceof Room1) {
-                rooms.add(createWindows());
-            }
+        for (int i = 0; i < players; i++) {       
+            ListRoomsInterface.getInstance().getRoomsList().get(room);
         }
     }
 
     @Override
-    public void add(RoomInterface e) {
+    public void add(Rooms e) {
         rooms.add(e);
     }
 
     @Override
-    public RoomInterface remove(int index) {
+    public Rooms remove(int index) {
         return rooms.remove(index);
     }
 

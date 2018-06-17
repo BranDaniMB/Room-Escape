@@ -6,7 +6,7 @@
 package objects;
 
 import builderteam.InvalidDataException;
-import gui.rooms.RoomInterface;
+import gui.rooms.Rooms;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -19,14 +19,14 @@ import java.util.logging.Logger;
 public class RoomRiddle implements Cloneable, Serializable {
 
     private ArrayList<Riddle> listRiddle;
-    private RoomInterface roomInterface;
+    private String roomInterface;
 
-    public RoomRiddle(ArrayList<Riddle> listRiddle, RoomInterface roomInterface) {
+    public RoomRiddle(ArrayList<Riddle> listRiddle, String roomInterface) {
         this.listRiddle = listRiddle;
         this.roomInterface = roomInterface;
     }
 
-    public RoomRiddle(RoomInterface roomInterface) {
+    public RoomRiddle(String roomInterface) {
         this.listRiddle = new ArrayList<>();
         this.roomInterface = roomInterface;
     }
@@ -68,11 +68,11 @@ public class RoomRiddle implements Cloneable, Serializable {
         this.listRiddle = listRiddle;
     }
 
-    public RoomInterface getRoomInterface() {
+    public String getRoomInterface() {
         return roomInterface;
     }
 
-    public void setRoomInterface(RoomInterface roomInterface) {
+    public void setRoomInterface(String roomInterface) {
         this.roomInterface = roomInterface;
     }
 
@@ -85,5 +85,5 @@ public class RoomRiddle implements Cloneable, Serializable {
     public String toString() {
         return "RoomRiddle{" + "listRiddle=" + listRiddle + ", roomInterface=" + roomInterface + '}';
     }
-
+    
 }
