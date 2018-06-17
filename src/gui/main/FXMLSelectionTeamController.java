@@ -58,9 +58,13 @@ public class FXMLSelectionTeamController implements Initializable, ControllerGUI
         this.root = gui;
     }
 
+    public void init() {
+        selectableTeams.setText(root.getMenu().getSelectableTeams());
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        selectableTeams.setText(root.getMenu().getSelectableTeams());
+
     }
 
     @FXML
@@ -70,6 +74,9 @@ public class FXMLSelectionTeamController implements Initializable, ControllerGUI
             listTeamsToPlay.setText("");
             selectionTeamsPane.setVisible(false);
             selectionPlayersPane.setVisible(true);
+            root.getMenu().getNextTeam();
+            selectablePlayerByTeam.setText(root.getMenu().getSelectablePlayers());
+            teamName.setText("Equipo " + root.getMenu().getCurrentSelectionTeam().getTeamName());
         } else if (root.getMenu().getTeamsToPlaySize() > 0) {
             if (!listPlayersToPlayByTeam.getText().equals("")) {
                 root.getMenu().AddToList(listPlayersToPlayByTeam.getText());
@@ -78,6 +85,7 @@ public class FXMLSelectionTeamController implements Initializable, ControllerGUI
             }
             root.getMenu().getNextTeam();
             selectablePlayerByTeam.setText(root.getMenu().getSelectablePlayers());
+            teamName.setText("Equipo " + root.getMenu().getCurrentSelectionTeam().getTeamName());
         } else {
             selectionTeamsPane.setVisible(false);
             selectionPlayersPane.setVisible(false);

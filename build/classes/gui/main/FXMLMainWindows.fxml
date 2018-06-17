@@ -19,7 +19,7 @@
                 <Button layoutX="173.0" layoutY="199.0" mnemonicParsing="false" onAction="#multiplayerGame" styleClass="mainButton" text="Jugar por equipos" />
                 <Label layoutX="195.0" layoutY="260.0" styleClass="secondTitle" text="Rankings" />
                 <Button layoutX="174.0" layoutY="287.0" mnemonicParsing="false" onAction="#displayRanking" styleClass="mainButton" text="Mostrar rankings" />
-            <Button layoutX="206.0" layoutY="367.0" mnemonicParsing="false" onAction="#close" text="Salir" />
+                <Button layoutX="206.0" layoutY="367.0" mnemonicParsing="false" onAction="#close" text="Salir" />
             </children>
         </Pane>
         <Pane fx:id="registerWindows" prefHeight="423.0" prefWidth="451.0" visible="false">
@@ -38,7 +38,7 @@
                 <DatePicker fx:id="registerTeamDatePicker" layoutX="139.0" layoutY="247.0" />
                 <Button layoutX="88.0" layoutY="374.0" mnemonicParsing="false" onAction="#registerTeam" styleClass="mainButton" text="Registrar" />
                 <Button layoutX="300.0" layoutY="374.0" mnemonicParsing="false" onAction="#displayMain" styleClass="mainButton" text="Volver" />
-                <Button layoutX="201.0" layoutY="374.0" mnemonicParsing="false" onAction="#makeEmptyRegister" text="Vaciar" />
+                <Button layoutX="201.0" layoutY="374.0" mnemonicParsing="false" onAction="#makeEmptyRegister" styleClass="mainButton" text="Vaciar" />
                 <Label fx:id="registerStatus" alignment="CENTER" contentDisplay="TOP" layoutX="36.0" layoutY="290.0" maxWidth="379.0" prefHeight="55.0" prefWidth="379.0" styleClass="status" text="Estado: Sin acciones" textAlignment="CENTER" textOverrun="CLIP" wrapText="true" />
             </children>
         </Pane>

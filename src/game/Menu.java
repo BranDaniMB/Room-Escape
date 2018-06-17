@@ -35,6 +35,7 @@ public class Menu {
         buildTeam = new BuilderDirector();
         listOfTeamsToPlay = new LinkedList<>();
         currentSelectionTeam = null;
+        list = new TreeMap<>();
     }
 
     public void registerTeamProcess(String name, String id, LocalDate date) throws InvalidDataException {
