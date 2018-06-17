@@ -129,7 +129,7 @@ public class GameRoom extends Thread implements Subject {
         }
     }
 
-    public void openWindowSingle() {
+    public void openWindowsSingle() {
     }
 
     private RoomInterface createWindows() {

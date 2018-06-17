@@ -26,10 +26,8 @@ public class RoomEscape {
         ListRoomRiddle.getInstance().setListRiddle(FILES_MANAGER_LIST_RIDDLES.readFile("Files/RiddlesList.ser"));
         PropertiesConfig.getInstance().readConfig();
         chargeRiddles();
-        new GameRoom(new Game(), new Team(), ListRoomRiddle.getInstance().getListRiddle().get(0), "single").openWindowsMultiplayer(2);
-//        FILES_MANAGER_LIST_RIDDLES.writeFile("Files/RiddlesList.ser", ListRoomRiddle.getInstance().getListRiddle());
-//        System.out.println(ListRoomRiddle.getInstance().getListRiddle().get(0).toString());
-//        new Menu().runGui();
+        FILES_MANAGER_LIST_RIDDLES.writeFile("Files/RiddlesList.ser", ListRoomRiddle.getInstance().getListRiddle());
+        new Menu().runGui();
     }
 
     public static void chargeRiddles() {

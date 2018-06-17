@@ -26,7 +26,6 @@ public class Menu {
 
     private final BuilderDirector buildTeam;
     private final TeamList teamList;
-    private final GameCreate gameCreate;
     private LinkedList<Team> listOfTeamsToPlay;
     private TreeMap<Team, Subteam> list;
     private Team currentSelectionTeam;
@@ -35,7 +34,6 @@ public class Menu {
     public Menu() {
         teamList = TeamList.getInstance();
         buildTeam = new BuilderDirector();
-        gameCreate = new GameCreate();
         listOfTeamsToPlay = new LinkedList<>();
         currentSelectionTeam = null;
         list = new TreeMap<>();
@@ -188,20 +186,19 @@ public class Menu {
     }
 
     public void initGame() throws InvalidDataException {
-        gameCreate.setList(list);
+        Game game = new Game(list);
 
         switch (mode) {
             case GameRoom.TYPE_GAME_SINGLE:
-                gameCreate.createSingleGame();
+                game.createSingleGame();
                 break;
             case GameRoom.TYPE_GAME_MULTIPLAYER:
-                gameCreate.runMultiplayerGame();
+                game.createMultiplayerGame();
                 break;
             default:
                 throw new InvalidDataException("Modo incorrecto.");
         }
 
         finalizeSelection();
-        gameCreate.delete();
     }
 }
