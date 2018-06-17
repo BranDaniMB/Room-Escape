@@ -30,3 +30,4 @@ nbproject/private/private.xml
 *.properties
 /dist/
 *.xml
+*.ser
