@@ -15,6 +15,7 @@ import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import objects.Team;
 
 /**
  * FXML Controller class
@@ -26,7 +27,9 @@ public class FXMLSelectionTeamController implements Initializable, ControllerGUI
     private InitGUI root;
 
     @FXML
-    private Pane selectionPane;
+    private Pane selectionTeamsPane;
+    @FXML
+    private Pane selectionPlayersPane;
     @FXML
     private Pane instructionsPane;
     @FXML
@@ -40,9 +43,13 @@ public class FXMLSelectionTeamController implements Initializable, ControllerGUI
     @FXML
     private Button initGame;
     @FXML
-    private SplitMenuButton listTeams;
+    private Label teamName;
     @FXML
-    private Button next;
+    private TextArea selectablePlayerByTeam;
+    @FXML
+    private TextField playerToPlayField;
+    @FXML
+    private TextArea listPlayersToPlayByTeam;
     @FXML
     private Button back;
 
@@ -53,21 +60,48 @@ public class FXMLSelectionTeamController implements Initializable, ControllerGUI
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        selectableTeams.setText(root.getMenu().listSelectableTeams());
+        selectableTeams.setText(root.getMenu().getSelectableTeams());
     }
 
     @FXML
     private void next() {
-        selectionPane.setVisible(false);
-        instructionsText.setText("El objetivo de este juego es salir de la habitación en un tiempo menor a los 30 minutos."
-                + "\nBusque las pistas ocultas dentro de la habitación del juego, que te ayudarán a descubrir la respuesta al acertijo de cada candado."
-                + "\nAl abrir los 4 candados se gana el juego, en caso de no abrirlos en 30 minutos, pierden el juego.");
-        instructionsPane.setVisible(true);
+        if (selectionTeamsPane.isVisible()) {
+            root.getMenu().addsTeamsToPlay(listTeamsToPlay.getText());
+            listTeamsToPlay.setText("");
+            selectionTeamsPane.setVisible(false);
+            selectionPlayersPane.setVisible(true);
+        } else if (root.getMenu().getTeamsToPlaySize() > 0) {
+            if (!listPlayersToPlayByTeam.getText().equals("")) {
+                root.getMenu().AddToList(listPlayersToPlayByTeam.getText());
+                playerToPlayField.clear();
+                listPlayersToPlayByTeam.clear();
+            }
+            root.getMenu().getNextTeam();
+            selectablePlayerByTeam.setText(root.getMenu().getSelectablePlayers());
+        } else {
+            selectionTeamsPane.setVisible(false);
+            selectionPlayersPane.setVisible(false);
+            instructionsText.setText("El objetivo de este juego es salir de la habitación en un tiempo menor a los 30 minutos."
+                    + "\nBusque las pistas ocultas dentro de la habitación del juego, que te ayudarán a descubrir la respuesta al acertijo de cada candado."
+                    + "\nAl abrir los 4 candados se gana el juego, en caso de no abrirlos en 30 minutos, pierden el juego.");
+            instructionsPane.setVisible(true);
+        }
     }
 
     @FXML
     private void addTeamToPlay() {
+        if (!teamToPlayField.getText().equals("") && root.getMenu().getSelectableTeams().contains(teamToPlayField.getText())) {
+            listTeamsToPlay.setText(listTeamsToPlay.getText() + teamToPlayField.getText() + "-");
+        }
+        teamToPlayField.clear();
+    }
 
+    @FXML
+    private void addPlayerToPlay() {
+        if (!playerToPlayField.getText().equals("") && root.getMenu().getSelectablePlayers().contains(playerToPlayField.getText())) {
+            listPlayersToPlayByTeam.setText(listPlayersToPlayByTeam.getText() + playerToPlayField.getText() + "-");
+        }
+        playerToPlayField.clear();
     }
 
     @FXML

@@ -11,9 +11,12 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+import java.util.TreeMap;
 import javafx.application.Application;
 import listManager.ListRoomRiddle;
 import listManager.TeamList;
+import objects.Player;
+import objects.Subteam;
 
 /**
  *
@@ -23,12 +26,15 @@ public class Menu {
 
     private final BuilderDirector buildTeam;
     private final TeamList teamList;
-    private final LinkedList<Team> listOfTeamsToPlay;
+    private LinkedList<Team> listOfTeamsToPlay;
+    private TreeMap<Team, Subteam> list;
+    private Team currentSelectionTeam;
 
     public Menu() {
         teamList = TeamList.getInstance();
         buildTeam = new BuilderDirector();
         listOfTeamsToPlay = new LinkedList<>();
+        currentSelectionTeam = null;
     }
 
     public void registerTeamProcess(String name, String id, LocalDate date) throws InvalidDataException {
@@ -62,11 +68,48 @@ public class Menu {
         System.out.println("Save all data.");
     }
 
-    public void addTeamToPlay() {
+    public void AddToList(String listPlayerToPlay) {
+        Subteam team = new Subteam();
+        String[] s = listPlayerToPlay.split("-");
+        for (String item : s) {
+            team.add(currentSelectionTeam.searchPlayer(item));
+        }
 
+        list.put(currentSelectionTeam, team);
     }
 
-    public String listSelectableTeams() {
+    public Team getCurrentSelectionTeam() {
+        return currentSelectionTeam;
+    }
+
+    public int getTeamsToPlaySize() {
+        return listOfTeamsToPlay.size();
+    }
+
+    public void getNextTeam() {
+        this.currentSelectionTeam = listOfTeamsToPlay.poll();
+    }
+
+    public String getSelectablePlayers() {
+        String txt = "";
+        Iterator<Player> iterator = currentSelectionTeam.getPlayersList().iterator();
+
+        while (iterator.hasNext()) {
+            txt += iterator.next().toString() + "-";
+        }
+
+        return txt;
+    }
+
+    public void addsTeamsToPlay(String text) {
+        String[] s = text.split("-");
+
+        for (String item : s) {
+            listOfTeamsToPlay.add(teamList.searchTeam(item));
+        }
+    }
+
+    public String getSelectableTeams() {
         String list = "";
         if (teamList.size() > 0) {
             Iterator<Team> iterator = teamList.getTeamsList().iterator();
