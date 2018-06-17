@@ -36,7 +36,7 @@ public class GameCreate extends Thread {
 
     public void createSingleGame() throws InvalidDataException {
         Entry<Team, Subteam> entry = list.pollFirstEntry();
-        entry.getKey().setPlaying(true);
+        entry.getKey().setSelect(true);
 
         Iterator<Player> iterator = entry.getValue().getPlayers().iterator();
 

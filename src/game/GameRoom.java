@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import objects.Padlock;
 import objects.Team;
 import objects.RoomRiddle;
+import objects.Subteam;
 
 /**
  *
@@ -24,10 +25,24 @@ public class GameRoom extends Thread implements Observer {
     private ArrayList<RoomInterface> rooms;
     private int unlock;
     private String type;
+    private Subteam subteam;
     private RoomInterface room;
 
     public boolean isSingleGame() {
         return type.equals("single");
+    }
+
+    public GameRoom(Game game, Team team, Subteam subteam, RoomRiddle gameRiddle, String type) {
+        this.game = game;
+        this.padlocks = new ArrayList<>();
+        this.team = team;
+        this.unlock = 0;
+        this.rooms = new ArrayList<>();
+        this.type = type;
+        this.subteam = subteam;
+        this.room = gameRiddle.getRoomInterface();
+        loadPadlocks(gameRiddle);
+        team.setSelect(false);
     }
 
     public GameRoom(Game game, Team team, RoomRiddle gameRiddle, String type) {
@@ -37,8 +52,10 @@ public class GameRoom extends Thread implements Observer {
         this.unlock = 0;
         this.rooms = new ArrayList<>();
         this.type = type;
+        this.subteam = new Subteam();
         this.room = gameRiddle.getRoomInterface();
         loadPadlocks(gameRiddle);
+        team.setSelect(false);
     }
 
     /**
@@ -62,6 +79,7 @@ public class GameRoom extends Thread implements Observer {
             unlock++;
             updateInfo(padlocks.get(padlock).getIdPadlock() + " desbloqueado\n");
             updatePadlock(padlock);
+            setPadlockText();
             if (unlock == PropertiesConfig.getInstance().getProperties("padlocksCount")) {
                 update();
             }
@@ -94,6 +112,17 @@ public class GameRoom extends Thread implements Observer {
     private void loadPadlocks(RoomRiddle roomRiddle) {
         for (int i = 0; i < roomRiddle.getListRiddle().size(); i++) {
             padlocks.add(new Padlock(roomRiddle.getListRiddle().get(i), "Candado: " + (i + 1)));
+        }
+    }
+
+    private void setPadlockText() {
+        for (int i = 0; i < padlocks.size(); i++) {
+            if (padlocks.get(i).isOpen()) {
+                padlocks.get(i).getRiddle().getTrackLock().setTrack(padlocks.get(i).getRiddle().getTrackLock().getTrack() + "\n" + padlocks.get(i).getIdPadlock());
+                for (int j = 0; j < padlocks.get(i).getRiddle().getTracks().size(); j++) {
+                    padlocks.get(i).getRiddle().getTracks().set(j, padlocks.get(i).getRiddle().getTracks().get(j) + "\n" + padlocks.get(i).getIdPadlock());
+                }
+            }
         }
     }
 
@@ -147,6 +176,12 @@ public class GameRoom extends Thread implements Observer {
         }
         for (int i = 0; i < rooms.size(); i++) {
             rooms.get(i).showMessageWin(txt);
+        }
+    }
+
+    public void deselectTeam() {
+        for (int i = 0; i < subteam.size(); i++) {
+            subteam.get(i).setSelected(false);
         }
     }
 }

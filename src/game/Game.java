@@ -76,7 +76,7 @@ public class Game extends Thread {
 
     public void gameFinishTeamsOff() {
         for (int i = 0; i < teamsPlaying.size(); i++) {
-            teamsPlaying.get(i).setPlaying(false);
+            teamsPlaying.get(i).setSelect(false);
             subteams.get(i).finisPlayerOff();
         }
     }
