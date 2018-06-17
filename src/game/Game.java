@@ -19,8 +19,10 @@ public class Game extends Thread {
     private boolean finishGame;
     private final TreeMap<Team, Subteam> list;
     private ArrayList<RoomRiddle> roomRiddles;
+    private ArrayList<GameRoom> currentGames;
 
     public Game(TreeMap<Team, Subteam> list) {
+        this.currentGames = new ArrayList<>();
         this.finishGame = false;
         this.list = list;
         this.roomRiddles = (ArrayList<RoomRiddle>) ListRoomRiddle.getInstance().getListRiddle().clone();
@@ -38,7 +40,7 @@ public class Game extends Thread {
             if (p == null) {
                 break;
             }
-            new GameRoom(this, entry.getKey(), p, generateRoom(), GameRoom.TYPE_GAME_SINGLE).openWindowsSingle();
+            this.currentGames.add(new GameRoom(this, entry.getKey(), p, generateRoom(), GameRoom.TYPE_GAME_SINGLE).openWindowsSingle());
         } while(true);
     }
 
@@ -48,7 +50,7 @@ public class Game extends Thread {
             if (entry == null) {
                 break;
             }
-            new GameRoom(this, entry, generateRoom(), GameRoom.TYPE_GAME_MULTIPLAYER).openWindowsMultiplayer();
+            this.currentGames.add(new GameRoom(this, entry, generateRoom(), GameRoom.TYPE_GAME_MULTIPLAYER).openWindowsMultiplayer());
         } while (true);
     }
 
@@ -66,10 +68,17 @@ public class Game extends Thread {
 
     public synchronized void setFinishGame(boolean finishGame) {
         this.finishGame = finishGame;
+        closeAllGames();
     }
 
     public ArrayList<Team> getTeamsPlaying() {
         Set<Team> t = list.keySet();
         return new ArrayList<>(t);
+    }
+    
+    public void closeAllGames() {
+        for (GameRoom currentGame : currentGames) {
+            currentGame.finishMessage();
+        }
     }
 }

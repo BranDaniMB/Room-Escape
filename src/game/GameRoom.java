@@ -67,6 +67,7 @@ public class GameRoom extends Thread implements Subject {
         this.room = gameRiddle.getRoom();
         loadPadlocks(gameRiddle);
     }
+
     public void tryUnlockPadlock(String msj, int padlock) {
         if (padlocks.get(padlock).tryOpen((msj.toLowerCase().trim()))) {
             unlock++;
@@ -117,8 +118,9 @@ public class GameRoom extends Thread implements Subject {
         }
     }
 
-    public void openWindowsSingle() {
+    public GameRoom openWindowsSingle() {
         createWindows(player.getId());
+        return this;
     }
 
     private void createWindows(String playerId) {
@@ -149,10 +151,11 @@ public class GameRoom extends Thread implements Subject {
         }
     }
 
-    public void openWindowsMultiplayer() {
+    public GameRoom openWindowsMultiplayer() {
         for (int i = 0; i < subteam.size(); i++) {
             createWindows(subteam.get(i).getId());
         }
+        return this;
     }
 
     public void updateInfo(String msj) {
@@ -177,20 +180,20 @@ public class GameRoom extends Thread implements Subject {
         String txt = "";
         if (!game.isFinishGame()) {
             game.setFinishGame(true);
-            if (this.type.equals(TYPE_GAME_SINGLE)) {
-                team.setBestTimeSingle(roomsObserver.get(0).getTime());
-                player.setSelected(false);
-            } else if (this.type.equals(TYPE_GAME_MULTIPLAYER)) {
-                team.setBestTimeMultiplayer(roomsObserver.get(0).getTime());
-                deselect();
-            }
             txt = "Ganó";
-            
+
         } else {
             txt = "Perdió";
         }
+        if (this.type.equals(TYPE_GAME_SINGLE)) {
+            team.setBestTimeSingle(roomsObserver.get(0).getTime());
+            player.setSelected(false);
+        } else if (this.type.equals(TYPE_GAME_MULTIPLAYER)) {
+            team.setBestTimeMultiplayer(roomsObserver.get(0).getTime());
+            deselect();
+        }
         for (int i = 0; i < roomsObserver.size(); i++) {
-            roomsObserver.get(i).showMessageWin(txt);
+            roomsObserver.get(i).showMessageWin(txt + roomsObserver.get(i));
         }
     }
 
