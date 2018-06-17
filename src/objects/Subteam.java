@@ -48,4 +48,10 @@ public class Subteam {
             players.get(i).setSelected(false);
         }
     }
+    
+    public void isPlaying() {
+        for (int i = 0; i < players.size(); i++) {
+            players.get(i).setSelected(true);
+        }
+    }
 }
