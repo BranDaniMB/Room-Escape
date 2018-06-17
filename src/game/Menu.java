@@ -26,6 +26,7 @@ public class Menu {
 
     private final BuilderDirector buildTeam;
     private final TeamList teamList;
+    private final GameCreate gameCreate;
     private LinkedList<Team> listOfTeamsToPlay;
     private TreeMap<Team, Subteam> list;
     private Team currentSelectionTeam;
@@ -34,6 +35,7 @@ public class Menu {
     public Menu() {
         teamList = TeamList.getInstance();
         buildTeam = new BuilderDirector();
+        gameCreate = new GameCreate();
         listOfTeamsToPlay = new LinkedList<>();
         currentSelectionTeam = null;
         list = new TreeMap<>();

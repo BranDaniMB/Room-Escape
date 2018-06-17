@@ -8,6 +8,9 @@ package game;
 import builderteam.InvalidDataException;
 import files.PropertiesConfig;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Map.Entry;
+import java.util.TreeMap;
 import listManager.TeamList;
 import objects.Player;
 import objects.Subteam;
@@ -21,84 +24,42 @@ public class GameCreate extends Thread {
 
     private ArrayList<Team> teams;
     private ArrayList<Subteam> subTeams;
-    private int pos;
 
-    public GameCreate() {
-        this.teams = new ArrayList<>();
-        this.subTeams = new ArrayList<>();
-        this.pos = 0;
+    private TreeMap<Team, Subteam> list;
+
+    public void setList(TreeMap<Team, Subteam> list) {
+        this.list = list;
     }
 
-    public void createSingleGame(String TeamName, String players) throws InvalidDataException {
-        Team team = selectToPlayTeam(TeamName, players);
-        new Game().createSingleGame(team, subTeams.get(pos).size());
+    public GameCreate() {
+        teams = new ArrayList<>();
+        subTeams = new ArrayList<>();
+    }
+
+    public void createSingleGame() throws InvalidDataException {
+        Entry<Team, Subteam> entry = list.pollFirstEntry();
+        entry.getKey().setPlaying(true);
+
+        Iterator<Player> iterator = entry.getValue().getPlayers().iterator();
+
+        while (iterator.hasNext()) {
+            iterator.next().setSelected(true);
+        }
+        new Game().createSingleGame(entry.getKey(), entry.getValue().size());
     }
 
     public void runMultiplayerGame() throws InvalidDataException {
-        if (teams.size() < PropertiesConfig.getInstance().getProperties("minTeamsPlaying")) {
-            throw new InvalidDataException("Debe registrar a minimo 2 equipos");
-        }
-        if (teams.size() > PropertiesConfig.getInstance().getProperties("minTeamsPlaying")) {
-            throw new InvalidDataException("Debe registrar a minimo 2 equipos y máximo 5 equipos");
-        }
+        Entry<Team, Subteam> entry;
+        do {
+            entry = list.pollFirstEntry();
+
+        } while (entry != null);
         new Game(teams, subTeams).createMultiplayerGame();
     }
 
-    public void addTeam(String teamName, String players) throws InvalidDataException {
-        teams.add(selectToPlayTeam(teamName, players));
-        pos++;
-    }
-
-    private Team selectToPlayTeam(String teamName, String players) throws InvalidDataException {
-        Team aux = null;
-        selectTeam(teamName, aux);
-        String[] player = players.split("-");
-        if (player.length < PropertiesConfig.getInstance().getProperties("minPlayers")) {
-            throw new InvalidDataException("Debe contener al menos 2 jugadores");
-        }
-        if (player.length >= PropertiesConfig.getInstance().getProperties("maxPlayers")) {
-            throw new InvalidDataException("Debe contener de 2 a 5 jugadores no más");
-        }
-        for (int i = 0; i < player.length; i++) {
-            selectPlayer(player[i].toString(), aux);
-        }
-        return aux;
-    }
-
-    private void selectPlayer(String name, Team team) throws InvalidDataException {
-        Player player = team.searchPlayer(name);
-        if (player.isSelected()) {
-            throw new InvalidDataException("Jugador ya seleccionado\n Eliga diferentes jugadores");
-        }
-        if ((subTeams.get(pos).size() == PropertiesConfig.getInstance().getProperties("maxPlayers")) && !player.isSelected()) {
-            throw new InvalidDataException("Ya se encuentran los jugadores completos");
-        }
-        if (player == null) {
-            throw new InvalidDataException("Jugador No existe");
-        }
-        player.setSelected(true);
-        subTeams.get(pos).add(player);
-    }
-
-    private void selectTeam(String name, Team aux) throws InvalidDataException {
-        aux = TeamList.getInstance().searchTeam(name);
-        if (aux == null) {
-            throw new InvalidDataException("Equipo Inexistente");
-        }
-        if (aux.isPlaying()) {
-            throw new InvalidDataException("Equipo ya esta jugando");
-        }
-        if ((teams.size() == PropertiesConfig.getInstance().getProperties("maxTeamsPlaying")) && !aux.isPlaying()) {
-            throw new InvalidDataException("Ya se encuentran los equipos completos");
-        }
-        aux.setPlaying(true);
-    }
-
-    public void multiplayerMode() {
-
-    }
-
-    public void singleMode() {
-
+    public void delete() {
+        this.subTeams = new ArrayList<>();
+        this.teams = new ArrayList<>();
+        this.list = null;
     }
 }

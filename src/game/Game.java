@@ -16,6 +16,7 @@ public class Game extends Thread {
     private ArrayList<Team> teamsPlaying;
     private ArrayList<Subteam> subteams;
     private ArrayList<RoomRiddle> roomRiddles;
+
     public Game(ArrayList<Team> teams, ArrayList<Subteam> subteams) {
         this.finishGame = false;
         this.teamsPlaying = teams;
