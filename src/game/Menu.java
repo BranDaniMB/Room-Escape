@@ -186,4 +186,22 @@ public class Menu {
     public void runGui() {
         Application.launch(InitGUI.class, "id");
     }
+
+    public void initGame() throws InvalidDataException {
+        gameCreate.setList(list);
+
+        switch (mode) {
+            case GameRoom.TYPE_GAME_SINGLE:
+                gameCreate.createSingleGame();
+                break;
+            case GameRoom.TYPE_GAME_MULTIPLAYER:
+                gameCreate.runMultiplayerGame();
+                break;
+            default:
+                throw new InvalidDataException("Modo incorrecto.");
+        }
+
+        finalizeSelection();
+        gameCreate.delete();
+    }
 }

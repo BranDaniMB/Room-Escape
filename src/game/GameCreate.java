@@ -6,12 +6,10 @@
 package game;
 
 import builderteam.InvalidDataException;
-import files.PropertiesConfig;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map.Entry;
 import java.util.TreeMap;
-import listManager.TeamList;
 import objects.Player;
 import objects.Subteam;
 import objects.Team;
