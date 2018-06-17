@@ -2,6 +2,7 @@ package game;
 
 import builderteam.InvalidDataException;
 import files.PropertiesConfig;
+import gui.rooms.Room1;
 import gui.rooms.RoomInterface;
 import java.util.ArrayList;
 import objects.Padlock;
@@ -101,7 +102,8 @@ public class GameRoom extends Thread {
 
     public void openWindowsMultiplayer(int players) {
         for (int i = 0; i < players; i++) {
-
+            room = new Room1();
+            rooms.add(room);
         }
     }
 
