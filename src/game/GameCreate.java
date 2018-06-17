@@ -53,7 +53,12 @@ public class GameCreate extends Thread {
         do {
             entry = list.pollFirstEntry();
 
-        } while (entry != null);
+            if (entry == null) {
+                break;
+            }
+            teams.add(entry.getKey());
+            subTeams.add(entry.getValue());
+        } while (true);
         new Game(teams, subTeams).createMultiplayerGame();
     }
 
