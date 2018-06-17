@@ -37,7 +37,7 @@ public class Room5 extends javax.swing.JFrame implements RoomsInterface {
     }
 
     public void background() {
-        ImageIcon image = new ImageIcon(getClass().getResource("/images/room_1.jpg"));
+        ImageIcon image = new ImageIcon(getClass().getResource("/images/room_5.jpg"));
         Icon icon = new ImageIcon(image.getImage().getScaledInstance(background.getWidth(), background.getHeight(), Image.SCALE_AREA_AVERAGING));
         background.setIcon(icon);
         ImageIcon imagePadlock = new ImageIcon(getClass().getResource("/images/padlock.png"));

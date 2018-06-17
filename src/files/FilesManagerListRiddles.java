@@ -8,6 +8,9 @@ package files;
 import gui.rooms.Room1;
 import gui.rooms.Room2;
 import gui.rooms.Room3;
+import gui.rooms.Room4;
+import gui.rooms.Room5;
+import gui.rooms.Room6;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -162,7 +165,7 @@ public class FilesManagerListRiddles {
                 new TrackLocked("naranja", "¿Color del abrigo del mostrador?", "Aunque tenemos dos piernas no podemos caminar")));
         listRiddles.add(roomRiddle);
         //#4.1
-        roomRiddle = new RoomRiddle(new Room1());
+        roomRiddle = new RoomRiddle(new Room4());
         tracks.add("Son blancos");
         tracks.add("Tienen un figura rectangular");
         roomRiddle.addRiddleGame(new Riddle("Veintiocho caballeros, que se ponen en la mesa", "domino", tracks,
@@ -188,6 +191,7 @@ public class FilesManagerListRiddles {
         listRiddles.add(roomRiddle);
 
         //5.1
+        roomRiddle = new RoomRiddle(new Room5());
         tracks = new ArrayList<>();
         tracks.add("Me encargo de múltiples tareas");
         tracks.add("En toda oficina me encuentro.");
@@ -216,6 +220,7 @@ public class FilesManagerListRiddles {
                 new TrackLocked("3", "¿Cantidad de animales presentes en la habitación?", "Sin mí la basura sería un caos")));
         listRiddles.add(roomRiddle);
         //6.1
+        roomRiddle = new RoomRiddle(new Room6());
         tracks = new ArrayList<>();
         tracks.add("Soy blanco");
         tracks.add("Soy parte de una película muy famosa.");
