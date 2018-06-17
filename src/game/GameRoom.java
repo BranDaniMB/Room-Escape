@@ -5,7 +5,6 @@
  */
 package game;
 
-import builderteam.InvalidDataException;
 import files.PropertiesConfig;
 import gui.rooms.Room1;
 import gui.rooms.Room2;
