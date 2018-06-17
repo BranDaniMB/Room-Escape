@@ -80,4 +80,10 @@ public class Riddle implements Cloneable, Serializable {
     public boolean isCorrect(String msg) {
         return (answer.equals(msg));
     }
+
+    @Override
+    public String toString() {
+        return "Riddle{" + "tracks=" + tracks + ", question=" + question + ", answer=" + answer + ", trackLock=" + trackLock + '}';
+    }
+    
 }

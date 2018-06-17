@@ -1,15 +1,17 @@
+package objects;
+
+import java.io.Serializable;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package objects;
-
 /**
  *
  * @author Jermy
  */
-class TrackLocked implements Cloneable {
+public class TrackLocked implements Cloneable, Serializable {
 
     private boolean unlock;
     private String answer;
@@ -22,6 +24,7 @@ class TrackLocked implements Cloneable {
         this.question = question;
         this.track = track;
     }
+    
 
     public boolean isUnlock() {
         return unlock;
@@ -69,6 +72,11 @@ class TrackLocked implements Cloneable {
     @Override
     protected Object clone() throws CloneNotSupportedException {
         return new TrackLocked(answer, question, track);
+    }
+
+    @Override
+    public String toString() {
+        return "TrackLocked{" + "unlock=" + unlock + ", answer=" + answer + ", question=" + question + ", track=" + track + '}';
     }
     
 }

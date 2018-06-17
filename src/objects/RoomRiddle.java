@@ -76,4 +76,10 @@ public class RoomRiddle implements Cloneable, Serializable {
     public Object clone() throws CloneNotSupportedException {
         return new RoomRiddle(copy(), roomInterface);
     }
+
+    @Override
+    public String toString() {
+        return "RoomRiddle{" + "listRiddle=" + listRiddle + ", roomInterface=" + roomInterface + '}';
+    }
+    
 }
