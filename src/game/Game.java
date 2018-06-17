@@ -33,8 +33,6 @@ public class Game extends Thread {
     
     public void createSingleGame() {
         Entry<Team, Subteam> entry = list.pollFirstEntry();
-        System.out.println(entry.getValue().size());
-        
         Subteam st = entry.getValue();
         do {
             Player p = st.remove();
@@ -42,7 +40,6 @@ public class Game extends Thread {
                 break;
             }
             new GameRoom(this, entry.getKey(), p, generateRoom(), GameRoom.TYPE_GAME_SINGLE).openWindowsSingle();
-            System.out.println(p);
         } while(true);
     }
 

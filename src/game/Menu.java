@@ -13,7 +13,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.TreeMap;
 import javafx.application.Application;
-import listManager.ListRoomRiddle;
 import listManager.TeamList;
 import objects.Player;
 import objects.Subteam;
@@ -75,7 +74,6 @@ public class Menu {
 
     public void saveAllData() {
         RoomEscape.FILES_MANAGER_LIST.writeFile("Files/TeamList.ser", TeamList.getInstance().getTeamsList());
-        RoomEscape.FILES_MANAGER_LIST_RIDDLES.writeFile("Files/RiddlesList.ser", ListRoomRiddle.getInstance().getListRiddle());
         System.out.println("Save all data.");
     }
 
@@ -196,9 +194,8 @@ public class Menu {
                 game.createMultiplayerGame();
                 break;
             default:
-                throw new InvalidDataException("Modo incorrecto.");
+                throw new InvalidDataException("Modo incorrecto");
         }
-
         finalizeSelection();
     }
 }
