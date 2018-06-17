@@ -62,11 +62,19 @@ public class Room1 extends javax.swing.JFrame implements RoomInterface {
     }
 
     private void tryOpenPadlock(int padlock) {
-        gameRoom.tryUnlockPadlock(JOptionPane.showInputDialog(gameRoom.getPadlockQuestion(padlock)), padlock);
+        try {
+            gameRoom.tryUnlockPadlock(JOptionPane.showInputDialog(gameRoom.getPadlockQuestion(padlock)), padlock);
+        } catch (NullPointerException e) {
+            System.err.println("No ingreso nada");
+        }
     }
 
     private void tryOpenTrack(int padlock) {
-        gameRoom.tryUnlockTrack(JOptionPane.showInputDialog(gameRoom.getLockedTrackQuestion(padlock)), padlock);
+        try {
+            gameRoom.tryUnlockTrack(JOptionPane.showInputDialog(gameRoom.getLockedTrackQuestion(padlock)), padlock);
+        } catch (NullPointerException e) {
+            System.err.println("No ingreso nada");
+        }
     }
 
     @Override
@@ -173,7 +181,6 @@ public class Room1 extends javax.swing.JFrame implements RoomInterface {
         trackOneP1.setBorderPainted(false);
         trackOneP1.setContentAreaFilled(false);
         trackOneP1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        trackOneP1.setOpaque(true);
         trackOneP1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 trackOneP1ActionPerformed(evt);
@@ -185,7 +192,6 @@ public class Room1 extends javax.swing.JFrame implements RoomInterface {
         trackTwoP1.setBorderPainted(false);
         trackTwoP1.setContentAreaFilled(false);
         trackTwoP1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        trackTwoP1.setOpaque(true);
         trackTwoP1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 trackTwoP1ActionPerformed(evt);
@@ -198,7 +204,6 @@ public class Room1 extends javax.swing.JFrame implements RoomInterface {
         trackLockP1.setBorderPainted(false);
         trackLockP1.setContentAreaFilled(false);
         trackLockP1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        trackLockP1.setOpaque(true);
         trackLockP1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 trackLockP1ActionPerformed(evt);
@@ -210,7 +215,6 @@ public class Room1 extends javax.swing.JFrame implements RoomInterface {
         trackThreeP1.setBorderPainted(false);
         trackThreeP1.setContentAreaFilled(false);
         trackThreeP1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        trackThreeP1.setOpaque(true);
         trackThreeP1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 trackThreeP1ActionPerformed(evt);
@@ -222,7 +226,6 @@ public class Room1 extends javax.swing.JFrame implements RoomInterface {
         trackOneP2.setBorderPainted(false);
         trackOneP2.setContentAreaFilled(false);
         trackOneP2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        trackOneP2.setOpaque(true);
         trackOneP2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 trackOneP2ActionPerformed(evt);
@@ -234,7 +237,6 @@ public class Room1 extends javax.swing.JFrame implements RoomInterface {
         trackTwoP2.setBorderPainted(false);
         trackTwoP2.setContentAreaFilled(false);
         trackTwoP2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        trackTwoP2.setOpaque(true);
         trackTwoP2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 trackTwoP2ActionPerformed(evt);
@@ -247,7 +249,6 @@ public class Room1 extends javax.swing.JFrame implements RoomInterface {
         trackLockP2.setBorderPainted(false);
         trackLockP2.setContentAreaFilled(false);
         trackLockP2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        trackLockP2.setOpaque(true);
         trackLockP2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 trackLockP2ActionPerformed(evt);
@@ -259,7 +260,6 @@ public class Room1 extends javax.swing.JFrame implements RoomInterface {
         trackThreeP2.setBorderPainted(false);
         trackThreeP2.setContentAreaFilled(false);
         trackThreeP2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        trackThreeP2.setOpaque(true);
         trackThreeP2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 trackThreeP2ActionPerformed(evt);
@@ -271,7 +271,6 @@ public class Room1 extends javax.swing.JFrame implements RoomInterface {
         trackOneP3.setBorderPainted(false);
         trackOneP3.setContentAreaFilled(false);
         trackOneP3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        trackOneP3.setOpaque(true);
         trackOneP3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 trackOneP3ActionPerformed(evt);
@@ -283,7 +282,6 @@ public class Room1 extends javax.swing.JFrame implements RoomInterface {
         trackTwoP3.setBorderPainted(false);
         trackTwoP3.setContentAreaFilled(false);
         trackTwoP3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        trackTwoP3.setOpaque(true);
         trackTwoP3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 trackTwoP3ActionPerformed(evt);
@@ -296,7 +294,6 @@ public class Room1 extends javax.swing.JFrame implements RoomInterface {
         trackLockP3.setBorderPainted(false);
         trackLockP3.setContentAreaFilled(false);
         trackLockP3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        trackLockP3.setOpaque(true);
         trackLockP3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 trackLockP3ActionPerformed(evt);
@@ -308,7 +305,6 @@ public class Room1 extends javax.swing.JFrame implements RoomInterface {
         trackThreeP3.setBorderPainted(false);
         trackThreeP3.setContentAreaFilled(false);
         trackThreeP3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        trackThreeP3.setOpaque(true);
         trackThreeP3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 trackThreeP3ActionPerformed(evt);
@@ -320,7 +316,6 @@ public class Room1 extends javax.swing.JFrame implements RoomInterface {
         trackOneP4.setBorderPainted(false);
         trackOneP4.setContentAreaFilled(false);
         trackOneP4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        trackOneP4.setOpaque(true);
         trackOneP4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 trackOneP4ActionPerformed(evt);
@@ -332,7 +327,6 @@ public class Room1 extends javax.swing.JFrame implements RoomInterface {
         trackTwoP4.setBorderPainted(false);
         trackTwoP4.setContentAreaFilled(false);
         trackTwoP4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        trackTwoP4.setOpaque(true);
         trackTwoP4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 trackTwoP4ActionPerformed(evt);
@@ -345,7 +339,6 @@ public class Room1 extends javax.swing.JFrame implements RoomInterface {
         trackLockP4.setBorderPainted(false);
         trackLockP4.setContentAreaFilled(false);
         trackLockP4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        trackLockP4.setOpaque(true);
         trackLockP4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 trackLockP4ActionPerformed(evt);
@@ -357,7 +350,6 @@ public class Room1 extends javax.swing.JFrame implements RoomInterface {
         trackThreeP4.setBorderPainted(false);
         trackThreeP4.setContentAreaFilled(false);
         trackThreeP4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        trackThreeP4.setOpaque(true);
         trackThreeP4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 trackThreeP4ActionPerformed(evt);
