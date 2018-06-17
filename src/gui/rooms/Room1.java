@@ -5,7 +5,6 @@
  */
 package gui.rooms;
 
-import files.PropertiesConfig;
 import game.GameRoom;
 import java.awt.Image;
 import static java.lang.Thread.sleep;
@@ -56,13 +55,17 @@ public class Room1 extends javax.swing.JFrame implements RoomInterface {
     private void showSimpleTrack(int padlock, int track) {
         JOptionPane.showMessageDialog(null, gameRoom.getTrackSimple(padlock, track));
     }
-
+    
     private void showTrackUnlock(int padlock) {
         JOptionPane.showMessageDialog(null, gameRoom.getUnlockTrack(padlock));
     }
     
     private void tryOpenPadlock(int padlock) {
         gameRoom.tryUnlockPadlock(JOptionPane.showInputDialog(gameRoom.getPadlockQuestion(padlock)), padlock);
+    }
+    
+    private void tryOpenTrack(int padlock) {
+        gameRoom.tryUnlockTrack(JOptionPane.showInputDialog(gameRoom.getLockedTrackQuestion(padlock)), padlock);
     }
     
     @Override
@@ -420,82 +423,102 @@ public class Room1 extends javax.swing.JFrame implements RoomInterface {
 
     private void padlock1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_padlock1ActionPerformed
         // TODO add your handling code here:
+        tryOpenPadlock(PADLOCK1_Track1);
     }//GEN-LAST:event_padlock1ActionPerformed
 
     private void trackOneP3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trackOneP3ActionPerformed
         // TODO add your handling code here:
+        showSimpleTrack(PADLOCK3, PADLOCK1_Track1);
     }//GEN-LAST:event_trackOneP3ActionPerformed
 
     private void trackOneP4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trackOneP4ActionPerformed
         // TODO add your handling code here:
+        showSimpleTrack(PADLOCK4, PADLOCK1_Track1);
     }//GEN-LAST:event_trackOneP4ActionPerformed
 
     private void trackThreeP4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trackThreeP4ActionPerformed
         // TODO add your handling code here:
+        showTrackUnlock(PADLOCK4);
     }//GEN-LAST:event_trackThreeP4ActionPerformed
 
     private void trackTwoP1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trackTwoP1ActionPerformed
         // TODO add your handling code here:
+        showSimpleTrack(PADLOCK1_Track1, PADLOCK2_Track2);
     }//GEN-LAST:event_trackTwoP1ActionPerformed
 
     private void trackThreeP3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trackThreeP3ActionPerformed
         // TODO add your handling code here:
+        showSimpleTrack(PADLOCK3, PADLOCK3);
     }//GEN-LAST:event_trackThreeP3ActionPerformed
 
     private void trackOneP1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trackOneP1ActionPerformed
         // TODO add your handling code here:
+        showSimpleTrack(PADLOCK1_Track1, PADLOCK1_Track1);
     }//GEN-LAST:event_trackOneP1ActionPerformed
 
     private void trackTwoP3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trackTwoP3ActionPerformed
         // TODO add your handling code here:
+        showSimpleTrack(PADLOCK3, PADLOCK2_Track2);
     }//GEN-LAST:event_trackTwoP3ActionPerformed
 
     private void trackTwoP4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trackTwoP4ActionPerformed
         // TODO add your handling code here:
+        showSimpleTrack(PADLOCK4, PADLOCK2_Track2);
     }//GEN-LAST:event_trackTwoP4ActionPerformed
 
     private void trackLockP1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trackLockP1ActionPerformed
         // TODO add your handling code here:
+        tryOpenTrack(PADLOCK1_Track1);
     }//GEN-LAST:event_trackLockP1ActionPerformed
 
     private void trackLockP2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trackLockP2ActionPerformed
         // TODO add your handling code here:
+        tryOpenTrack(PADLOCK2_Track2);
     }//GEN-LAST:event_trackLockP2ActionPerformed
 
     private void trackOneP2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trackOneP2ActionPerformed
         // TODO add your handling code here:
+        showSimpleTrack(PADLOCK2_Track2, PADLOCK1_Track1);
     }//GEN-LAST:event_trackOneP2ActionPerformed
 
     private void padlock2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_padlock2ActionPerformed
         // TODO add your handling code here:
+        tryOpenPadlock(PADLOCK2_Track2);
     }//GEN-LAST:event_padlock2ActionPerformed
 
     private void padlock3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_padlock3ActionPerformed
         // TODO add your handling code here:
+        tryOpenPadlock(PADLOCK3);
     }//GEN-LAST:event_padlock3ActionPerformed
 
     private void padlock4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_padlock4ActionPerformed
         // TODO add your handling code here:
+        tryOpenPadlock(PADLOCK4);
     }//GEN-LAST:event_padlock4ActionPerformed
 
     private void trackThreeP1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trackThreeP1ActionPerformed
         // TODO add your handling code here:
+        showTrackUnlock(PADLOCK1_Track1);
     }//GEN-LAST:event_trackThreeP1ActionPerformed
 
     private void trackTwoP2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trackTwoP2ActionPerformed
         // TODO add your handling code here:
+        showSimpleTrack(PADLOCK2_Track2, PADLOCK2_Track2);
     }//GEN-LAST:event_trackTwoP2ActionPerformed
 
     private void trackThreeP2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trackThreeP2ActionPerformed
         // TODO add your handling code here:
+        showTrackUnlock(PADLOCK2_Track2);
     }//GEN-LAST:event_trackThreeP2ActionPerformed
 
     private void trackLockP3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trackLockP3ActionPerformed
         // TODO add your handling code here:
+        tryOpenTrack(PADLOCK3);
     }//GEN-LAST:event_trackLockP3ActionPerformed
 
     private void trackLockP4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trackLockP4ActionPerformed
         // TODO add your handling code here:
+        tryOpenTrack(PADLOCK4);
     }//GEN-LAST:event_trackLockP4ActionPerformed
 
     /**
@@ -538,12 +561,9 @@ public class Room1 extends javax.swing.JFrame implements RoomInterface {
         
         private int minut;
         private int second;
-        private boolean stop;
-        
         public Chrono() {
             minut = 0;
             second = 0;
-            stop = false;
         }
         
         @Override
@@ -554,7 +574,7 @@ public class Room1 extends javax.swing.JFrame implements RoomInterface {
         @Override
         public void run() {
             
-            for (int i = 0; i < 1800 && !stop; i++) {
+            for (int i = 0; i < 1800; i++) {
 //                for (int i = 0; i < PropertiesConfig.getInstance().getProperties("timeLimit") && !stop; i++) {
                 second++;
                 if (second == 60) {
@@ -568,7 +588,8 @@ public class Room1 extends javax.swing.JFrame implements RoomInterface {
                     System.err.println(ex.getMessage());
                 }
             }
-            stop = true;
+            JOptionPane.showMessageDialog(null, "El juego terminó\n Perdió");
+            dispose();
         }
     }
 }

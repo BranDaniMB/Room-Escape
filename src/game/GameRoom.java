@@ -78,6 +78,10 @@ public class GameRoom extends Thread {
         return padlocks.get(padlock).getRiddle().getQuestion();
     }
 
+    public String getLockedTrackQuestion(int padlock) {
+        return padlocks.get(unlock).getRiddle().getTrackLock().getQuestion();
+    }
+
     public String getTrackSimple(int padlock, int track) {
         return padlocks.get(padlock).getRiddle().getTracks().get(track);
     }
