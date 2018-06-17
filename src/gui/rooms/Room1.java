@@ -26,14 +26,12 @@ public class Room1 extends javax.swing.JFrame implements RoomInterface {
         this.gameRoom = gameRoom;
         initComponents();
         hideTracks();
-        new Chrono().start();
+        chrono = new Chrono();
+        chrono.start();
         background();
     }
 
     public Room1() {
-        initComponents();
-        new Chrono().start();
-        background();
     }
 
     public void background() {
@@ -126,8 +124,8 @@ public class Room1 extends javax.swing.JFrame implements RoomInterface {
 
     @Override
     public void showMessageWin(String msg) {
+        chrono.setStop(true);
         JOptionPane.showMessageDialog(null, msg);
-        //
         dispose();
     }
 
@@ -140,7 +138,7 @@ public class Room1 extends javax.swing.JFrame implements RoomInterface {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        chrono = new javax.swing.JLabel();
+        chronoLabel = new javax.swing.JLabel();
         trackOneP1 = new javax.swing.JButton();
         trackTwoP1 = new javax.swing.JButton();
         trackLockP1 = new javax.swing.JButton();
@@ -171,11 +169,11 @@ public class Room1 extends javax.swing.JFrame implements RoomInterface {
         setMinimumSize(new java.awt.Dimension(700, 500));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        chrono.setBackground(new java.awt.Color(255, 255, 255));
-        chrono.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        chrono.setForeground(new java.awt.Color(255, 0, 0));
-        chrono.setText("30:00");
-        getContentPane().add(chrono, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 430, 70, 20));
+        chronoLabel.setBackground(new java.awt.Color(255, 255, 255));
+        chronoLabel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        chronoLabel.setForeground(new java.awt.Color(255, 0, 0));
+        chronoLabel.setText("30:00");
+        getContentPane().add(chronoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 430, 70, 20));
 
         trackOneP1.setBorder(null);
         trackOneP1.setBorderPainted(false);
@@ -522,7 +520,7 @@ public class Room1 extends javax.swing.JFrame implements RoomInterface {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel background;
-    private javax.swing.JLabel chrono;
+    private javax.swing.JLabel chronoLabel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton padlock1;
     private javax.swing.JButton padlock2;
@@ -551,15 +549,18 @@ public class Room1 extends javax.swing.JFrame implements RoomInterface {
     private final int PADLOCK_NUM3 = 2;
     private final int PADLOCK_NUM4 = 3;
     private GameRoom gameRoom;
+    private Chrono chrono;
 
     private class Chrono extends Thread {
 
         private int minut;
         private int second;
+        private boolean stop;
 
         public Chrono() {
             minut = 0;
             second = 0;
+            stop = false;
         }
 
         @Override
@@ -567,23 +568,33 @@ public class Room1 extends javax.swing.JFrame implements RoomInterface {
             return minut + " : " + second + " s";
         }
 
+        public boolean isStop() {
+            return stop;
+        }
+
+        public void setStop(boolean stop) {
+            this.stop = stop;
+        }
+
         @Override
         public void run() {
-            for (int i = 0; i < PropertiesConfig.getInstance().getProperties("timeLimit"); i++) {
+            for (int i = 0; i < PropertiesConfig.getInstance().getProperties("timeLimit") && !stop; i++) {
                 second++;
                 if (second == 60) {
                     minut++;
                     second = 0;
                 }
-                chrono.setText(toString());
+                chronoLabel.setText(toString());
                 try {
                     sleep(1000);
                 } catch (InterruptedException ex) {
                     System.err.println(ex.getMessage());
                 }
             }
-            JOptionPane.showMessageDialog(null, "El juego terminó\n Perdió");
-            dispose();
+            if (minut == 30) {
+                JOptionPane.showMessageDialog(null, "El juego terminó\n Perdió");
+                dispose();
+            }
         }
     }
 }
