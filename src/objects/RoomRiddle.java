@@ -32,15 +32,16 @@ public class RoomRiddle implements Cloneable, Serializable {
     }
 
     public void addRiddleGame(Riddle riddle) {
-        if (riddle != null) {
-            listRiddle.add(riddle);
-        } else {
-            try {
+        try {
+            if (riddle != null) {
+                listRiddle.add(riddle);
+            } else {
                 throw new InvalidDataException("The riddle must be different from null.");
-            } catch (InvalidDataException ex) {
-                Logger.getLogger(RoomRiddle.class.getName()).log(Level.SEVERE, null, ex);
             }
+        } catch (InvalidDataException ex) {
+            System.err.println(ex.getMessage());
         }
+
     }
 
     public boolean removeRiddleGame(Riddle riddle) {
@@ -76,7 +77,6 @@ public class RoomRiddle implements Cloneable, Serializable {
         this.room = room;
     }
 
-
     @Override
     public Object clone() throws CloneNotSupportedException {
         return new RoomRiddle(copy(), room);
@@ -86,5 +86,5 @@ public class RoomRiddle implements Cloneable, Serializable {
     public String toString() {
         return "RoomRiddle{" + "listRiddle=" + listRiddle + ", roomInterface=" + room + '}';
     }
-    
+
 }
