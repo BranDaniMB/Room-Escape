@@ -16,7 +16,6 @@ public class Team implements Comparable<Team>, Serializable {
     private LocalDate dateInscription;
     private String bestTimeSingle;
     private String bestTimeMultiplayer;
-    private boolean select;
 
     public Team() {
         this.teamName = "";
@@ -24,7 +23,6 @@ public class Team implements Comparable<Team>, Serializable {
         this.dateInscription = null;
         this.bestTimeSingle = "30:00";
         this.bestTimeMultiplayer = "30:00";
-        this.select = false;
     }
 
     public String getTeamName() {
@@ -69,14 +67,6 @@ public class Team implements Comparable<Team>, Serializable {
         if ((this.bestTimeMultiplayer.compareTo(bestTimeMultiplayer)) > 0) {
             this.bestTimeMultiplayer = bestTimeMultiplayer;
         }
-    }
-
-    public synchronized boolean isSelect() {
-        return select;
-    }
-
-    public synchronized void setSelect(boolean select) {
-        this.select = select;
     }
 
     public int size() {

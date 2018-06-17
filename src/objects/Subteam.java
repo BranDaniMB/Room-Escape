@@ -6,6 +6,7 @@
 package objects;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  *
@@ -13,10 +14,10 @@ import java.util.ArrayList;
  */
 public class Subteam {
     
-    private ArrayList<Player> players;
+    private LinkedList<Player> players;
     
     public Subteam() {
-        this.players = new ArrayList<>();
+        this.players = new LinkedList<>();
     }
 
     public int size() {
@@ -31,25 +32,25 @@ public class Subteam {
         return players.add(e);
     }
     
-    public Player remove(int index) {
-        return players.remove(index);
+    public Player remove() {
+        return players.poll();
     }
     
-    public ArrayList<Player> getPlayers() {
+    public LinkedList<Player> getPlayers() {
         return players;
     }
     
-    public void setPlayers(ArrayList<Player> players) {
+    public void setPlayers(LinkedList<Player> players) {
         this.players = players;
     }
 
-    public void finisPlayerOff() {
+    public void finishPlayerOff() {
         for (int i = 0; i < players.size(); i++) {
             players.get(i).setSelected(false);
         }
     }
     
-    public void isPlaying() {
+    public void makePlaying() {
         for (int i = 0; i < players.size(); i++) {
             players.get(i).setSelected(true);
         }
