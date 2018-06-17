@@ -5,15 +5,15 @@
  */
 package game;
 
+import gui.rooms.RoomInterface;
+
 /**
  *
  * @author Jermy
  */
-public interface Subject {
+interface Subject {
 
-    void addObserver(Observer observer);
+    void add(RoomInterface e);
 
-    void removeObserver(Observer observer);
-
-    void notifyObserver();
+    RoomInterface remove(int index);
 }

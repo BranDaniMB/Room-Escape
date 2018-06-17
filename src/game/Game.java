@@ -61,9 +61,8 @@ public class Game extends Thread {
         this.roomRiddles = roomRiddles;
     }
 
-    public void setFinishGame(boolean finishGame) {
+    public synchronized void setFinishGame(boolean finishGame) {
         this.finishGame = finishGame;
-        notifyAll();
     }
 
     public ArrayList<Team> getTeamsPlaying() {
