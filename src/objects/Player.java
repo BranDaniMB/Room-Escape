@@ -34,7 +34,7 @@ public class Player implements Comparable<Player>, Serializable {
 
     @Override
     public String toString() {
-        return "Jugador: " + "id= " + id + ", seleccionado= " + selected;
+        return "Jugador: " + id + ", seleccionado: " + selected;
     }
 
     @Override

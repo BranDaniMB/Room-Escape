@@ -2,6 +2,7 @@ package game;
 
 import builderteam.BuilderDirector;
 import builderteam.InvalidDataException;
+import files.PropertiesConfig;
 import gui.main.InitGUI;
 import objects.PseudoTeam;
 import objects.Team;
@@ -10,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 import java.util.TreeMap;
 import javafx.application.Application;
 import listManager.ListRoomRiddle;
@@ -69,9 +69,14 @@ public class Menu {
         System.out.println("Save all data.");
     }
 
-    public void AddToList(String listPlayerToPlay) {
+    public void AddToList(String listPlayerToPlay) throws InvalidDataException {
         Subteam team = new Subteam();
         String[] s = listPlayerToPlay.split("-");
+
+        if (s.length > PropertiesConfig.getInstance().getProperties("maxPlayers") || s.length < PropertiesConfig.getInstance().getProperties("minPlayers")) {
+            throw new InvalidDataException("Debe contener de 2 a 5 jugadores.");
+        }
+
         for (String item : s) {
             team.add(currentSelectionTeam.searchPlayer(item));
         }
@@ -88,22 +93,38 @@ public class Menu {
     }
 
     public void getNextTeam() {
-        this.currentSelectionTeam = listOfTeamsToPlay.poll();
+        this.currentSelectionTeam = listOfTeamsToPlay.pollFirst();
+    }
+
+    public boolean hasNext() {
+        return this.listOfTeamsToPlay.peek() == null;
     }
 
     public String getSelectablePlayers() {
         String txt = "";
-        Iterator<Player> iterator = currentSelectionTeam.getPlayersList().iterator();
 
-        while (iterator.hasNext()) {
-            txt += iterator.next().toString() + "-";
+        if (currentSelectionTeam.getPlayersList().size() > 0) {
+            Iterator<Player> iterator = currentSelectionTeam.getPlayersList().iterator();
+
+            while (iterator.hasNext()) {
+                Player p = iterator.next();
+                if (!p.isSelected()) {
+                    txt += p.getId() + "-";
+                }
+            }
+        } else {
+            txt = "No hay jugadores disponibles en este equipo.";
         }
 
         return txt;
     }
 
-    public void addsTeamsToPlay(String text) {
+    public void addsTeamsToPlay(String text) throws InvalidDataException {
         String[] s = text.split("-");
+
+        if (s.length < PropertiesConfig.getInstance().getProperties("minTeamsPlaying") || s.length > PropertiesConfig.getInstance().getProperties("maxTeamsPlaying")) {
+            throw new InvalidDataException("Debe escoger a minimo 2 equipos y máximo 5 equipos");
+        }
 
         for (String item : s) {
             listOfTeamsToPlay.add(teamList.searchTeam(item));
@@ -123,6 +144,12 @@ public class Menu {
         }
 
         return list;
+    }
+
+    public void finalizeSelection() {
+        currentSelectionTeam = null;
+        list = new TreeMap<>();
+        listOfTeamsToPlay = new LinkedList<>();
     }
 
     public void runGui() {

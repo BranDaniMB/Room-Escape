@@ -1,21 +1,15 @@
 package gui.main;
 
-import gui.main.ControllerGUI;
-import gui.main.InitGUI;
-import java.io.IOException;
+import builderteam.InvalidDataException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
-import objects.Team;
 
 /**
  * FXML Controller class
@@ -52,6 +46,10 @@ public class FXMLSelectionTeamController implements Initializable, ControllerGUI
     private TextArea listPlayersToPlayByTeam;
     @FXML
     private Button back;
+    @FXML
+    private Label statusSelectionTeams;
+    @FXML
+    private Label statusSelectionPlayers;
 
     @Override
     public void setMainGUI(InitGUI gui) {
@@ -60,6 +58,10 @@ public class FXMLSelectionTeamController implements Initializable, ControllerGUI
 
     public void init() {
         selectableTeams.setText(root.getMenu().getSelectableTeams());
+        root.getMenu().finalizeSelection();
+        instructionsPane.setVisible(false);
+        selectionPlayersPane.setVisible(false);
+        selectionTeamsPane.setVisible(true);
     }
 
     @Override
@@ -68,24 +70,39 @@ public class FXMLSelectionTeamController implements Initializable, ControllerGUI
     }
 
     @FXML
-    private void next() {
-        if (selectionTeamsPane.isVisible()) {
+    private void displaySelectedPlayers() {
+        try {
             root.getMenu().addsTeamsToPlay(listTeamsToPlay.getText());
+            nextTeam();
             listTeamsToPlay.setText("");
+            instructionsPane.setVisible(false);
             selectionTeamsPane.setVisible(false);
             selectionPlayersPane.setVisible(true);
-            root.getMenu().getNextTeam();
-            selectablePlayerByTeam.setText(root.getMenu().getSelectablePlayers());
-            teamName.setText("Equipo " + root.getMenu().getCurrentSelectionTeam().getTeamName());
-        } else if (root.getMenu().getTeamsToPlaySize() > 0) {
-            if (!listPlayersToPlayByTeam.getText().equals("")) {
+        } catch (InvalidDataException ex) {
+            statusSelectionTeams.setText(ex.getMessage());
+        }
+    }
+
+    private void nextTeam() throws InvalidDataException {
+        root.getMenu().getNextTeam();
+        if (root.getMenu().getCurrentSelectionTeam() == null) {
+            throw new InvalidDataException("No haz seleccionado ningún equipo.");
+        }
+        teamName.setText("Equipo " + root.getMenu().getCurrentSelectionTeam().getTeamName());
+        selectablePlayerByTeam.setText(root.getMenu().getSelectablePlayers());
+        listPlayersToPlayByTeam.clear();
+        statusSelectionPlayers.setText("Estado: Sin cambios");
+    }
+
+    @FXML
+    private void next() {
+        if (root.getMenu().getCurrentSelectionTeam() != null) {
+            try {
                 root.getMenu().AddToList(listPlayersToPlayByTeam.getText());
-                playerToPlayField.clear();
-                listPlayersToPlayByTeam.clear();
+                nextTeam();
+            } catch (InvalidDataException ex) {
+                statusSelectionPlayers.setText(ex.getMessage());
             }
-            root.getMenu().getNextTeam();
-            selectablePlayerByTeam.setText(root.getMenu().getSelectablePlayers());
-            teamName.setText("Equipo " + root.getMenu().getCurrentSelectionTeam().getTeamName());
         } else {
             selectionTeamsPane.setVisible(false);
             selectionPlayersPane.setVisible(false);
