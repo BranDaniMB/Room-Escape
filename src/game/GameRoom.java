@@ -154,32 +154,32 @@ public class GameRoom extends Thread implements Subject {
         }
     }
 
-    public GameRoom openWindowsMultiplayer() {
+    public synchronized GameRoom openWindowsMultiplayer() {
         for (int i = 0; i < subteam.size(); i++) {
             createWindows(subteam.get(i).getId());
         }
         return this;
     }
 
-    public void updateInfo(String msj) {
+    public synchronized void updateInfo(String msj) {
         for (int i = 0; i < roomsObserver.size(); i++) {
             roomsObserver.get(i).update(msj);
         }
     }
 
-    public void updateTracks(int padlock) {
+    public synchronized void updateTracks(int padlock) {
         for (int i = 0; i < roomsObserver.size(); i++) {
             roomsObserver.get(i).unlockTrackLocked(padlock);
         }
     }
 
-    public void updatePadlock(int padlock) {
+    public synchronized void updatePadlock(int padlock) {
         for (int i = 0; i < roomsObserver.size(); i++) {
             roomsObserver.get(i).updatePadlock(padlock);
         }
     }
 
-    public void verifyWinner() {
+    public synchronized void verifyWinner() {
         if (!game.isFinishGame()) {
             won = true;
             game.setFinishGame(true);
