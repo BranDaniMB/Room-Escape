@@ -12,7 +12,7 @@ import objects.RoomRiddle;
  *
  * @author Jermy
  */
-public class GameRoom extends Thread implements Observer {
+public class GameRoom extends Thread {
 
     public static final String TYPE_GAME_SINGLE = "single";
     public static final String TYPE_GAME_MULTIPLAYER = "multiplayer";
@@ -58,7 +58,8 @@ public class GameRoom extends Thread implements Observer {
     public void tryUnlockPadlock(String msj, int padlock) {
         if (padlocks.get(padlock).tryOpen((msj.toLowerCase().trim()))) {
             unlock++;
-            update(padlocks.get(padlock).getIdPadlock() + " desbloqueado+\n");
+            updateInfo(padlocks.get(padlock).getIdPadlock() + " desbloqueado+\n");
+            updatePadlock(padlock);
             if (unlock == PropertiesConfig.getInstance().getProperties("padlocksCount")) {
                 game.setFinishGame(true);
                 notifyAll();
@@ -68,7 +69,8 @@ public class GameRoom extends Thread implements Observer {
 
     public void tryUnlockTrack(String msj, int padlock) {
         if (padlocks.get(padlock).getRiddle().getTrackLock().tryUnlock(msj.toLowerCase().trim())) {
-            update(padlocks.get(padlock).getIdPadlock() + " pista desbloqueada+\n");
+            updateInfo(padlocks.get(padlock).getIdPadlock() + " pista desbloqueada+\n");
+            updateTracks(padlock);
         }
     }
 
@@ -80,7 +82,7 @@ public class GameRoom extends Thread implements Observer {
         return padlocks.get(padlock).getRiddle().getTracks().get(track);
     }
 
-    public String getLockedTrack(int padlock) {
+    public String getUnlockTrack(int padlock) {
         return padlocks.get(padlock).getRiddle().getTrackLock().getTrack();
     }
 
@@ -107,16 +109,21 @@ public class GameRoom extends Thread implements Observer {
         return rooms.remove(index);
     }
 
-    public void update(String msj) {
+    public void updateInfo(String msj) {
         for (int i = 0; i < rooms.size(); i++) {
             rooms.get(i).update(msj);
         }
     }
 
-    @Override
-    public void update() {
+    public void updateTracks(int padlock) {
         for (int i = 0; i < rooms.size(); i++) {
-            rooms.get(i);
+            rooms.get(i).unlockTrackLocked(padlock);
+        }
+    }
+
+    public void updatePadlock(int padlock) {
+        for (int i = 0; i < rooms.size(); i++) {
+            rooms.get(i).updatePadlock(padlock);
         }
     }
 }

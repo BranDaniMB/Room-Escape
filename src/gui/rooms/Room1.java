@@ -5,6 +5,8 @@
  */
 package gui.rooms;
 
+import files.PropertiesConfig;
+import game.GameRoom;
 import java.awt.Image;
 import static java.lang.Thread.sleep;
 import javax.swing.Icon;
@@ -20,12 +22,20 @@ public class Room1 extends javax.swing.JFrame implements RoomInterface {
     /**
      * Creates new form Room1
      */
+    public Room1(GameRoom gameRoom) {
+        this.gameRoom = gameRoom;
+        initComponents();
+        hideTracks();
+        new Chrono().start();
+        background();
+    }
+    
     public Room1() {
         initComponents();
         new Chrono().start();
         background();
     }
-
+    
     public void background() {
         ImageIcon image = new ImageIcon(getClass().getResource("/images/room_1.jpg"));
         Icon icon = new ImageIcon(image.getImage().getScaledInstance(background.getWidth(), background.getHeight(), Image.SCALE_AREA_AVERAGING));
@@ -37,30 +47,74 @@ public class Room1 extends javax.swing.JFrame implements RoomInterface {
         padlock3.setIcon(iconPadlock);
         padlock4.setIcon(iconPadlock);
     }
-
+    
     @Override
     public void update(String msj) {
         showInfo.append(msj);
     }
-
-    public void showTrack(String msj) {
-        JOptionPane.showMessageDialog(null, msj);
+    
+    private void showSimpleTrack(int padlock, int track) {
+        JOptionPane.showMessageDialog(null, gameRoom.getTrackSimple(padlock, track));
     }
 
-    public void tryOpenPadlock(int padlock) {
-        JOptionPane.showInputDialog(this);
+    private void showTrackUnlock(int padlock) {
+        JOptionPane.showMessageDialog(null, gameRoom.getUnlockTrack(padlock));
     }
-
+    
+    private void tryOpenPadlock(int padlock) {
+        gameRoom.tryUnlockPadlock(JOptionPane.showInputDialog(gameRoom.getPadlockQuestion(padlock)), padlock);
+    }
+    
     @Override
     public void updatePadlock(int padlock) {
+        switch (padlock) {
+            case 0:
+                padlock1.setEnabled(false);
+                break;
+            case 1:
+                padlock2.setEnabled(false);
+                break;
+            case 2:
+                padlock3.setEnabled(false);
+                break;
+            case 3:
+                padlock4.setEnabled(false);
+                break;
+        }
     }
-
+    
     @Override
-    public void updateTrackLocked(int padlock) {
+    public void unlockTrackLocked(int padlock) {
+        switch (padlock) {
+            case 0:
+                trackLockP1.setVisible(false);
+                trackThreeP1.setVisible(true);
+                break;
+            case 1:
+                trackLockP2.setVisible(false);
+                trackThreeP2.setVisible(true);
+                break;
+            case 2:
+                trackLockP3.setVisible(false);
+                trackThreeP3.setVisible(true);
+                break;
+            case 3:
+                trackLockP4.setVisible(false);
+                trackThreeP4.setVisible(true);
+                break;
+        }
     }
-
+    
+    private void hideTracks() {
+        trackThreeP1.setVisible(false);
+        trackThreeP2.setVisible(false);
+        trackThreeP3.setVisible(false);
+        trackThreeP4.setVisible(false);
+    }
+    
     @Override
     public void showMessage(String msg) {
+        JOptionPane.showMessageDialog(null, msg);
     }
 
     /**
@@ -83,12 +137,12 @@ public class Room1 extends javax.swing.JFrame implements RoomInterface {
         trackThreeP2 = new javax.swing.JButton();
         trackOneP3 = new javax.swing.JButton();
         trackTwoP3 = new javax.swing.JButton();
-        trackThreeP3 = new javax.swing.JButton();
         trackLockP3 = new javax.swing.JButton();
+        trackThreeP3 = new javax.swing.JButton();
         trackOneP4 = new javax.swing.JButton();
         trackTwoP4 = new javax.swing.JButton();
-        trackThreeP4 = new javax.swing.JButton();
         trackLockP4 = new javax.swing.JButton();
+        trackThreeP4 = new javax.swing.JButton();
         padlock1 = new javax.swing.JButton();
         padlock2 = new javax.swing.JButton();
         padlock3 = new javax.swing.JButton();
@@ -231,18 +285,6 @@ public class Room1 extends javax.swing.JFrame implements RoomInterface {
         });
         getContentPane().add(trackTwoP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 260, 20, 20));
 
-        trackThreeP3.setBorder(null);
-        trackThreeP3.setBorderPainted(false);
-        trackThreeP3.setContentAreaFilled(false);
-        trackThreeP3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        trackThreeP3.setOpaque(true);
-        trackThreeP3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                trackThreeP3ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(trackThreeP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 220, 20, 20));
-
         trackLockP3.setBackground(new java.awt.Color(255, 255, 255));
         trackLockP3.setBorder(null);
         trackLockP3.setBorderPainted(false);
@@ -255,6 +297,18 @@ public class Room1 extends javax.swing.JFrame implements RoomInterface {
             }
         });
         getContentPane().add(trackLockP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 220, 20, 20));
+
+        trackThreeP3.setBorder(null);
+        trackThreeP3.setBorderPainted(false);
+        trackThreeP3.setContentAreaFilled(false);
+        trackThreeP3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        trackThreeP3.setOpaque(true);
+        trackThreeP3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                trackThreeP3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(trackThreeP3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 220, 20, 20));
 
         trackOneP4.setBorder(null);
         trackOneP4.setBorderPainted(false);
@@ -280,18 +334,6 @@ public class Room1 extends javax.swing.JFrame implements RoomInterface {
         });
         getContentPane().add(trackTwoP4, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 150, 20, 20));
 
-        trackThreeP4.setBorder(null);
-        trackThreeP4.setBorderPainted(false);
-        trackThreeP4.setContentAreaFilled(false);
-        trackThreeP4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        trackThreeP4.setOpaque(true);
-        trackThreeP4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                trackThreeP4ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(trackThreeP4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, 20, 20));
-
         trackLockP4.setBackground(new java.awt.Color(255, 255, 255));
         trackLockP4.setBorder(null);
         trackLockP4.setBorderPainted(false);
@@ -304,6 +346,18 @@ public class Room1 extends javax.swing.JFrame implements RoomInterface {
             }
         });
         getContentPane().add(trackLockP4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, 20, 20));
+
+        trackThreeP4.setBorder(null);
+        trackThreeP4.setBorderPainted(false);
+        trackThreeP4.setContentAreaFilled(false);
+        trackThreeP4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        trackThreeP4.setOpaque(true);
+        trackThreeP4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                trackThreeP4ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(trackThreeP4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, 20, 20));
 
         padlock1.setBackground(new java.awt.Color(51, 51, 51));
         padlock1.setForeground(new java.awt.Color(255, 255, 255));
@@ -366,7 +420,6 @@ public class Room1 extends javax.swing.JFrame implements RoomInterface {
 
     private void padlock1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_padlock1ActionPerformed
         // TODO add your handling code here:
-
     }//GEN-LAST:event_padlock1ActionPerformed
 
     private void trackOneP3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trackOneP3ActionPerformed
@@ -475,27 +528,32 @@ public class Room1 extends javax.swing.JFrame implements RoomInterface {
     private javax.swing.JButton trackTwoP3;
     private javax.swing.JButton trackTwoP4;
     // End of variables declaration//GEN-END:variables
-
+    private final int PADLOCK1_Track1 = 0;
+    private final int PADLOCK2_Track2 = 1;
+    private final int PADLOCK3 = 2;
+    private final int PADLOCK4 = 3;
+    private GameRoom gameRoom;
+    
     private class Chrono extends Thread {
-
+        
         private int minut;
         private int second;
         private boolean stop;
-
+        
         public Chrono() {
             minut = 0;
             second = 0;
             stop = false;
         }
-
+        
         @Override
         public String toString() {
             return minut + " : " + second + " s";
         }
-
+        
         @Override
         public void run() {
-
+            
             for (int i = 0; i < 1800 && !stop; i++) {
 //                for (int i = 0; i < PropertiesConfig.getInstance().getProperties("timeLimit") && !stop; i++) {
                 second++;
