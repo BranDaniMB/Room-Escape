@@ -1,8 +1,10 @@
 package gui.main;
 
 import builderteam.InvalidDataException;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -10,13 +12,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
  *
  * @author BranDaniMB
  */
-public class FXMLSelectionTeamController implements Initializable, ControllerGUI {
+public class FXMLSelectionTeamController implements Initializable {
 
     private InitGUI root;
 
@@ -51,7 +54,6 @@ public class FXMLSelectionTeamController implements Initializable, ControllerGUI
     @FXML
     private Label statusSelectionPlayers;
 
-    @Override
     public void setMainGUI(InitGUI gui) {
         this.root = gui;
     }
@@ -124,7 +126,7 @@ public class FXMLSelectionTeamController implements Initializable, ControllerGUI
         if (!teamToPlayField.getText().equals("") && root.getMenu().getSelectableTeams().contains(teamToPlayField.getText())) {
             listTeamsToPlay.setText(listTeamsToPlay.getText() + teamToPlayField.getText() + "-");
         } else {
-            statusSelectionTeams.setText("Jugador no existe o no es seleccionable.");
+            statusSelectionTeams.setText("Equipo no existe o no es seleccionable.");
         }
         teamToPlayField.clear();
     }
@@ -134,18 +136,36 @@ public class FXMLSelectionTeamController implements Initializable, ControllerGUI
         if (!playerToPlayField.getText().equals("") && root.getMenu().getSelectablePlayers().contains(playerToPlayField.getText())) {
             listPlayersToPlayByTeam.setText(listPlayersToPlayByTeam.getText() + playerToPlayField.getText() + "-");
         } else {
-            statusSelectionTeams.setText("Equipo no existe o no es seleccionable.");
+            statusSelectionTeams.setText("Jugador no existe o no es seleccionable.");
         }
         playerToPlayField.clear();
     }
 
     @FXML
-    private void back() {
-
+    private void back(Event event) {
+        Button b = (Button) event.getSource();
+        Stage stage = (Stage) b.getScene().getWindow();
+        stage.close();
     }
 
     @FXML
     private void runGame() {
 
+    }
+
+    @FXML
+    private void reload(Event event) {
+        String mode = root.getMenu().getMode();
+
+        root.getMenu().finalizeSelection();
+        Button b = (Button) event.getSource();
+        Stage stage = (Stage) b.getScene().getWindow();
+        stage.close();
+        try {
+            root.displaySelectionWindows();
+        } catch (IOException ex) {
+            System.err.println(ex.getMessage());
+        }
+        root.getMenu().setMode(mode);
     }
 }

@@ -29,6 +29,7 @@ public class Menu {
     private LinkedList<Team> listOfTeamsToPlay;
     private TreeMap<Team, Subteam> list;
     private Team currentSelectionTeam;
+    private String mode;
 
     public Menu() {
         teamList = TeamList.getInstance();
@@ -36,6 +37,7 @@ public class Menu {
         listOfTeamsToPlay = new LinkedList<>();
         currentSelectionTeam = null;
         list = new TreeMap<>();
+        mode = null;
     }
 
     public void registerTeamProcess(String name, String id, LocalDate date) throws InvalidDataException {
@@ -61,6 +63,14 @@ public class Menu {
             newList.add(new PseudoTeam(team.getTeamName(), team.printPlayers(), team.getBestTimeSingle(), team.getDateInscription().toString()));
         }
         return newList;
+    }
+
+    public void setMode(String mode) {
+        this.mode = mode;
+    }
+
+    public String getMode() {
+        return this.mode;
     }
 
     public void saveAllData() {
@@ -101,10 +111,6 @@ public class Menu {
         this.currentSelectionTeam = listOfTeamsToPlay.pollFirst();
     }
 
-    public boolean hasNext() {
-        return this.listOfTeamsToPlay.peek() == null;
-    }
-
     public String getSelectablePlayers() {
         String txt = "";
 
@@ -127,8 +133,19 @@ public class Menu {
     public void addsTeamsToPlay(String text) throws InvalidDataException {
         String[] s = text.split("-");
 
-        if (s.length < PropertiesConfig.getInstance().getProperties("minTeamsPlaying") || s.length > PropertiesConfig.getInstance().getProperties("maxTeamsPlaying")) {
-            throw new InvalidDataException("Debe escoger a minimo 2 equipos y máximo 5 equipos");
+        switch (mode) {
+            case GameRoom.TYPE_GAME_SINGLE:
+                if (s.length < 1 || s.length > 1) {
+                    throw new InvalidDataException("Solo debe elegir un equipo.");
+                }
+                break;
+            case GameRoom.TYPE_GAME_MULTIPLAYER:
+                if (s.length < PropertiesConfig.getInstance().getProperties("minTeamsPlaying") || s.length > PropertiesConfig.getInstance().getProperties("maxTeamsPlaying")) {
+                    throw new InvalidDataException("Debe escoger a minimo 2 equipos y máximo 5 equipos.");
+                }
+                break;
+            default:
+                throw new InvalidDataException("Modo incorrecto.");
         }
 
         for (String item : s) {
@@ -161,6 +178,7 @@ public class Menu {
         currentSelectionTeam = null;
         list = new TreeMap<>();
         listOfTeamsToPlay = new LinkedList<>();
+        mode = null;
     }
 
     public void runGui() {
