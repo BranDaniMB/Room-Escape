@@ -25,7 +25,7 @@ import javafx.scene.layout.Pane;
  *
  * @author BranDaniMB
  */
-public class FXMLMainWindowsController implements Initializable, ControllerGUI {
+public class FXMLMainWindowsController implements Initializable {
 
     private final ModifyTeam modifyTeam = new ModifyTeam();
 
@@ -104,7 +104,6 @@ public class FXMLMainWindowsController implements Initializable, ControllerGUI {
     @FXML
     private TableColumn<PseudoTeam, String> tableByTime_date;
 
-    @Override
     public void setMainGUI(InitGUI gui) {
         this.root = gui;
     }
@@ -313,14 +312,20 @@ public class FXMLMainWindowsController implements Initializable, ControllerGUI {
     private void IndividualGame() {
         try {
             this.root.displaySelectionWindows();
+            this.root.getMenu().setMode(game.GameRoom.TYPE_GAME_SINGLE);
         } catch (IOException ex) {
-            Logger.getLogger(FXMLMainWindowsController.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println(ex.getMessage());
         }
     }
 
     @FXML
     private void multiplayerGame() {
-
+        try {
+            this.root.displaySelectionWindows();
+            this.root.getMenu().setMode(game.GameRoom.TYPE_GAME_MULTIPLAYER);
+        } catch (IOException ex) {
+            System.err.println(ex.getMessage());
+        }
     }
 
     @FXML
