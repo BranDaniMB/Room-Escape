@@ -8,6 +8,11 @@ package game;
 import builderteam.InvalidDataException;
 import files.PropertiesConfig;
 import gui.rooms.Room1;
+import gui.rooms.Room2;
+import gui.rooms.Room3;
+import gui.rooms.Room4;
+import gui.rooms.Room5;
+import gui.rooms.Room6;
 import gui.rooms.RoomsInterface;
 import java.util.ArrayList;
 import java.util.Map.Entry;
@@ -127,27 +132,27 @@ public class GameRoom extends Thread implements Subject {
             Room1 room1 = new Room1(this, team.getTeamName() + " - " + playerId);
             addObserver(room1);
             room1.setVisible(true);
-        } /*else if (room instanceof Room2) {
-            Room2 room2 = new Room2(this);
+        } else if (room instanceof Room2) {
+            Room2 room2 = new Room2(this, team.getTeamName() + " - " + playerId);
             addObserver(room2);
-            room3.setVisible(true);
+            room2.setVisible(true);
         } else if (room instanceof Room3) {
-            Room3 room3 = new Room1(this);
+            Room3 room3 = new Room3(this, team.getTeamName() + " - " + playerId);
             addObserver(room3);
             room3.setVisible(true);
         } else if (room instanceof Room4) {
-            Room4 room4 = new Room4(this);
+            Room4 room4 = new Room4(this, team.getTeamName() + " - " + playerId);
             addObserver(room4);
             room4.setVisible(true);
         } else if (room instanceof Room5) {
-            Room5 room5 = new Room5(this);
+            Room5 room5 = new Room5(this, team.getTeamName() + " - " + playerId);
             addObserver(room5);
-            room1.setVisible(true);
+            room5.setVisible(true);
         } else if (room instanceof Room6) {
-            Room6 room6 = new Room6(this);
+            Room6 room6 = new Room6(this, team.getTeamName() + " - " + playerId);
             addObserver(room6);
             room6.setVisible(true);
-        }*/
+        }
     }
 
     public void openWindowsMultiplayer() {
