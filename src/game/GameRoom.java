@@ -8,9 +8,8 @@ package game;
 import builderteam.InvalidDataException;
 import files.PropertiesConfig;
 import gui.rooms.Room1;
-import gui.rooms.Rooms;
+import gui.rooms.RoomsInterface;
 import java.util.ArrayList;
-import listManager.ListRoomsInterface;
 import objects.Padlock;
 import objects.RoomRiddle;
 import objects.Subteam;
@@ -28,11 +27,11 @@ public class GameRoom extends Thread implements Subject {
     private Game game;
     private Team team;
     private ArrayList<Padlock> padlocks;
-    private ArrayList<Rooms> rooms;
+    private ArrayList<RoomsInterface> roomsObserver;
     private int unlock;
     private String type;
     private Subteam subteam;
-    private String room;
+    private RoomsInterface room;
 
     public boolean isSingleGame() {
         return type.equals("single");
@@ -43,10 +42,10 @@ public class GameRoom extends Thread implements Subject {
         this.padlocks = new ArrayList<>();
         this.team = team;
         this.unlock = 0;
-        this.rooms = new ArrayList<>();
+        this.roomsObserver = new ArrayList<>();
         this.type = type;
         this.subteam = subteam;
-        this.room = gameRiddle.getRoomInterface();
+        this.room = gameRiddle.getRoom();
         loadPadlocks(gameRiddle);
         team.setSelect(false);
     }
@@ -56,10 +55,10 @@ public class GameRoom extends Thread implements Subject {
         this.padlocks = new ArrayList<>();
         this.team = team;
         this.unlock = 0;
-        this.rooms = new ArrayList<>();
+        this.roomsObserver = new ArrayList<>();
         this.type = type;
         this.subteam = new Subteam();
-        this.room = gameRiddle.getRoomInterface();
+        this.room = gameRiddle.getRoom();
         loadPadlocks(gameRiddle);
         team.setSelect(false);
     }
@@ -133,42 +132,35 @@ public class GameRoom extends Thread implements Subject {
     public void openWindowSingle() {
     }
 
-    private Rooms createWindows() {
+    private RoomsInterface createWindows() {
 
         return null;
     }
 
     public void openWindowsMultiplayer(int players) {
-        for (int i = 0; i < players; i++) {       
-            ListRoomsInterface.getInstance().getRoomsList().get(room);
+        for (int i = 0; i < players; i++) {
+            if (room instanceof Room1) {
+                Room1 room1 = new Room1(this);
+                room1.setVisible(true);
+            }
         }
     }
 
-    @Override
-    public void add(Rooms e) {
-        rooms.add(e);
-    }
-
-    @Override
-    public Rooms remove(int index) {
-        return rooms.remove(index);
-    }
-
     public void updateInfo(String msj) {
-        for (int i = 0; i < rooms.size(); i++) {
-            rooms.get(i).update(msj);
+        for (int i = 0; i < roomsObserver.size(); i++) {
+            roomsObserver.get(i).update(msj);
         }
     }
 
     public void updateTracks(int padlock) {
-        for (int i = 0; i < rooms.size(); i++) {
-            rooms.get(i).unlockTrackLocked(padlock);
+        for (int i = 0; i < roomsObserver.size(); i++) {
+            roomsObserver.get(i).unlockTrackLocked(padlock);
         }
     }
 
     public void updatePadlock(int padlock) {
-        for (int i = 0; i < rooms.size(); i++) {
-            rooms.get(i).updatePadlock(padlock);
+        for (int i = 0; i < roomsObserver.size(); i++) {
+            roomsObserver.get(i).updatePadlock(padlock);
         }
     }
 
@@ -180,8 +172,8 @@ public class GameRoom extends Thread implements Subject {
         } else {
             txt = "Perdió";
         }
-        for (int i = 0; i < rooms.size(); i++) {
-            rooms.get(i).showMessageWin(txt);
+        for (int i = 0; i < roomsObserver.size(); i++) {
+            roomsObserver.get(i).showMessageWin(txt);
         }
     }
 
@@ -190,4 +182,15 @@ public class GameRoom extends Thread implements Subject {
             subteam.get(i).setSelected(false);
         }
     }
+
+    @Override
+    public void add(RoomsInterface e) {
+        roomsObserver.add(e);
+    }
+
+    @Override
+    public RoomsInterface remove(int index) {
+        return roomsObserver.remove(index);
+    }
+
 }

@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
  *
  * @author Jermy
  */
-public class Room1 extends Rooms{
+public class Room1 extends javax.swing.JFrame implements RoomsInterface{
 
     /**
      * Creates new form Room1
@@ -122,7 +122,6 @@ public class Room1 extends Rooms{
         trackThreeP4.setVisible(false);
     }
 
-    @Override
     public void showMessageWin(String msg) {
         chrono.setStop(true);
         JOptionPane.showMessageDialog(null, msg);

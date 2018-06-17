@@ -6,7 +6,7 @@
 package objects;
 
 import builderteam.InvalidDataException;
-import gui.rooms.Rooms;
+import gui.rooms.RoomsInterface;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -19,16 +19,16 @@ import java.util.logging.Logger;
 public class RoomRiddle implements Cloneable, Serializable {
 
     private ArrayList<Riddle> listRiddle;
-    private String roomInterface;
+    private RoomsInterface room;
 
-    public RoomRiddle(ArrayList<Riddle> listRiddle, String roomInterface) {
+    public RoomRiddle(ArrayList<Riddle> listRiddle, RoomsInterface roomInterface) {
         this.listRiddle = listRiddle;
-        this.roomInterface = roomInterface;
+        this.room = roomInterface;
     }
 
-    public RoomRiddle(String roomInterface) {
+    public RoomRiddle(RoomsInterface roomInterface) {
         this.listRiddle = new ArrayList<>();
-        this.roomInterface = roomInterface;
+        this.room = roomInterface;
     }
 
     public void addRiddleGame(Riddle riddle) {
@@ -68,22 +68,23 @@ public class RoomRiddle implements Cloneable, Serializable {
         this.listRiddle = listRiddle;
     }
 
-    public String getRoomInterface() {
-        return roomInterface;
+    public RoomsInterface getRoom() {
+        return room;
     }
 
-    public void setRoomInterface(String roomInterface) {
-        this.roomInterface = roomInterface;
+    public void setRoom(RoomsInterface room) {
+        this.room = room;
     }
+
 
     @Override
     public Object clone() throws CloneNotSupportedException {
-        return new RoomRiddle(copy(), roomInterface);
+        return new RoomRiddle(copy(), room);
     }
 
     @Override
     public String toString() {
-        return "RoomRiddle{" + "listRiddle=" + listRiddle + ", roomInterface=" + roomInterface + '}';
+        return "RoomRiddle{" + "listRiddle=" + listRiddle + ", roomInterface=" + room + '}';
     }
     
 }

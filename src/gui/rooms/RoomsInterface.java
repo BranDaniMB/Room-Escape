@@ -3,17 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package game;
-
-import gui.rooms.RoomsInterface;
+package gui.rooms;
 
 /**
  *
  * @author Jermy
  */
-interface Subject {
+public interface RoomsInterface {
 
-    void add(RoomsInterface e);
+    void update(String msg);
 
-    RoomsInterface remove(int index);
+    void updatePadlock(int padlock);
+
+    void unlockTrackLocked(int padlock);
+
+    void showMessageWin(String msg);
 }

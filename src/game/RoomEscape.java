@@ -1,13 +1,11 @@
 package game;
 
-import files.FileManagerRooms;
 import files.FilesManagerList;
 import files.FilesManagerListRiddles;
 import files.PropertiesConfig;
 import gui.rooms.Room1;
 import java.util.ArrayList;
 import listManager.ListRoomRiddle;
-import listManager.ListRoomsInterface;
 import listManager.TeamList;
 import objects.Riddle;
 import objects.RoomRiddle;
@@ -22,7 +20,6 @@ public class RoomEscape {
 
     final static FilesManagerList FILES_MANAGER_LIST = new FilesManagerList();
     final static FilesManagerListRiddles FILES_MANAGER_LIST_RIDDLES = new FilesManagerListRiddles();
-    final static FileManagerRooms FILES_MANAGER_ROOMS = new FileManagerRooms();
 
     public static void main(String[] args) {
         TeamList.getInstance().setTeamsList(FILES_MANAGER_LIST.readFile("Files/TeamList.ser"));
@@ -37,7 +34,7 @@ public class RoomEscape {
 
     public static void chargeRiddles() {
         //#1.1
-        RoomRiddle roomRiddle = new RoomRiddle("room1");
+        RoomRiddle roomRiddle = new RoomRiddle(new Room1());
         ArrayList<String> tracks = new ArrayList<>();
         tracks.add("Es tangible");
         tracks.add("Es parte del día a día humano");
@@ -65,7 +62,7 @@ public class RoomEscape {
         ListRoomRiddle.getInstance().addRiddle(roomRiddle);
 
         //#2.1
-        roomRiddle = new RoomRiddle("room2");
+        roomRiddle = new RoomRiddle(new Room1());
         tracks.add("Soy sumamente útil");
         tracks.add("Tiene diferentes tamaños");
         roomRiddle.addRiddleGame(new Riddle("¿Sube llena, baja vacía, y si no se da prisa, la sopa se enfría?", "cuchara", tracks,
@@ -89,9 +86,5 @@ public class RoomEscape {
         roomRiddle.addRiddleGame(new Riddle("Tengo una forma geométrica", "alfombra", tracks,
                 new TrackLocked("cajeros", "¿Hay dos presentes?", "A veces estoy en las entras o en salas de estar")));
         ListRoomRiddle.getInstance().addRiddle(roomRiddle);
-    }
-
-    public static void chargeRooms() {
-        ListRoomsInterface.getInstance().put("room1", new Room1());
     }
 }
