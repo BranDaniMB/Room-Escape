@@ -64,22 +64,6 @@ public class GameRoom extends Thread implements Subject {
         team.setSelect(false);
     }
 
-    /**
-     * @deprecated not necessary
-     */
-    public void winner() throws InvalidDataException {
-        if (unlock == PropertiesConfig.getInstance().getProperties("padlocksCount")) {
-            if (type.equals(TYPE_GAME_SINGLE)) {
-                team.setBestTimeSingle("");
-            } else {
-                team.setBestTimeMultiplayer("");
-            }
-            throw new InvalidDataException("Ganó");
-        } else {
-            throw new InvalidDataException("Perdió");
-        }
-    }
-
     public void tryUnlockPadlock(String msj, int padlock) {
         if (padlocks.get(padlock).tryOpen((msj.toLowerCase().trim()))) {
             unlock++;
