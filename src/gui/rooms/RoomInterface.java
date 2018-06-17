@@ -11,9 +11,11 @@ package gui.rooms;
  */
 public interface RoomInterface {
 
-    void update(String msj);
+    void update(String msg);
+
+    void updatePadlock(int padlock);
+
+    void updateTrackLocked(int padlock);
     
-    void unlockTrack(int trackPadLock);
-    
-    void unlockPadlock(int padlock);
+    void showMessage(String msg);
 }

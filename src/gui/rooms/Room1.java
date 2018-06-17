@@ -9,6 +9,7 @@ import java.awt.Image;
 import static java.lang.Thread.sleep;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -38,13 +39,29 @@ public class Room1 extends javax.swing.JFrame implements RoomInterface {
     }
 
     @Override
-    public void update(String msj){}
+    public void update(String msj) {
+        showInfo.append(msj);
+    }
+
+    public void showTrack(String msj) {
+        JOptionPane.showMessageDialog(null, msj);
+    }
+
+    public void tryOpenPadlock(int padlock) {
+        JOptionPane.showInputDialog(this);
+    }
 
     @Override
-    public void unlockTrack(int trackPadLock){}
+    public void updatePadlock(int padlock) {
+    }
 
     @Override
-    public void unlockPadlock(int padlock){}
+    public void updateTrackLocked(int padlock) {
+    }
+
+    @Override
+    public void showMessage(String msg) {
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

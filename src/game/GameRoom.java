@@ -12,18 +12,18 @@ import objects.RoomRiddle;
  *
  * @author Jermy
  */
-public class GameRoom extends Thread implements Observer{
+public class GameRoom extends Thread implements Observer {
 
     public static final String TYPE_GAME_SINGLE = "single";
     public static final String TYPE_GAME_MULTIPLAYER = "multiplayer";
 
     private Game game;
-    private RoomRiddle roomRiddle;
     private Team team;
     private ArrayList<Padlock> padlocks;
     private ArrayList<RoomInterface> rooms;
     private int unlock;
     private String type;
+    private RoomInterface room;
 
     public boolean isSingleGame() {
         return type.equals("single");
@@ -31,12 +31,12 @@ public class GameRoom extends Thread implements Observer{
 
     public GameRoom(Game game, Team team, RoomRiddle gameRiddle, String type) {
         this.game = game;
-        this.roomRiddle = gameRiddle;
         this.padlocks = new ArrayList();
         this.team = team;
         this.unlock = 0;
         this.type = type;
-        loadPadlocks();
+        this.room = gameRiddle.getRoomInterface();
+        loadPadlocks(gameRiddle);
     }
 
     /**
@@ -55,19 +55,36 @@ public class GameRoom extends Thread implements Observer{
         }
     }
 
-    public void tryUnlock(String msj) {
-        for (int i = 0; i < padlocks.size(); i++) {
-            if (padlocks.get(i).tryOpen(msj)) {
-                unlock++;
-                if (unlock == PropertiesConfig.getInstance().getProperties("padlocksCount")) {
-                    game.setFinishGame(true);
-                    notifyAll();
-                }
+    public void tryUnlockPadlock(String msj, int padlock) {
+        if (padlocks.get(padlock).tryOpen((msj.toLowerCase().trim()))) {
+            unlock++;
+            update(padlocks.get(padlock).getIdPadlock() + " desbloqueado+\n");
+            if (unlock == PropertiesConfig.getInstance().getProperties("padlocksCount")) {
+                game.setFinishGame(true);
+                notifyAll();
             }
         }
     }
 
-    private void loadPadlocks() {
+    public void tryUnlockTrack(String msj, int padlock) {
+        if (padlocks.get(padlock).getRiddle().getTrackLock().tryUnlock(msj.toLowerCase().trim())) {
+            update(padlocks.get(padlock).getIdPadlock() + " pista desbloqueada+\n");
+        }
+    }
+
+    public String getPadlockQuestion(int padlock) {
+        return padlocks.get(padlock).getRiddle().getQuestion();
+    }
+
+    public String getTrackSimple(int padlock, int track) {
+        return padlocks.get(padlock).getRiddle().getTracks().get(track);
+    }
+
+    public String getLockedTrack(int padlock) {
+        return padlocks.get(padlock).getRiddle().getTrackLock().getTrack();
+    }
+
+    private void loadPadlocks(RoomRiddle roomRiddle) {
         for (int i = 0; i < roomRiddle.getListRiddle().size(); i++) {
             padlocks.add(new Padlock(roomRiddle.getListRiddle().get(i), "Candado: " + i));
         }
@@ -89,9 +106,17 @@ public class GameRoom extends Thread implements Observer{
     public RoomInterface remove(int index) {
         return rooms.remove(index);
     }
-    
+
+    public void update(String msj) {
+        for (int i = 0; i < rooms.size(); i++) {
+            rooms.get(i).update(msj);
+        }
+    }
+
     @Override
     public void update() {
-        
+        for (int i = 0; i < rooms.size(); i++) {
+            rooms.get(i);
+        }
     }
 }
