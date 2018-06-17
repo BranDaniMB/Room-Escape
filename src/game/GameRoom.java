@@ -2,6 +2,7 @@ package game;
 
 import builderteam.InvalidDataException;
 import files.PropertiesConfig;
+import gui.rooms.RoomInterface;
 import java.util.ArrayList;
 import objects.Padlock;
 import objects.Team;
@@ -11,7 +12,7 @@ import objects.RoomRiddle;
  *
  * @author Jermy
  */
-public class GameRoom extends Thread {
+public class GameRoom extends Thread implements Observer{
 
     public static final String TYPE_GAME_SINGLE = "single";
     public static final String TYPE_GAME_MULTIPLAYER = "multiplayer";
@@ -20,6 +21,7 @@ public class GameRoom extends Thread {
     private RoomRiddle roomRiddle;
     private Team team;
     private ArrayList<Padlock> padlocks;
+    private ArrayList<RoomInterface> rooms;
     private int unlock;
     private String type;
 
@@ -78,5 +80,18 @@ public class GameRoom extends Thread {
         for (int i = 0; i < players; i++) {
 
         }
+    }
+
+    public boolean add(RoomInterface e) {
+        return rooms.add(e);
+    }
+
+    public RoomInterface remove(int index) {
+        return rooms.remove(index);
+    }
+    
+    @Override
+    public void update() {
+        
     }
 }
