@@ -41,10 +41,6 @@ public class GameRoom extends Thread implements Subject {
     private Subteam subteam;
     private RoomsInterface room;
 
-    public boolean isSingleGame() {
-        return type.equals("single");
-    }
-
     public GameRoom(Game game, Entry<Team, Subteam> entry, RoomRiddle gameRiddle, String type) {
         this.game = game;
         this.padlocks = new ArrayList<>();
@@ -184,8 +180,10 @@ public class GameRoom extends Thread implements Subject {
             game.setFinishGame(true);
             if (this.type.equals(TYPE_GAME_SINGLE)) {
                 team.setBestTimeSingle(roomsObserver.get(0).getTime());
+                player.setSelected(false);
             } else if (this.type.equals(TYPE_GAME_MULTIPLAYER)) {
                 team.setBestTimeMultiplayer(roomsObserver.get(0).getTime());
+                deselect();
             }
             txt = "Ganó";
             

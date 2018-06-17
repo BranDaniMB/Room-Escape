@@ -217,6 +217,7 @@ public class FXMLMainWindowsController implements Initializable {
             teamData.getStyleClass().clear();
             teamData.getStyleClass().add("status-err");
             teamData.setText(ex.getMessage());
+            TFGetName.clear();
             modifyStatus.getStyleClass().clear();
             modifyStatus.getStyleClass().add("status-err");
             modifyStatus.setText(ex.getMessage());
@@ -225,6 +226,7 @@ public class FXMLMainWindowsController implements Initializable {
         if (success) {
             teamData.getStyleClass().clear();
             teamData.getStyleClass().add("status");
+            TFGetName.clear();
             modifyStatus.getStyleClass().clear();
             modifyStatus.getStyleClass().add("status-success");
             modifyStatus.setText("Equipo encontrado.");
@@ -238,12 +240,14 @@ public class FXMLMainWindowsController implements Initializable {
             modifyTeam.changeName(TFChangeName.getText());
         } catch (InvalidDataException ex) {
             success = false;
+            TFChangeName.clear();
             modifyStatus.getStyleClass().clear();
             modifyStatus.getStyleClass().add("status-err");
             modifyStatus.setText(ex.getMessage());
         }
 
         if (success) {
+            TFChangeName.clear();
             modifyStatus.getStyleClass().clear();
             modifyStatus.getStyleClass().add("status-success");
             modifyStatus.setText("Cambio de nombre efectivo.");
@@ -257,12 +261,14 @@ public class FXMLMainWindowsController implements Initializable {
             modifyTeam.changePlayerId(TFChangeCurrentPlayerName.getText(), TFChangeNewPlayerName.getText());
         } catch (InvalidDataException ex) {
             success = false;
+            TFChangeCurrentPlayerName.clear();
             modifyStatus.getStyleClass().clear();
             modifyStatus.getStyleClass().add("status-err");
             modifyStatus.setText(ex.getMessage());
         }
 
         if (success) {
+            TFChangeCurrentPlayerName.clear();
             modifyStatus.getStyleClass().clear();
             modifyStatus.getStyleClass().add("status-success");
             modifyStatus.setText("Cambio de nombre de jugador efectivo.");
@@ -276,12 +282,13 @@ public class FXMLMainWindowsController implements Initializable {
             modifyTeam.addPlayers(TFChangeAddNewPlayer.getText());
         } catch (InvalidDataException ex) {
             success = false;
+            TFChangeAddNewPlayer.clear();
             modifyStatus.getStyleClass().clear();
             modifyStatus.getStyleClass().add("status-err");
             modifyStatus.setText(ex.getMessage());
         }
-
         if (success) {
+            TFChangeAddNewPlayer.clear();
             modifyStatus.getStyleClass().clear();
             modifyStatus.getStyleClass().add("status-success");
             modifyStatus.setText("Jugador agregado con exito.");
