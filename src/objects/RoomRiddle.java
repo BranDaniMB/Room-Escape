@@ -74,6 +74,7 @@ public class RoomRiddle implements Cloneable, Serializable {
     public void setRoom(RoomsInterface room) {
         this.room = room;
     }
+    
     @Override
     public Object clone() throws CloneNotSupportedException {
         return new RoomRiddle(copy(), room);
