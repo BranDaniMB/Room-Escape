@@ -30,6 +30,10 @@ public class ListRoomRiddle implements Cloneable, Serializable{
         listRiddle.add(riddle);
     }
 
+    public static ListRoomRiddle getINSTANCE() {
+        return INSTANCE;
+    }
+
     @Override
     public String toString() {
         return "ManagerRiddle{" + "listRiddle=" + listRiddle + '}';
