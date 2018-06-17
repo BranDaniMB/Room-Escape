@@ -9,14 +9,14 @@ package objects;
  *
  * @author Jermy
  */
-class TrackLock implements Cloneable {
+class TrackLocked implements Cloneable {
 
     private boolean unlock;
     private String answer;
     private String question;
     private String track;
 
-    public TrackLock(String answer, String question, String track) {
+    public TrackLocked(String answer, String question, String track) {
         this.unlock = false;
         this.answer = answer;
         this.question = question;
@@ -68,7 +68,7 @@ class TrackLock implements Cloneable {
 
     @Override
     protected Object clone() throws CloneNotSupportedException {
-        return new TrackLock(answer, question, track);
+        return new TrackLocked(answer, question, track);
     }
     
 }

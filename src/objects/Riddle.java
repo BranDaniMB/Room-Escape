@@ -12,20 +12,20 @@ public class Riddle implements Cloneable, Serializable {
     private ArrayList<String> tracks;
     private String question;
     private String answer;
-    private TrackLock trackLock;
+    private TrackLocked trackLock;
 
-    public Riddle(String question, String answer, ArrayList tracks, TrackLock trackLock) {
+    public Riddle(String question, String answer, ArrayList tracks, TrackLocked trackLock) {
         this.question = question;
         this.answer = answer;
         this.tracks = tracks;
         this.trackLock = trackLock;
     }
 
-    public TrackLock getTrackLock() {
+    public TrackLocked getTrackLock() {
         return trackLock;
     }
 
-    public void setTrackLock(TrackLock trackLock) {
+    public void setTrackLock(TrackLocked trackLock) {
         this.trackLock = trackLock;
     }
 
@@ -74,7 +74,7 @@ public class Riddle implements Cloneable, Serializable {
 
     @Override
     public Object clone() throws CloneNotSupportedException {
-        return new Riddle(question, answer, copy(), (TrackLock) trackLock.clone());
+        return new Riddle(question, answer, copy(), (TrackLocked) trackLock.clone());
     }
 
     public boolean isCorrect(String msg) {
