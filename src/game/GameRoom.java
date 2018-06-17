@@ -67,13 +67,6 @@ public class GameRoom extends Thread implements Subject {
         this.room = gameRiddle.getRoom();
         loadPadlocks(gameRiddle);
     }
-<<<<<<< HEAD
-    /**
-     * 
-     */
-=======
-    
->>>>>>> b5831fa89471bf6c7164bb0f93097ccf07338941
     public void tryUnlockPadlock(String msj, int padlock) {
         if (padlocks.get(padlock).tryOpen((msj.toLowerCase().trim()))) {
             unlock++;

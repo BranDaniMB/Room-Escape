@@ -4,6 +4,8 @@ import files.FilesManagerList;
 import files.FilesManagerListRiddles;
 import files.PropertiesConfig;
 import gui.rooms.Room1;
+import gui.rooms.Room2;
+import gui.rooms.Room3;
 import java.util.ArrayList;
 import listManager.ListRoomRiddle;
 import listManager.TeamList;
@@ -59,7 +61,7 @@ public class RoomEscape {
         ListRoomRiddle.getInstance().addRiddle(roomRiddle);
 
         //#2.1
-        roomRiddle = new RoomRiddle(new Room1());
+        roomRiddle = new RoomRiddle(new Room2());
         tracks.add("Soy sumamente útil");
         tracks.add("Tiene diferentes tamaños");
         roomRiddle.addRiddleGame(new Riddle("¿Sube llena, baja vacía, y si no se da prisa, la sopa se enfría?", "cuchara", tracks,
@@ -85,7 +87,7 @@ public class RoomEscape {
         ListRoomRiddle.getInstance().addRiddle(roomRiddle);
 
         //#3.1
-        roomRiddle = new RoomRiddle(new Room1());
+        roomRiddle = new RoomRiddle(new Room3());
         tracks.add("Soy indispensable para desplazarse");
         tracks.add("A veces en mi interior tengo mal olor");
         roomRiddle.addRiddleGame(new Riddle("¿Dos hermanitos muy igualitos, si llegan a viejos abren los ojitos?", "zapatos", tracks,
