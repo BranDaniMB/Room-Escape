@@ -473,7 +473,7 @@ public class Room1 extends javax.swing.JFrame implements RoomInterface {
 
     private void trackOneP2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trackOneP2ActionPerformed
         // TODO add your handling code here:
-        showSimpleTrack(PADLOCK_NUM2, PADLOCK_NUM2);
+        showSimpleTrack(PADLOCK_NUM1, PADLOCK_NUM2);
     }//GEN-LAST:event_trackOneP2ActionPerformed
 
     private void padlock2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_padlock2ActionPerformed
