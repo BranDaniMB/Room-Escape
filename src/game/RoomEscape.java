@@ -4,6 +4,8 @@ import files.FilesManagerList;
 import files.FilesManagerListRiddles;
 import files.PropertiesConfig;
 import gui.rooms.Room1;
+import gui.rooms.Room2;
+import gui.rooms.Room3;
 import java.util.ArrayList;
 import listManager.ListRoomRiddle;
 import listManager.TeamList;
@@ -59,7 +61,7 @@ public class RoomEscape {
         ListRoomRiddle.getInstance().addRiddle(roomRiddle);
 
         //#2.1
-        roomRiddle = new RoomRiddle(new Room1());
+        roomRiddle = new RoomRiddle(new Room2());
         tracks.add("Soy sumamente útil");
         tracks.add("Tiene diferentes tamaños");
         roomRiddle.addRiddleGame(new Riddle("¿Sube llena, baja vacía, y si no se da prisa, la sopa se enfría?", "cuchara", tracks,
@@ -85,7 +87,7 @@ public class RoomEscape {
         ListRoomRiddle.getInstance().addRiddle(roomRiddle);
 
         //#3.1
-        roomRiddle = new RoomRiddle(new Room1());
+        roomRiddle = new RoomRiddle(new Room3());
         tracks.add("Soy indispensable para desplazarse");
         tracks.add("A veces en mi interior tengo mal olor");
         roomRiddle.addRiddleGame(new Riddle("¿Dos hermanitos muy igualitos, si llegan a viejos abren los ojitos?", "zapatos", tracks,
@@ -108,33 +110,6 @@ public class RoomEscape {
         tracks.add("Nunca paso de moda");
         roomRiddle.addRiddleGame(new Riddle("Casi siempre me veo bien con cualquier atuendo", "pantalón", tracks,
                 new TrackLocked("naranja", "¿Color del abrigo del mostrador?", "Aunque tenemos dos piernas no podemos caminar")));
-        ListRoomRiddle.getInstance().addRiddle(roomRiddle);
-///////////////////////////////////////TERMINAR
-        //#4.1
-        roomRiddle = new RoomRiddle(new Room1());
-        tracks.add("Son blancos");
-        tracks.add("Tienen un figura rectangular");
-        roomRiddle.addRiddleGame(new Riddle("Veintiocho caballeros, que se ponen en la mesa", "domino", tracks,
-                new TrackLocked("secadora", "¿Esta frente al espejo?", "Juego de mesa")));
-        //#4.2
-        tracks = new ArrayList<>();
-        tracks.add("Todas las personas me usan");
-        tracks.add("Las mujeres les en canta comprarme");
-        roomRiddle.addRiddleGame(new Riddle("", "domino", tracks,
-                new TrackLocked("cajero", "¿Esta en el escritorio", "Juego de mesa")));
-        //"4.3
-        tracks = new ArrayList<>();
-        tracks.add("Protejo del frio o de sustancias");
-        tracks.add("Soy de latex o de lana");
-        roomRiddle.addRiddleGame(new Riddle("Dos guaridas cálidas con sus escondrijos, para dos hermanos y sus quintillizos", "guantes", tracks,
-                new TrackLocked("palmeras", "Hay dos en el escenario", "Los doctores casi siempre me usan")));
-        //4.4
-        tracks = new ArrayList<>();
-        tracks.add("Para ir al trabajo me usan");
-        tracks.add("Nunca paso de moda");
-        roomRiddle.addRiddleGame(new Riddle("Casi siempre me veo bien con cualquier atuendo", "pantalón", tracks,
-                new TrackLocked("naranja", "¿Color del abrigo del mostrador?", "Aunque tenemos dos piernas no podemos caminar")));
-        ListRoomRiddle.getInstance().addRiddle(roomRiddle);
-        
+        ListRoomRiddle.getInstance().addRiddle(roomRiddle);     
     }
 }
