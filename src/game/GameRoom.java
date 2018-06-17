@@ -13,7 +13,7 @@ import objects.RoomRiddle;
  *
  * @author Jermy
  */
-public class GameRoom extends Thread {
+public class GameRoom extends Thread implements Observer {
 
     public static final String TYPE_GAME_SINGLE = "single";
     public static final String TYPE_GAME_MULTIPLAYER = "multiplayer";
@@ -60,18 +60,17 @@ public class GameRoom extends Thread {
     public void tryUnlockPadlock(String msj, int padlock) {
         if (padlocks.get(padlock).tryOpen((msj.toLowerCase().trim()))) {
             unlock++;
-            updateInfo(padlocks.get(padlock).getIdPadlock() + " desbloqueado+\n");
+            updateInfo(padlocks.get(padlock).getIdPadlock() + " desbloqueado\n");
             updatePadlock(padlock);
             if (unlock == PropertiesConfig.getInstance().getProperties("padlocksCount")) {
-                game.setFinishGame(true);
-                notifyAll();
+                update();
             }
         }
     }
 
     public void tryUnlockTrack(String msj, int padlock) {
         if (padlocks.get(padlock).getRiddle().getTrackLock().tryUnlock((msj.toLowerCase().trim()))) {
-            updateInfo(padlocks.get(padlock).getIdPadlock() + " pista desbloqueada+\n");
+            updateInfo(padlocks.get(padlock).getIdPadlock() + " pista desbloqueada\n");
             updateTracks(padlock);
         }
     }
@@ -81,7 +80,7 @@ public class GameRoom extends Thread {
     }
 
     public String getLockedTrackQuestion(int padlock) {
-        return padlocks.get(unlock).getRiddle().getTrackLock().getQuestion();
+        return padlocks.get(padlock).getRiddle().getTrackLock().getQuestion();
     }
 
     public String getTrackSimple(int padlock, int track) {
@@ -134,6 +133,20 @@ public class GameRoom extends Thread {
     public void updatePadlock(int padlock) {
         for (int i = 0; i < rooms.size(); i++) {
             rooms.get(i).updatePadlock(padlock);
+        }
+    }
+
+    @Override
+    public void update() {
+        String txt = "";
+        if (!game.isFinishGame()) {
+            game.setFinishGame(true);
+            txt = "Ganó";
+        } else {
+            txt = "Perdió";
+        }
+        for (int i = 0; i < rooms.size(); i++) {
+            rooms.get(i).showMessageWin(txt);
         }
     }
 }

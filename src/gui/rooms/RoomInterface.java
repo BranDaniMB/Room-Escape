@@ -17,5 +17,5 @@ public interface RoomInterface {
 
     void unlockTrackLocked(int padlock);
     
-    void showMessage(String msg);
+    void showMessageWin(String msg);
 }
