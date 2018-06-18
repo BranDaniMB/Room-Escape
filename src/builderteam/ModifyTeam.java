@@ -7,7 +7,8 @@ import objects.Team;
 import listManager.TeamList;
 
 /**
- *
+ * Modify a team
+ * Modify a team that wants to add more players, change their name or vice versa.
  * @author Jermy
  */
 public class ModifyTeam {
@@ -17,6 +18,13 @@ public class ModifyTeam {
     private Team currentTeam;
     private boolean existTeam = false;
 
+    /**
+     * Search team
+     * looks for a team to know if it exists and in this way can modify it
+     * @param name
+     * @return team
+     * @throws InvalidDataException 
+     */
     public Team ModifyTeam(String name) throws InvalidDataException {
         currentTeam = TeamList.getInstance().searchTeam(name);
         if (currentTeam == null) {
@@ -26,6 +34,12 @@ public class ModifyTeam {
         return currentTeam;
     }
 
+    /**
+     * Change name
+     * Receive a name and verify that the name is valid. Otherwise, throw a customized exception
+     * @param name
+     * @throws InvalidDataException 
+     */
     public void changeName(String name) throws InvalidDataException {
         if (existTeam) {
             pattern = Pattern.compile("^[a-zA-Z ]{2,10}$");
@@ -45,6 +59,12 @@ public class ModifyTeam {
         }
     }
 
+    /**
+     * Add player
+     * Receive an id or name to add this to the team
+     * @param id
+     * @throws InvalidDataException 
+     */
     public void addPlayers(String id) throws InvalidDataException {
         if (existTeam) {
             pattern = Pattern.compile("^[a-zA-Z0-9]{3,8}$");
@@ -63,6 +83,13 @@ public class ModifyTeam {
         }
     }
 
+    /**
+     * Change of name of a player
+     * ind the name of the player that is going to change and assign the new name to it
+     * @param currentName
+     * @param newName
+     * @throws InvalidDataException 
+     */
     public void changePlayerId(String currentName, String newName) throws InvalidDataException {
         if (existTeam) {
             Player aux = currentTeam.searchPlayer(currentName);
@@ -85,6 +112,10 @@ public class ModifyTeam {
         }
     }
 
+    /**
+     * Finalize 
+     * This method ends the name change process
+     */
     public void finalizeChange() {
         this.currentTeam = null;
         this.existTeam = false;
