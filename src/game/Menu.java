@@ -80,6 +80,10 @@ public class Menu {
     public void AddToList(String listPlayerToPlay) throws InvalidDataException {
         Subteam team = new Subteam();
         String[] s = listPlayerToPlay.split("-");
+        
+        if (searchDuplicate(s)) {
+            throw new InvalidDataException("No puedes seleccionar el mismo jugador más de una vez.");
+        }
 
         if (s.length > PropertiesConfig.getInstance().getProperties("maxPlayers") || s.length < PropertiesConfig.getInstance().getProperties("minPlayers")) {
             throw new InvalidDataException("Debe contener de 2 a 5 jugadores.");
@@ -145,6 +149,10 @@ public class Menu {
             default:
                 throw new InvalidDataException("Modo incorrecto.");
         }
+        
+        if (searchDuplicate(s)) {
+            throw new InvalidDataException("No puedes seleccionar el mismo equipo más de una vez.");
+        }
 
         for (String item : s) {
             Team t = teamList.searchTeam(item);
@@ -155,6 +163,18 @@ public class Menu {
                 throw new InvalidDataException("Ese equipo no existe.");
             }
         }
+    }
+    
+    public boolean searchDuplicate(String[] list) {
+        for (int i = 0; i < list.length; i++) {
+            for (int k = i+1; k < list.length; k++) {
+                if (list[i].equals(list[k])) {
+                    return true;
+                }
+            }
+        }
+        
+        return false;
     }
 
     public String getSelectableTeams() {
