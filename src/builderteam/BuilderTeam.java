@@ -8,7 +8,8 @@ import java.time.LocalDate;
 import listManager.TeamList;
 
 /**
- *
+ * equipment verifications
+ * performs multiple checks so that the equipment is created correctly.
  * @author Jermy
  */
 public class BuilderTeam implements Builder {
@@ -17,15 +18,27 @@ public class BuilderTeam implements Builder {
     private Pattern pattern;
     private Matcher matcher;
 
+    
     public BuilderTeam() {
         this.team = new Team();
     }
 
+    /**
+     * Name team
+     * Assign a name to the team
+     * @param name 
+     */
     @Override
     public void buildName(String name) {
         team.setTeamName(name);
     }
 
+    /**
+     * Create player
+     * 
+     * @param id
+     * @throws InvalidDataException 
+     */    
     @Override
     public void buildPlayers(String id) throws InvalidDataException {
         String[] s = id.split("-");
@@ -46,11 +59,22 @@ public class BuilderTeam implements Builder {
         }
     }
 
+    /**
+     * Date
+     * Assign the date of enrollment to the team
+     * @param date 
+     */
     @Override
     public void buildInscription(LocalDate date) {
         team.setDateInscription(date);
     }
 
+    /**
+     * Validations of the team
+     * It performs a series of validations that if fulfilled, it is stored in a String variable that is then thrown to the user
+     * @return team
+     * @throws InvalidDataException 
+     */
     @Override
     public Team getTeam() throws InvalidDataException {
         String txt = "";

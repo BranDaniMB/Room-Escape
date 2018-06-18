@@ -25,7 +25,6 @@ public class TrackLocked implements Cloneable, Serializable {
         this.track = track;
     }
     
-
     public boolean isUnlock() {
         return unlock;
     }
