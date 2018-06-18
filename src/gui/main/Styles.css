@@ -5,11 +5,14 @@
 
 .main-pane {
     -fx-font-family: "WhitneySemiBold";
+    -fx-background-color: #bfbfbf;
+    -fx-background-size: cover;
 }
 
 .mainTitle {
     -fx-font-size: 20px;
     -fx-font-weight: bold;
+    -fx-text-fill: #000;
 }
 
 .mainButton {
@@ -20,16 +23,19 @@
     -fx-font-size: 16px;
     -fx-text-decoration: underline;
     -fx-font-weight: bold;
+    -fx-text-fill: #000;
 }
 
 .inputTitle {
     -fx-font-size: 14px;
     -fx-font-weight: bold;
+    -fx-text-fill: #000;
 }
 
 .status {
     -fx-font-size: 11px;
     -fx-text-fill: black;
+    -fx-background-color: #fff;
 }
 
 .status-err {
@@ -40,60 +46,4 @@
 .status-success {
     -fx-font-size: 11px;
     -fx-text-fill: green;
-}
-
-/*
- * Rooms Style Sheets
- */
-.room {
-    -fx-background-size: cover;
-    -fx-background-repeat: no-repeat;
-    -fx-background-position: center center;
-}
-
-#room_1 {
-    -fx-background-image: url("../images/room_1.jpg");
-}
-
-#room_2 {
-    -fx-background-image: url("../images/room_2.jpg");
-}
-
-#room_3 {
-    -fx-background-image: url("../images/room_3.jpg");
-}
-
-#room_4 {
-    -fx-background-image: url("../images/room_4.jpg");
-}
-
-#room_5 {
-    -fx-background-image: url("../images/room_5.jpg");
-}
-
-#room_6 {
-    -fx-background-image: url("../images/room_6.jpg");
-}
-
-.padlock {
-    -fx-background-image: url("../images/padlock.png");
-    -fx-background-size: contain;
-    -fx-background-repeat: no-repeat;
-    -fx-background-position: center center;
-    -fx-border-color: transparent;
-    -fx-border-width: 0;
-    -fx-background-color: transparent;
-}
-
-.transparent-button {
-    -fx-border-color: transparent;
-    -fx-border-width: 0;
-    -fx-background-radius: 0;
-    -fx-background-color: transparent;
-}
-
-.tracks-text {
-    -fx-border-color: transparent;
-    -fx-border-width: 0;
-    -fx-background-radius: 0;
 }
