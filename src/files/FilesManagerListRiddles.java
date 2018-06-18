@@ -22,7 +22,8 @@ import objects.RoomRiddle;
 import objects.TrackLocked;
 
 /**
- *
+ * Binary riddle file
+ * Save the game riddles
  * @author Jermy
  */
 public class FilesManagerListRiddles {
@@ -30,29 +31,70 @@ public class FilesManagerListRiddles {
     private ObjectInputStream reader;
     private ObjectOutputStream writer;
 
+    /**
+     * Open file
+     * Open the file where the list of riddles is
+     * @param fileName
+     * @throws IOException 
+     */
     private void openReader(String fileName) throws IOException {
         reader = new ObjectInputStream(new FileInputStream(fileName));
     }
 
+    /**
+     * Reading riddles
+     * Read the list of riddles
+     * @return
+     * @throws IOException
+     * @throws ClassNotFoundException 
+     */
     private ArrayList<RoomRiddle> read() throws IOException, ClassNotFoundException {
         return (ArrayList<RoomRiddle>) reader.readObject();
     }
 
+    /**
+     * Close read
+     * Close the reading of the list of riddles
+     * @throws IOException 
+     */
     private void closeReader() throws IOException {
         reader.close();
     }
 
+    /**
+     * Open write
+     * This method opens the writing of riddles to the file
+     * @param fileName
+     * @throws IOException 
+     */
     private void openWriter(String fileName) throws IOException {
         writer = new ObjectOutputStream(new FileOutputStream(fileName));
     }
 
+    /**
+     * Writing
+     * Write new elements to the file
+     * @param element
+     * @throws IOException 
+     */
     private void write(ArrayList<RoomRiddle> element) throws IOException {
         writer.writeObject(element);
     }
 
+    /**
+     * Writing closing
+     * Close the writing of elements in the file
+     * @throws IOException 
+     */
     private void closeWriter() throws IOException {
         writer.close();
     }
+    /**
+     * File reading
+     * It is responsible for opening the file, reading it and closing it.
+     * @param fileName
+     * @return 
+     */
 
     public ArrayList<RoomRiddle> readFile(String fileName) {
         ArrayList<RoomRiddle> listRiddle = new ArrayList<>();
@@ -73,6 +115,12 @@ public class FilesManagerListRiddles {
         return listRiddle;
     }
 
+    /**
+     * File write
+     * It is responsible for opening the file, writing the new elements, guards them and closing them.
+     * @param fileName
+     * @param listRiddle 
+     */
     private void writeFile(String fileName, ArrayList<RoomRiddle> listRiddle) {
         try {
             openWriter(fileName);
@@ -83,6 +131,11 @@ public class FilesManagerListRiddles {
         }
     }
 
+    /**
+     * Load riddles
+     * He is responsible for loading the riddles and inserts them in a list of all the riddles of the game
+     * @return Lis Riddles
+     */
     private ArrayList<RoomRiddle> chargeRiddles() {
         ArrayList<RoomRiddle> listRiddles = new ArrayList<>();
         //#1.1

@@ -16,7 +16,7 @@ import listManager.TeamList;
 import objects.Team;
 
 /**
- * Binary file
+ * Binary file team
  * It is responsible for saving the list of equipment
  * @author Jermy
  */
