@@ -31,7 +31,7 @@ public class Game extends Thread {
     private RoomRiddle generateRoom() {
         return roomRiddles.remove((int) (Math.random() * roomRiddles.size()));
     }
-    
+
     public void createSingleGame() {
         Entry<Team, Subteam> entry = list.pollFirstEntry();
         Subteam st = entry.getValue();
@@ -41,7 +41,7 @@ public class Game extends Thread {
                 break;
             }
             this.currentGames.add(new GameRoom(this, entry.getKey(), p, generateRoom(), GameRoom.TYPE_GAME_SINGLE).openWindowsSingle());
-        } while(true);
+        } while (true);
     }
 
     public void createMultiplayerGame() {
@@ -75,10 +75,10 @@ public class Game extends Thread {
         Set<Team> t = list.keySet();
         return new ArrayList<>(t);
     }
-    
+
     public void closeAllGames() {
-        for (GameRoom currentGame : currentGames) {
-            currentGame.finishMessage();
+        for (int i = 0; i < currentGames.size(); i++) {
+            currentGames.get(i).finshGameM();
         }
     }
 }

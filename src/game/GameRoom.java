@@ -39,6 +39,7 @@ public class GameRoom extends Thread implements Subject {
     private Player player;
     private Subteam subteam;
     private RoomsInterface room;
+    private boolean won;
 
     public GameRoom(Game game, Entry<Team, Subteam> entry, RoomRiddle gameRiddle, String type) {
         this.game = game;
@@ -48,6 +49,7 @@ public class GameRoom extends Thread implements Subject {
         this.roomsObserver = new ArrayList<>();
         this.type = type;
         this.player = null;
+        this.won = false;
         this.subteam = entry.getValue();
         this.subteam.makePlaying();
         this.room = gameRiddle.getRoom();
@@ -59,6 +61,7 @@ public class GameRoom extends Thread implements Subject {
         this.padlocks = new ArrayList<>();
         this.team = team;
         this.unlock = 0;
+        this.won = false;
         this.roomsObserver = new ArrayList<>();
         this.type = type;
         this.player = player;
@@ -75,7 +78,7 @@ public class GameRoom extends Thread implements Subject {
             updatePadlock(padlock);
             setPadlockText(padlock);
             if (unlock == PropertiesConfig.getInstance().getProperties("padlocksCount")) {
-                finishMessage();
+                verifyWinner();
             }
         }
     }
@@ -151,49 +154,55 @@ public class GameRoom extends Thread implements Subject {
         }
     }
 
-    public GameRoom openWindowsMultiplayer() {
+    public synchronized GameRoom openWindowsMultiplayer() {
         for (int i = 0; i < subteam.size(); i++) {
             createWindows(subteam.get(i).getId());
         }
         return this;
     }
 
-    public void updateInfo(String msj) {
+    public synchronized void updateInfo(String msj) {
         for (int i = 0; i < roomsObserver.size(); i++) {
             roomsObserver.get(i).update(msj);
         }
     }
 
-    public void updateTracks(int padlock) {
+    public synchronized void updateTracks(int padlock) {
         for (int i = 0; i < roomsObserver.size(); i++) {
             roomsObserver.get(i).unlockTrackLocked(padlock);
         }
     }
 
-    public void updatePadlock(int padlock) {
+    public synchronized void updatePadlock(int padlock) {
         for (int i = 0; i < roomsObserver.size(); i++) {
             roomsObserver.get(i).updatePadlock(padlock);
         }
     }
 
-    public void finishMessage() {
-        String txt = "";
+    public synchronized void verifyWinner() {
         if (!game.isFinishGame()) {
+            won = true;
             game.setFinishGame(true);
-            txt = "Ganó";
-
-        } else {
-            txt = "Perdió";
         }
+    }
+
+    public void finshGameM() {
+        String txt = "Perdió";
         if (this.type.equals(TYPE_GAME_SINGLE)) {
             team.setBestTimeSingle(roomsObserver.get(0).getTime());
             player.setSelected(false);
+            if (won) {
+                txt = "Ganó \n" + player.getId();
+            }
         } else if (this.type.equals(TYPE_GAME_MULTIPLAYER)) {
             team.setBestTimeMultiplayer(roomsObserver.get(0).getTime());
             deselect();
+            if (won) {
+                txt = "Ganó \n" + player.getId();
+            }
         }
         for (int i = 0; i < roomsObserver.size(); i++) {
-            roomsObserver.get(i).showMessageWin(txt + roomsObserver.get(i));
+            roomsObserver.get(i).showMessageWin(txt);
         }
     }
 
