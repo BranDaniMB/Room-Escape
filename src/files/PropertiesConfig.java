@@ -12,7 +12,8 @@ import java.io.IOException;
 import java.util.Properties;
 
 /**
- *
+ * Config
+ * Save the game's general settings and add new ones
  * @author Jermy
  */
 public class PropertiesConfig {
@@ -32,6 +33,10 @@ public class PropertiesConfig {
         private static final PropertiesConfig INSTANCE = new PropertiesConfig();
     }
 
+    /**
+     * Reading of configurations
+     * Read the file settings.
+     */
     public void readConfig() {
         try {
             properties.load(new FileReader("Files/config.properties"));
@@ -42,6 +47,10 @@ public class PropertiesConfig {
         System.out.println("Configuraciones adquiridas");
     }
 
+    /**
+     * Write configurations.
+     * Save the new settings in the file.
+     */
     private void writeConfig() {
         try {
             properties.setProperty("timeLimit", "1800");
@@ -57,6 +66,12 @@ public class PropertiesConfig {
         System.out.println("Configuraciones guardadas con exito");
     }
 
+    /**
+     * Add configurations
+     * Add new settings to the file, using a key and a value
+     * @param key
+     * @param value 
+     */
     public void addConfig(String key, String value) {
         try {
             properties.setProperty(key, value);
@@ -67,10 +82,21 @@ public class PropertiesConfig {
         System.out.println("Configuracion guardadas con exito");
     }
 
+    /**
+     * Get a configuration
+     * returns a specific configuration using a key
+     * @param key
+     * @return 
+     */
     public int getProperties(String key) {
         return Integer.parseInt(properties.getProperty(key));
     }
 
+     /**
+     * Get a configuration
+     * returns a specific configuration
+     * @return 
+     */
     public Properties getProperties() {
         return properties;
     }

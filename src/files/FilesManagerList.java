@@ -86,7 +86,7 @@ public class FilesManagerList {
 
     /**
      * Readings of all the elements
-     * Reading the complete list of all the elements
+     * This method is responsible for opening, reading the elements to the file and closing it
      * @param fileName
      * @return list team
      */
@@ -105,8 +105,8 @@ public class FilesManagerList {
     }
 
     /**
-     * Writing all the elements
-     * Write all elements elements and save them
+     * Writing the elements
+     * Open the file, write the new elements and close it
      * @param fileName
      * @param teams 
      */
