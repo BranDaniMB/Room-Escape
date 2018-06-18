@@ -160,19 +160,31 @@ public class GameRoom extends Thread implements Subject {
         }
         return this;
     }
-
+    
+    /**
+     * 
+     * @param msj 
+     */
     public synchronized void updateInfo(String msj) {
         for (int i = 0; i < roomsObserver.size(); i++) {
             roomsObserver.get(i).update(msj);
         }
     }
-
+    
+    /**
+     * 
+     * @param padlock 
+     */
     public synchronized void updateTracks(int padlock) {
         for (int i = 0; i < roomsObserver.size(); i++) {
             roomsObserver.get(i).unlockTrackLocked(padlock);
         }
     }
-
+    
+    /**
+     * 
+     * @param padlock 
+     */
     public synchronized void updatePadlock(int padlock) {
         for (int i = 0; i < roomsObserver.size(); i++) {
             roomsObserver.get(i).updatePadlock(padlock);
@@ -185,20 +197,27 @@ public class GameRoom extends Thread implements Subject {
             game.setFinishGame(true);
         }
     }
-
+    
+    /**
+     * @see deselect
+     */
     public void finshGameM() {
-        String txt = "Perdió";
+        String txt = "";
         if (this.type.equals(TYPE_GAME_SINGLE)) {
             team.setBestTimeSingle(roomsObserver.get(0).getTime());
             player.setSelected(false);
             if (won) {
-                txt = "Ganó \n" + player.getId();
+                txt = "Ganó: Jugador " + player.getId();
+            } else {
+                txt = "Perdió: Jugador " + player.getId();
             }
         } else if (this.type.equals(TYPE_GAME_MULTIPLAYER)) {
             team.setBestTimeMultiplayer(roomsObserver.get(0).getTime());
             deselect();
             if (won) {
-                txt = "Ganó \n" + player.getId();
+                txt = "Ganó: Equipo " + team.getTeamName();
+            } else {
+                txt = "Perdió: Equipo " + team.getTeamName();
             }
         }
         for (int i = 0; i < roomsObserver.size(); i++) {
