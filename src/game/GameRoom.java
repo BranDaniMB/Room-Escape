@@ -35,14 +35,14 @@ public class GameRoom extends Thread implements Subject {
     private Subteam subteam;
     private RoomsInterface room;
     private boolean won;
-    
+
     /**
      * Create a GameRoom for an individual game
-     * 
+     *
      * @param game
      * @param entry
      * @param gameRiddle
-     * @param type 
+     * @param type
      */
     public GameRoom(Game game, Entry<Team, Subteam> entry, RoomRiddle gameRiddle, String type) {
         this.game = game;
@@ -58,15 +58,15 @@ public class GameRoom extends Thread implements Subject {
         this.room = gameRiddle.getRoom();
         loadPadlocks(gameRiddle);
     }
-    
+
     /**
      * Create a GameRoom for an multiplayer game
-     * 
+     *
      * @param game
      * @param team
      * @param player
      * @param gameRiddle
-     * @param type 
+     * @param type
      */
     public GameRoom(Game game, Team team, Player player, RoomRiddle gameRiddle, String type) {
         this.game = game;
@@ -82,12 +82,12 @@ public class GameRoom extends Thread implements Subject {
         this.room = gameRiddle.getRoom();
         loadPadlocks(gameRiddle);
     }
-    
+
     /**
      * Try to open a padlock, check if the game has been won.
-     * 
+     *
      * @param msj
-     * @param padlock 
+     * @param padlock
      */
     public void tryUnlockPadlock(String msj, int padlock) {
         if (padlocks.get(padlock).tryOpen((msj.toLowerCase().trim()))) {
@@ -100,12 +100,12 @@ public class GameRoom extends Thread implements Subject {
             }
         }
     }
-    
+
     /**
      * Try to open a hint, if the answer is correct, open it.
-     * 
+     *
      * @param msj
-     * @param padlock 
+     * @param padlock
      */
     public void tryUnlockTrack(String msj, int padlock) {
         if (padlocks.get(padlock).getRiddle().getTrackLock().tryUnlock((msj.toLowerCase().trim()))) {
@@ -113,30 +113,30 @@ public class GameRoom extends Thread implements Subject {
             updateTracks(padlock);
         }
     }
-    
+
     /**
      * Get the question linked to a padlock
-     * 
+     *
      * @param padlock
      * @return Question linked to the padlock
      */
     public String getPadlockQuestion(int padlock) {
         return padlocks.get(padlock).getRiddle().getQuestion();
     }
-    
+
     /**
      * Get the question linked to a track
-     * 
+     *
      * @param padlock
      * @return Question linked to the track
      */
     public String getLockedTrackQuestion(int padlock) {
         return padlocks.get(padlock).getRiddle().getTrackLock().getQuestion();
     }
-    
+
     /**
      * Get the track linked to a button
-     * 
+     *
      * @param padlock
      * @param track
      * @return Track linked to button
@@ -144,30 +144,30 @@ public class GameRoom extends Thread implements Subject {
     public String getTrackSimple(int padlock, int track) {
         return padlocks.get(padlock).getRiddle().getTracks().get(track);
     }
-    
+
     /**
-     * 
-     * 
+     *
+     *
      * @param padlock
-     * @return 
+     * @return
      */
     public String getUnlockTrack(int padlock) {
         return padlocks.get(padlock).getRiddle().getTrackLock().getTrack();
     }
-    
+
     /**
-     * 
-     * @param roomRiddle 
+     *
+     * @param roomRiddle
      */
     private void loadPadlocks(RoomRiddle roomRiddle) {
         for (int i = 0; i < roomRiddle.getListRiddle().size(); i++) {
             padlocks.add(new Padlock(roomRiddle.getListRiddle().get(i), "Candado: " + (i + 1)));
         }
     }
-    
+
     /**
-     * 
-     * @param padlock 
+     *
+     * @param padlock
      */
     private void setPadlockText(int padlock) {
         if (padlocks.get(padlock).isOpen()) {
@@ -177,21 +177,21 @@ public class GameRoom extends Thread implements Subject {
             }
         }
     }
-    
+
     /**
      * Start individual game screens
-     * 
+     *
      * @return current GameRoom
      */
     public GameRoom openWindowsSingle() {
         createWindows(player.getId());
         return this;
     }
-    
+
     /**
      * Create a game screen
-     * 
-     * @param playerId 
+     *
+     * @param playerId
      */
     private void createWindows(String playerId) {
         if (room instanceof Room1) {
@@ -220,10 +220,10 @@ public class GameRoom extends Thread implements Subject {
             room6.setVisible(true);
         }
     }
-    
+
     /**
      * Start multiplayer game screens
-     * 
+     *
      * @return current GameRoom
      */
     public synchronized GameRoom openWindowsMultiplayer() {
@@ -232,40 +232,40 @@ public class GameRoom extends Thread implements Subject {
         }
         return this;
     }
-    
+
     /**
-     * 
-     * 
-     * @param msj 
+     *
+     *
+     * @param msj
      */
     public synchronized void updateInfo(String msj) {
         for (int i = 0; i < roomsObserver.size(); i++) {
             roomsObserver.get(i).update(msj);
         }
     }
-    
+
     /**
-     * 
-     * @param padlock 
+     *
+     * @param padlock
      */
     public synchronized void updateTracks(int padlock) {
         for (int i = 0; i < roomsObserver.size(); i++) {
             roomsObserver.get(i).unlockTrackLocked(padlock);
         }
     }
-    
+
     /**
-     * 
-     * @param padlock 
+     *
+     * @param padlock
      */
     public synchronized void updatePadlock(int padlock) {
         for (int i = 0; i < roomsObserver.size(); i++) {
             roomsObserver.get(i).updatePadlock(padlock);
         }
     }
-    
+
     /**
-     * 
+     *
      */
     public synchronized void verifyWinner() {
         if (!game.isFinishGame()) {
@@ -273,7 +273,16 @@ public class GameRoom extends Thread implements Subject {
             game.setFinishGame(true);
         }
     }
-    
+
+    /**
+     * Get game mode
+     *
+     * @return game mode
+     */
+    public String getType() {
+        return type;
+    }
+
     /**
      * @see deselect
      */
@@ -281,7 +290,7 @@ public class GameRoom extends Thread implements Subject {
         String txt = "";
         if (this.type.equals(TYPE_GAME_SINGLE)) {
             team.setBestTimeSingle(roomsObserver.get(0).getTime());
-            player.setSelected(false);
+            deselect();
             if (won) {
                 txt = "Ganó: Jugador " + player.getId();
             } else {
@@ -300,29 +309,33 @@ public class GameRoom extends Thread implements Subject {
             roomsObserver.get(i).showMessageWin(txt);
         }
     }
-    
+
     /**
-     * 
+     *
      */
     public void deselect() {
-        for (int i = 0; i < subteam.size(); i++) {
-            subteam.finishPlayerOff();
+        if (this.type.equals(GameRoom.TYPE_GAME_SINGLE)) {
+            player.setSelected(false);
+        } else if (this.type.equals(GameRoom.TYPE_GAME_MULTIPLAYER)) {
+            for (int i = 0; i < subteam.size(); i++) {
+                subteam.finishPlayerOff();
+            }
         }
     }
-    
+
     /**
-     * 
-     * @param e 
+     *
+     * @param e
      */
     @Override
     public void addObserver(RoomsInterface e) {
         roomsObserver.add(e);
     }
-    
+
     /**
-     * 
+     *
      * @param index
-     * @return 
+     * @return
      */
     @Override
     public RoomsInterface removeObserver(int index) {
